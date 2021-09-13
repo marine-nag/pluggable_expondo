@@ -21,6 +21,10 @@ define(function (require) {
       
          var self = this;
       
+         $(this).ready(function($scope){
+           console.log("this in placeholder.");
+         });
+      
          this.onClick = () => {
             console.log('Click!');
          };
@@ -40,9 +44,9 @@ define(function (require) {
             
             
             var items = [{
-                text: "Print Invoices",  // Button name
+                //text: "Print Invoices",  // Button name
                 key: "placeholderMandatoryTemplate",  // Button id (unique)
-                icon: "fa fa-print",  // Button icon
+                //icon: "fa fa-print",  // Button icon
                 content: {
                     moduleName: "placeholderMandatoryTemplate",
                     controlName: "placeholderMandatoryTemplate"
@@ -62,12 +66,10 @@ define(function (require) {
    
    // ====
    
-    $(this).ready(function($scope){
-        console.log("this");
-    });
    
    
-   $(document).ready(function ($scope) {
+   
+   /*$(document).ready(function ($scope) {
       
       console.log('Here!');
     const config = { childList: true, subtree: true };
@@ -121,7 +123,7 @@ define(function (require) {
       const targetNode = document.getElementsByClassName("opened-modules")[0];
       observer.observe(targetNode, config);
     }, 2000);
-  });
+  });*/
    
    
 });
