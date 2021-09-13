@@ -36,7 +36,7 @@ define(function (require) {
 
          this.getItems = () => {
             var t = angular.module('Components');
-            
+            alert("getItems");
            return null;
          };
    };
