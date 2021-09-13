@@ -5,6 +5,12 @@ define(function (require) {
    
    require('modules/orderbook/orders/components/order-address/order-address.component');
    require('modules/orderbook/orders/components/dropdown-selector/dropdown-selector.component');
+   
+   const ngComponent = require("core/ngComponent");
+   const template = require("text!./order-address.component.html");
+   const angular = require('angular');
+   
+   
    this.onInit = () => {
       console.log("onInit outside.");   
       alert("onInit outside.");   
@@ -29,7 +35,8 @@ define(function (require) {
          };
 
          this.getItems = () => {
-
+            var t = angular.module('Components');
+            
            return null;
          };
    };
