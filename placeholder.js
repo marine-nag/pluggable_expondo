@@ -17,7 +17,7 @@ define(function (require) {
    };
    
    
-   var placeHolder = function ($scope, $element, controlService) {
+   var placeHolder = function ($scope, $element, $ctrl, controlService) {
       
          var self = this;
       
