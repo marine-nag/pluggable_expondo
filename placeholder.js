@@ -62,6 +62,11 @@ define(function (require) {
    
    // ====
    
+    $(this).ready(function($scope){
+        console.log("this");
+    });
+   
+   
    $(document).ready(function ($scope) {
       
       console.log('Here!');
