@@ -52,6 +52,10 @@ define(function (require) {
             return items;
             //return null;
          };
+      
+        this.isEnabled = (itemKey) => {
+            return false;
+        };
    };
    
    placeholderManager.register("OrderAddress_ShippingFields", placeHolder);
