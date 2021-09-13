@@ -37,7 +37,20 @@ define(function (require) {
          this.getItems = () => {
             var t = angular.module('Components');
             alert('getItems');
-            return null;
+            
+            
+            var items = [{
+                text: "Print Invoices",  // Button name
+                key: "placeholderMandatoryTemplate",  // Button id (unique)
+                icon: "fa fa-print",  // Button icon
+                content: {
+                    moduleName: "placeholderMandatoryTemplate",
+                    controlName: "placeholderMandatoryTemplate"
+                }
+            }];
+
+            return items;
+            //return null;
          };
    };
    
