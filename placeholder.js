@@ -7,6 +7,7 @@ define(function (require) {
    require('modules/orderbook/orders/components/dropdown-selector/dropdown-selector.component');
    this.onInit = () => {
       console.log("onInit outside.");   
+      alert("onInit outside.");   
    };
    
    
@@ -23,7 +24,8 @@ define(function (require) {
          };
 
          self.onInit = () => {
-           console.log("onInit");          
+           console.log("onInit");    
+            alert("onInit");  
          };
 
          this.getItems = () => {
