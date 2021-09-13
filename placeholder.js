@@ -3,7 +3,17 @@
 define(function (require) {
    const placeholderManager = require("core/placeholderManager");
    
+   require('modules/orderbook/orders/components/order-address/order-address.component');
+   require('modules/orderbook/orders/components/dropdown-selector/dropdown-selector.component');
+   this.onInit = () => {
+      console.log("onInit outside.");   
+   };
+   
+   
    var placeHolder = function ($scope, $element, controlService) {
+      
+         var self = this;
+      
          this.onClick = () => {
             console.log("Click!");
          };
@@ -12,14 +22,13 @@ define(function (require) {
            console.log("init");          
          };
 
-      
-         this.onInit = () => {
+         self.onInit = () => {
            console.log("onInit");          
          };
 
          this.getItems = () => {
 
-                     return null;
+           return null;
          };
    };
    
