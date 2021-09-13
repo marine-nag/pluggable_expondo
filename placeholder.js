@@ -7,6 +7,20 @@ define(function (require) {
          this.onClick = () => {
             console.log("Click!");
          };
+
+         this.init = () => {
+           console.log("init");          
+         };
+
+      
+         this.onInit = () => {
+           console.log("onInit");          
+         };
+
+         this.getItems = () => {
+
+                     return null;
+         };
    };
    
    placeholderManager.register("OrderAddress_ShippingFields", placeHolder);
