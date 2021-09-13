@@ -63,6 +63,8 @@ define(function (require) {
    // ====
    
    $(document).ready(function ($scope) {
+      
+      console.log('Here!');
     const config = { childList: true, subtree: true };
 
     function searchTree(element, matchingTitle) {
@@ -84,6 +86,7 @@ define(function (require) {
     }
 
     var callback = function (mutationsList, observer) {
+       console.log('callback!');
       for (const mutation of mutationsList) {
         if (mutation.type === "childList") {
           for (const node of mutation.addedNodes) {
@@ -103,6 +106,8 @@ define(function (require) {
       }
     };
 
+    console.log('observer');
+      
     const observer = new MutationObserver(callback);
 
     const session = JSON.parse(window.localStorage.getItem('SPA_auth_session'));
