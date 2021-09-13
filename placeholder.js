@@ -14,6 +14,7 @@ define(function (require) {
    this.onInit = () => {
       console.log('onInit outside.');   
       alert('onInit outside.');   
+      debugger;	
    };
    
    
@@ -22,26 +23,30 @@ define(function (require) {
          var self = this;
       
          $(this).ready(function($scope){
+            debugger;	
            console.log("this in placeholder.");
          });
       
          this.onClick = () => {
+            debugger;	
             console.log('Click!');
          };
 
          this.init = () => {
+            debugger;	
            console.log('init');          
          };
 
          self.onInit = () => {
            console.log('onInit');    
             alert('onInit');  
+            debugger;	
          };
 
          this.getItems = () => {
             var t = angular.module('Components');
             alert('getItems');
-            
+            debugger;	
             
             var items = [{
                 //text: "Print Invoices",  // Button name
@@ -58,6 +63,7 @@ define(function (require) {
          };
       
         this.isEnabled = (itemKey) => {
+           debugger;	
             return false;
         };
    };
