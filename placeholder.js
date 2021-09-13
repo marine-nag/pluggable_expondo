@@ -43,7 +43,7 @@ define(function (require) {
             debugger;	
          };
 
-         /*this.getItems = () => {
+         this.getItems = () => {
             var t = angular.module('Components');
             alert('getItems');
             debugger;	
@@ -60,7 +60,7 @@ define(function (require) {
 
             return items;
             //return null;
-         }; */
+         };
       
         this.isEnabled = (itemKey) => {
            debugger;	
