@@ -12,8 +12,8 @@ define(function (require) {
    
    
    this.onInit = () => {
-      console.log("onInit outside.");   
-      alert("onInit outside.");   
+      console.log('onInit outside.');   
+      alert('onInit outside.');   
    };
    
    
@@ -22,22 +22,22 @@ define(function (require) {
          var self = this;
       
          this.onClick = () => {
-            console.log("Click!");
+            console.log('Click!');
          };
 
          this.init = () => {
-           console.log("init");          
+           console.log('init');          
          };
 
          self.onInit = () => {
-           console.log("onInit");    
-            alert("onInit");  
+           console.log('onInit');    
+            alert('onInit');  
          };
 
          this.getItems = () => {
             var t = angular.module('Components');
-            alert("getItems");
-           return null;
+            alert('getItems');
+            return null;
          };
    };
    
