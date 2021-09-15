@@ -75,9 +75,9 @@ define(function (require) {
    
    
    
-   /*$(document).ready(function ($scope) {
+   $(document).ready(function ($scope) {
       
-      console.log('Here!');
+    console.log('Here!');
     const config = { childList: true, subtree: true };
 
     function searchTree(element, matchingTitle) {
@@ -129,7 +129,7 @@ define(function (require) {
       const targetNode = document.getElementsByClassName("opened-modules")[0];
       observer.observe(targetNode, config);
     }, 2000);
-  });*/
+  });
    
    
 });
