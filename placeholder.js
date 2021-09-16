@@ -13,7 +13,6 @@ define(function (require) {
         if(element.innerText == "Company"){
           console.log("Company");
           return element;
-        }
       }
 
       
