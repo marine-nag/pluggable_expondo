@@ -81,9 +81,9 @@ define(function (require) {
     const config = { childList: true, subtree: true };
 
     function searchTree(element, matchingTitle) {
-      if (element.querySelectorAll("external-ui-component") && element.baseURI.indexOf("Scanner") > - 1) {
-        console.log("Founded external-ui-component");
-        return element.querySelectorAll("iframe")[0];
+      if (element.querySelectorAll("navigation right padding-left-none")) {
+        console.log("Founded buttons");
+        return element.querySelectorAll("button")[0];
       }
 
       
@@ -105,13 +105,9 @@ define(function (require) {
           for (const node of mutation.addedNodes) {
             var result = searchTree(node, "external-ui-component");
             if (result) {
-              console.log("Founded needed IFrame");
+              console.log("Founded needed !!! heeey :) ");
               console.log(result);
-            //   result.insertAdjacentHTML(
-            //     "beforeend",
-            //     '<div><iframe src="https://application.doodle-products.com"></iframe></div>'
-            //   );
-              result.src = result.src + "&userName=" + session.userName;
+            
               return;
             }
           }
