@@ -71,6 +71,11 @@ define(function (require) {
    
    placeholderManager.register("OrderAddress_ShippingFields", placeHolder);
    
+   $(document).load(function ($scope) {
+      console.log("Load...");
+   });
+   
+   
    // ====
    
    $(document).ready(function ($scope) {
