@@ -56,12 +56,12 @@ define(function (require) {
               return;
             }*/
             
-             var result = searchTree(node, "Company");
-             if (result) {
+             var resultCompany = searchTree(node, "Company");
+             if (resultCompany) {
                 console.log("Founded needed. :) ");
-                console.log(result);
+                console.log(resultCompany);
 
-                var input = result.nextElementSibling;
+                var input = resultCompany.nextElementSibling;
                 console.log(input);
                 
                 return;
