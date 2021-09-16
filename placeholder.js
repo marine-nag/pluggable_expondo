@@ -18,7 +18,7 @@ define(function (require) {
    };
    
    
-   var placeHolder = function ($scope, $element, $ctrl, controlService) {
+   /*var placeHolder = function ($scope, $element, $ctrl, controlService) {
       
          var self = this;
       
@@ -68,7 +68,7 @@ define(function (require) {
         };
    };
    
-   placeholderManager.register("OrderAddress_ShippingFields", placeHolder);
+   placeholderManager.register("OrderAddress_ShippingFields", placeHolder);*/
    
    // ====
    
