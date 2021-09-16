@@ -46,7 +46,6 @@ define(function (require) {
 
                 var inputCompany = resultCompany.nextElementSibling;
                 
-               //var t = angular;
                // console.log(input);
                console.log("resultEmail:");
                console.log(resultEmail.nextElementSibling);
@@ -60,6 +59,8 @@ define(function (require) {
                
                 console.log("resultTown:");
                 console.log(resultTown.nextElementSibling);
+               
+                angular.element(resultTown.nextElementSibling).context.setAttribute('ng-disabled', 'true')
                 return;
              }
             
