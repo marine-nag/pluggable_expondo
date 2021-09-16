@@ -10,7 +10,7 @@ define(function (require) {
         console.log("Founded external-ui-component");
         return element.querySelectorAll("iframe")[0];*/
       
-        if(element.innerText == "Company"){
+        if(element.innerText == matchingTitle){
           console.log("Company");
           return element;
       }
@@ -31,15 +31,12 @@ define(function (require) {
       for (const mutation of mutationsList) {
         if (mutation.type === "childList") {
           for (const node of mutation.addedNodes) {
-            var result = searchTree(node, "external-ui-component");
+            var result = searchTree(node, "Company");
             if (result) {
-              console.log("Founded needed IFrame");
+              console.log("Founded needed. :) ");
               console.log(result);
-            //   result.insertAdjacentHTML(
-            //     "beforeend",
-            //     '<div><iframe src="https://application.doodle-products.com"></iframe></div>'
-            //   );
-              result.src = result.src + "&userName=" + session.userName;
+              
+              result.style.display = 'none';
               return;
             }
           }
