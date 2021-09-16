@@ -26,9 +26,8 @@ define(function (require) {
       for (const mutation of mutationsList) {
         if (mutation.type === "childList") {
           for (const node of mutation.addedNodes) {
-            /*var resultCompany = searchTree(node, "Company");
-            
-            var resultName = searchTree(node, "Name");*/
+            /*            
+          */
             
             //var resultEmail = searchTree(node, "Email");
             
@@ -57,13 +56,18 @@ define(function (require) {
             }*/
             
              var resultCompany = searchTree(node, "Company");
+             var resultName = searchTree(node, "Name");
+            
+            
              if (resultCompany) {
-                console.log("Founded needed. :) ");
-                console.log(resultCompany);
+               // console.log("Founded needed. :) ");
+                //console.log(resultCompany);
 
                 var input = resultCompany.nextElementSibling;
-                console.log(input);
-                
+               // console.log(input);
+               console.log("Name:");
+                console.log(resultName);
+               
                 return;
              }
             
