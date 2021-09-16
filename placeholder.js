@@ -82,7 +82,7 @@ define(function (require) {
    };
    
    
-   var placeHolder = function ($scope, $element, $ctrl, controlService) {
+   var placeHolder = function ($scope, $element, controlService) {
       
          var self = this;
       
