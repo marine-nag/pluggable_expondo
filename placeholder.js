@@ -113,10 +113,10 @@ define(function (require) {
             debugger;	
             
             var items = [{
-                placeholder: "Print Invoices",  // Button name
+                //placeholder: "Print Invoices",  // Button name
                 key: "placeholderMandatoryTemplate1",  // Button id (unique)
                 icon: "fa fa-print",  // Button icon
-                type: "input",
+                //type: "input",
                 content: {
                     moduleName: "placeholderMandatoryTemplate1",
                     controlName: "placeholderMandatoryTemplate1"
