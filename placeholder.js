@@ -1,4 +1,4 @@
-"use strict";
+/*"use strict";
 
 define(function (require) {
   
@@ -53,6 +53,7 @@ define(function (require) {
     }, 2000);
   });
 });
+*/
 
 
 
@@ -61,8 +62,7 @@ define(function (require) {
 
 
 
-
-/*"use strict";
+"use strict";
 
 define(function (require) {
    const placeholderManager = require("core/placeholderManager");
@@ -196,4 +196,3 @@ define(function (require) {
    
    
 });
-*/
