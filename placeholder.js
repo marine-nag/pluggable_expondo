@@ -44,8 +44,8 @@ define(function (require) {
                // console.log("Founded needed. :) ");
                 //console.log(resultCompany);
 
-               resultName.innerText = resultName.innerText + "*";
-               resultCompany.innerText = resultCompany.innerText + "*";
+               resultName.innerText += " *";
+               resultCompany.innerText += " *";
                
                 var inputCompany = resultCompany.nextElementSibling;
                 
