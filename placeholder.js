@@ -36,7 +36,7 @@ define(function (require) {
               console.log("Founded needed. :) ");
               console.log(result);
               
-              var input = result.nextSibiling;
+              var input = result.nextElementSibling;
               
               input.style.display = 'none';
               
