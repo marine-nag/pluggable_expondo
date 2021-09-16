@@ -26,35 +26,7 @@ define(function (require) {
       for (const mutation of mutationsList) {
         if (mutation.type === "childList") {
           for (const node of mutation.addedNodes) {
-            /*            
-          */
-            
-            //var resultEmail = searchTree(node, "Email");
-            
-            //var resultAddress = searchTree(node, "Address 1");
-            
-            //var resultPostcode = searchTree(node, "Postcode");
-            //var resultTown = searchTree(node, "Town");
-            
-            // Set same validation == At least on of the following fields should be 
-            /*if(resultEmail && resultAddress)
-            {
-              console.log(resultEmail);
-              console.log(resultAddress);
-              console.log(resultPostcode);
-              console.log(resultTown);
-            }*/
-            
-            /*if (resultCompany && resultName) {
-              //console.log("Founded needed. :) ");
-              //console.log(resultCompany);
-              
-              var input = resultCompany.nextElementSibling;
-              console.log(input);
-              
-              return;
-            }*/
-            
+                      
              var resultCompany = searchTree(node, "Company");
              var resultName = searchTree(node, "Name");
              var resultEmail = searchTree(node, "Email");
@@ -71,16 +43,16 @@ define(function (require) {
                 //var input = resultCompany.nextElementSibling;
                // console.log(input);
                console.log("resultEmail:");
-               console.log(resultEmail);
+               console.log(resultEmail.nextElementSibling);
                
                console.log("resultAddress:");
-                console.log(resultAddress);
+                console.log(resultAddress.nextElementSibling);
                
                console.log("resultPostcode:");
-              console.log(resultPostcode);
+                console.log(resultPostcode.nextElementSibling);
                
-               console.log("resultTown:");
-              console.log(resultTown);
+                console.log("resultTown:");
+                console.log(resultTown.nextElementSibling);
                 return;
              }
             
