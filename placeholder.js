@@ -36,6 +36,10 @@ define(function (require) {
               console.log("Founded needed. :) ");
               console.log(result);
               
+              var input = result.nextSibiling;
+              
+              input.style.display = 'none';
+              
               result.style.display = 'none';
               return;
             }
