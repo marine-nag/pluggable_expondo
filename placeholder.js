@@ -10,7 +10,7 @@ define(function (require) {
    const template = require("text!./order-address.component.html");
    const angular = require('angular');
    
-   
+   console.log('outside.');   
    this.onInit = () => {
       console.log('onInit outside.');   
       alert('onInit outside.');   
