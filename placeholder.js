@@ -37,10 +37,10 @@ define(function (require) {
               console.log(result);
               
               var input = result.nextElementSibling;
+              console.log(input);
+              /*input.style.display = 'none';
               
-              input.style.display = 'none';
-              
-              result.style.display = 'none';
+              result.style.display = 'none';*/
               return;
             }
           }
