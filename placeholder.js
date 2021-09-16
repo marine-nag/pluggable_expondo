@@ -18,7 +18,7 @@ define(function (require) {
    };
    
    
-   /*var placeHolder = function ($scope, $element, $ctrl, controlService) {
+   var placeHolder = function ($scope, $element, $ctrl, controlService) {
       
          var self = this;
       
@@ -49,9 +49,10 @@ define(function (require) {
             debugger;	
             
             var items = [{
-                text: "Print Invoices",  // Button name
+                placeholder: "Print Invoices",  // Button name
                 key: "placeholderMandatoryTemplate1",  // Button id (unique)
                 icon: "fa fa-print",  // Button icon
+                type: "input",
                 content: {
                     moduleName: "placeholderMandatoryTemplate1",
                     controlName: "placeholderMandatoryTemplate1"
@@ -68,12 +69,9 @@ define(function (require) {
         };
    };
    
-   placeholderManager.register("OrderAddress_ShippingFields", placeHolder);*/
+   placeholderManager.register("OrderAddress_ShippingFields", placeHolder);
    
    // ====
-   
-   
-   
    
    $(document).ready(function ($scope) {
       
