@@ -2,6 +2,10 @@
 
 define(function (require) {
   
+  const ngComponent = require("core/ngComponent");
+   const template = require("text!./order-address.component.html");
+   const angular = require('angular');
+  
   $(document).ready(function ($scope) {
     const config = { childList: true, subtree: true };
 
@@ -40,10 +44,13 @@ define(function (require) {
                // console.log("Founded needed. :) ");
                 //console.log(resultCompany);
 
-                //var input = resultCompany.nextElementSibling;
+                var inputCompany = resultCompany.nextElementSibling;
+                
+               var t = angular;
                // console.log(input);
                console.log("resultEmail:");
                console.log(resultEmail.nextElementSibling);
+               
                
                console.log("resultAddress:");
                 console.log(resultAddress.nextElementSibling);
