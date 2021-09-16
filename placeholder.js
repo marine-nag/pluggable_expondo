@@ -30,31 +30,32 @@ define(function (require) {
             
             var resultName = searchTree(node, "Name");
             
-            var resultEmail = searchTree(node, "Email");
+            //var resultEmail = searchTree(node, "Email");
             
-            var resultAddress = searchTree(node, "Address 1");
+            //var resultAddress = searchTree(node, "Address 1");
             
-            var resultPostcode = searchTree(node, "Postcode");
-            var resultTown = searchTree(node, "Town");
+            //var resultPostcode = searchTree(node, "Postcode");
+            //var resultTown = searchTree(node, "Town");
             
             // Set same validation == At least on of the following fields should be 
-            if (resultCompany && resultName) {
-              //console.log("Founded needed. :) ");
-              //console.log(resultCompany);
-              
-              var input = resultCompany.nextElementSibling;
-              //console.log(input);
-              
-              return;
-            }
-            
-            if(resultEmail && resultAddress)
+            /*if(resultEmail && resultAddress)
             {
               console.log(resultEmail);
               console.log(resultAddress);
               console.log(resultPostcode);
               console.log(resultTown);
+            }*/
+            
+            if (resultCompany && resultName) {
+              //console.log("Founded needed. :) ");
+              //console.log(resultCompany);
+              
+              var input = resultCompany.nextElementSibling;
+              console.log(input);
+              
+              return;
             }
+                      
           }
         }
       }
