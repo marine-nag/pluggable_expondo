@@ -44,8 +44,14 @@ define(function (require) {
                // console.log("Founded needed. :) ");
                 //console.log(resultCompany);
 
+              var el1 = angular.element(resultName).attr('ng-class');
+
                resultName.innerText += " *";
+               
+               angular.element(resultName).attr('ng-class', el1);
+
                resultCompany.innerText += " *";
+               
                
                 var inputCompany = resultCompany.nextElementSibling;
                 
