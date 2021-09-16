@@ -69,9 +69,12 @@ define(function (require) {
                 console.log("resultTown:");
                 console.log(resultTown.nextElementSibling);
                
-                if(resultTown)
+                 if(resultTown)
                 {
-                    angular.element(resultTown.nextElementSibling).context.setAttribute('ng-disabled', 'true');
+                    var at1 = angular.element(resultTown.nextElementSibling).context.getAttribute('class');
+
+                    at1.replace('ng-valid', '');
+                    angular.element(resultTown.nextElementSibling).context.setAttribute('class', at1 + ' ng-invalid');
                 }
                 return;
              }
