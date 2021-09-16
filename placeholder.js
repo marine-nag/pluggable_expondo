@@ -57,17 +57,30 @@ define(function (require) {
             
              var resultCompany = searchTree(node, "Company");
              var resultName = searchTree(node, "Name");
+             var resultEmail = searchTree(node, "Email");
             
+              var resultAddress = searchTree(node, "Address 1");
+            
+              var resultPostcode = searchTree(node, "Postcode");
+              var resultTown = searchTree(node, "Town");
             
              if (resultCompany) {
                // console.log("Founded needed. :) ");
                 //console.log(resultCompany);
 
-                var input = resultCompany.nextElementSibling;
+                //var input = resultCompany.nextElementSibling;
                // console.log(input);
-               console.log("Name:");
-                console.log(resultName);
+               console.log("resultEmail:");
+               console.log(resultEmail);
                
+               console.log("resultAddress:");
+                console.log(resultAddress);
+               
+               console.log("resultPostcode:");
+              console.log(resultPostcode);
+               
+               console.log("resultTown:");
+              console.log(resultTown);
                 return;
              }
             
