@@ -49,12 +49,12 @@ define(function (require) {
             debugger;	
             
             var items = [{
-                //text: "Print Invoices",  // Button name
-                key: "placeholderMandatoryTemplate",  // Button id (unique)
-                //icon: "fa fa-print",  // Button icon
+                text: "Print Invoices",  // Button name
+                key: "placeholderMandatoryTemplate1",  // Button id (unique)
+                icon: "fa fa-print",  // Button icon
                 content: {
-                    moduleName: "placeholderMandatoryTemplate",
-                    controlName: "placeholderMandatoryTemplate"
+                    moduleName: "placeholderMandatoryTemplate1",
+                    controlName: "placeholderMandatoryTemplate1"
                 }
             }];
 
