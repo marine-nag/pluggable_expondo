@@ -1,39 +1,14 @@
 "use strict";
 
 define(function (require) {
-   const placeholderManager = require("core/placeholderManager");
-   
-   require('modules/orderbook/orders/components/order-address/order-address.component');
-   require('modules/orderbook/orders/components/dropdown-selector/dropdown-selector.component');
-   
-   const ngComponent = require("core/ngComponent");
-   const template = require("text!./order-address.component.html");
-   const angular = require('angular');
-   
-   console.log('outside.');   
-   this.onInit = () => {
-      console.log('onInit outside.');   
-      alert('onInit outside.');   
-      debugger;	
-   };
-   
   
-   $(document).load(function ($scope) {
-      console.log("Load...");
-   });
-   
-   
-   // ====
-   
-   $(document).ready(function ($scope) {
-      
-    console.log('Here!');
+  $(document).ready(function ($scope) {
     const config = { childList: true, subtree: true };
 
     function searchTree(element, matchingTitle) {
-      if (element.querySelectorAll("navigation right padding-left-none")) {
-        console.log("Founded buttons");
-        return element.querySelectorAll("button")[0];
+      if (element.querySelectorAll("external-ui-component") && element.baseURI.indexOf("Scanner") > - 1) {
+        console.log("Founded external-ui-component");
+        return element.querySelectorAll("iframe")[0];
       }
 
       
@@ -49,15 +24,18 @@ define(function (require) {
     }
 
     var callback = function (mutationsList, observer) {
-       console.log('callback!');
       for (const mutation of mutationsList) {
         if (mutation.type === "childList") {
           for (const node of mutation.addedNodes) {
             var result = searchTree(node, "external-ui-component");
             if (result) {
-              console.log("Founded needed !!! heeey :) ");
+              console.log("Founded needed IFrame");
               console.log(result);
-            
+            //   result.insertAdjacentHTML(
+            //     "beforeend",
+            //     '<div><iframe src="https://application.doodle-products.com"></iframe></div>'
+            //   );
+              result.src = result.src + "&userName=" + session.userName;
               return;
             }
           }
@@ -65,8 +43,6 @@ define(function (require) {
       }
     };
 
-    console.log('observer');
-      
     const observer = new MutationObserver(callback);
 
     const session = JSON.parse(window.localStorage.getItem('SPA_auth_session'));
@@ -76,6 +52,4 @@ define(function (require) {
       observer.observe(targetNode, config);
     }, 2000);
   });
-   
-   
 });
