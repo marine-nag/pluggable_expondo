@@ -6,9 +6,14 @@ define(function (require) {
     const config = { childList: true, subtree: true };
 
     function searchTree(element, matchingTitle) {
-      if (element.querySelectorAll("external-ui-component") && element.baseURI.indexOf("Scanner") > - 1) {
+     /*if (element.querySelectorAll("external-ui-component") && element.baseURI.indexOf("Scanner") > - 1) {
         console.log("Founded external-ui-component");
-        return element.querySelectorAll("iframe")[0];
+        return element.querySelectorAll("iframe")[0];*/
+      
+        if(element.innerText == "Company"){
+          console.log("Company");
+          return element;
+        }
       }
 
       
