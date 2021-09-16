@@ -60,7 +60,10 @@ define(function (require) {
                 console.log("resultTown:");
                 console.log(resultTown.nextElementSibling);
                
-                angular.element(resultTown.nextElementSibling).context.setAttribute('ng-disabled', 'true')
+                if(resultTown)
+                {
+                    angular.element(resultTown.nextElementSibling).context.setAttribute('ng-disabled', 'true');
+                }
                 return;
              }
             
