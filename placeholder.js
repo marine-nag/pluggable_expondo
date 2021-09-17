@@ -56,7 +56,18 @@ define(function (require) {
                 emailInput.attr("required","required");
                 emailInput.attr("type","email");
                
+                // Address 1, Town, Postcode => Cannot be empty (at least 1 character)
+                var addInput = angular.element(resultAddress.nextElementSibling);
+                addInput.context.setAttribute('minlength', '1');
+                addInput.attr("required","required");
                
+                var codeInput = angular.element(resultPostcode.nextElementSibling);
+                codeInput.context.setAttribute('minlength', '1');
+                codeInput.attr("required","required");
+               
+                var townInput = angular.element(resultTown.nextElementSibling);
+                townInput.context.setAttribute('minlength', '1');
+                townInput.attr("required","required");
                
                
                 /*var el1 = angular.element(resultName).attr('ng-class');
