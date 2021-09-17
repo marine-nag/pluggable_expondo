@@ -66,17 +66,17 @@ define(function (require) {
                 resultTown.innerText = "*" + resultTown.innerText;
                
                 // Make red
-                var nameClass = angular.element(resultName).context.getAttribute('ng-class');
+                /*var nameClass = angular.element(resultName).context.getAttribute('ng-class');
                
-                /*nameClass.replace("}", "; color: red; }");
+                nameClass.replace("}", "; color: red; }");*/
                
-                angular.element(resultName).attr('ng-class', nameClass);
-                angular.element(resultCompany).attr('ng-class', nameClass);
-                angular.element(resultEmail).attr('ng-class', nameClass);
-                angular.element(resultAddress).attr('ng-class', nameClass);
-                angular.element(resultPostcode).attr('ng-class', nameClass);
-                angular.element(resultTown).attr('ng-class', nameClass);
-               */
+                angular.element(resultName).attr('style', "color:red!important;");
+                angular.element(resultCompany).attr('style', "color:red!important;");
+                angular.element(resultEmail).attr('style', "color:red!important;");
+                angular.element(resultAddress).attr('style', "color:red!important;");
+                angular.element(resultPostcode).attr('style', "color:red!important;");
+                angular.element(resultTown).attr('style', "color:red!important;");
+               
                 // At least on of the following fields should be filled  Name or Company Name
                 var nameInput = angular.element(resultName.nextElementSibling);
                 nameInput.context.setAttribute('minlength', '1');
