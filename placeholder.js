@@ -64,12 +64,12 @@ define(function (require) {
                 resultName.innerText = "*" + resultName.innerText;
                 resultCompany.innerText = "*" + resultCompany.innerText;
                 resultEmail.innerText = "*" + resultEmail.innerText;
-                if(resultAddress) resultAddress.innerText = "*" + resultAddress.innerText;
-                if(resultPostcode) resultPostcode.innerText = "*" + resultPostcode.innerText;
-                if(resultTown) resultTown.innerText = "*" + resultTown.innerText;
+                if (resultAddress) resultAddress.innerText = "*" + resultAddress.innerText;
+                if (resultPostcode) resultPostcode.innerText = "*" + resultPostcode.innerText;
+                if (resultTown) resultTown.innerText = "*" + resultTown.innerText;
               
-                if(resultAdd) resultAdd.innerText = "Address";
-                if(resultPhone) resultPhone.innerText = "Phone";
+                if (resultAdd) angular.element(resultAdd).context.setAttribute('style', "font-size:13px!important;");
+                if (resultPhone) angular.element(resultPhone).context.setAttribute('style', "font-size:13px!important;");
                
                 // Make red               
                 angular.element(resultName).context.setAttribute('style', "color:red!important;");
@@ -95,21 +95,21 @@ define(function (require) {
                 emailInput.attr("type","email");
                
                 // Address 1, Town, Postcode => Cannot be empty (at least 1 character)
-                if(resultAddress) 
+                if (resultAddress) 
                 {
                   var addInput = angular.element(resultAddress.nextElementSibling);
                   addInput.context.setAttribute('minlength', '1');
                   addInput.attr("required","required");
                 }
               
-                if(resultPostcode) 
+                if (resultPostcode) 
                 {
                   var codeInput = angular.element(resultPostcode.nextElementSibling);
                   codeInput.context.setAttribute('minlength', '1');
                   codeInput.attr("required","required");
                 }
               
-                if(resultTown)
+                if (resultTown)
                 {
                   var townInput = angular.element(resultTown.nextElementSibling);
                   townInput.context.setAttribute('minlength', '1');
