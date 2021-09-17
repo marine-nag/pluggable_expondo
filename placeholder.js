@@ -58,64 +58,71 @@ define(function (require) {
             var resultAdd = searchTree(node, "Address");
             var resultPhone = searchTree(node, "Phone");
             
-            if (resultCompany && resultName) {
-              
-                // Add an asterix (*{} )
+            ///
+            if (resultAdd) angular.element(resultAdd).context.setAttribute('style', "font-size:13px!important;");
+            if (resultPhone) resultPhone.innerText = "Phone ";
+            
+            
+            if (resultName) {              
                 resultName.innerText = "*" + resultName.innerText;
-                resultCompany.innerText = "*" + resultCompany.innerText;
-                resultEmail.innerText = "*" + resultEmail.innerText;
-                if (resultAddress) resultAddress.innerText = "*" + resultAddress.innerText;
-                if (resultPostcode) resultPostcode.innerText = "*" + resultPostcode.innerText;
-                if (resultTown) resultTown.innerText = "*" + resultTown.innerText;
-              
-                if (resultAdd) angular.element(resultAdd).context.setAttribute('style', "font-size:13px!important;");
-                if (resultPhone) resultPhone.innerText = "Phone ";
-               
-                // Make red               
+                           
                 angular.element(resultName).context.setAttribute('style', "color:red!important;");
-                angular.element(resultCompany).context.setAttribute('style', "color:red!important;");
-                angular.element(resultEmail).context.setAttribute('style', "color:red!important;");
-                if(resultAddress) angular.element(resultAddress).context.setAttribute('style', "color:red!important;");
-                if(resultPostcode) angular.element(resultPostcode).context.setAttribute('style', "color:red!important;");
-                if(resultTown) angular.element(resultTown).context.setAttribute('style', "color:red!important;");
-               
+              
                 // At least on of the following fields should be filled  Name or Company Name
                 var nameInput = angular.element(resultName.nextElementSibling);
                 nameInput.context.setAttribute('minlength', '1');
                 nameInput.attr("required","required");
-               
-                var companyInput = angular.element(resultCompany.nextElementSibling);
+            }
+            
+            if (resultCompany){
+              resultCompany.innerText = "*" + resultCompany.innerText;
+              angular.element(resultCompany).context.setAttribute('style', "color:red!important;");
+              
+              var companyInput = angular.element(resultCompany.nextElementSibling);
                 companyInput.context.setAttribute('minlength', '1');
                 companyInput.attr("required","required");
-                
-                // email address => Cannot be empty (at least 1 character); Standard email validation of structure such as contains @, .
+            }
+            
+            if (resultEmail) {
+              resultEmail.innerText = "*" + resultEmail.innerText;
+              angular.element(resultEmail).context.setAttribute('style', "color:red!important;");
+              
+               // email address => Cannot be empty (at least 1 character); Standard email validation of structure such as contains @, .
                 var emailInput = angular.element(resultEmail.nextElementSibling);
                 emailInput.context.setAttribute('minlength', '1');
                 emailInput.attr("required","required");
                 emailInput.attr("type","email");
-               
-                // Address 1, Town, Postcode => Cannot be empty (at least 1 character)
-                if (resultAddress) 
-                {
-                  var addInput = angular.element(resultAddress.nextElementSibling);
+            }
+            
+            
+            // Address 1, Town, Postcode => Cannot be empty (at least 1 character)
+            if (resultAddress) {
+              resultAddress.innerText = "*" + resultAddress.innerText;
+              angular.element(resultAddress).context.setAttribute('style', "color:red!important;");
+               var addInput = angular.element(resultAddress.nextElementSibling);
                   addInput.context.setAttribute('minlength', '1');
                   addInput.attr("required","required");
-                }
+            }
+            
+            if (resultPostcode) {
+              resultPostcode.innerText = "*" + resultPostcode.innerText;
+              angular.element(resultPostcode).context.setAttribute('style', "color:red!important;");
               
-                if (resultPostcode) 
-                {
-                  var codeInput = angular.element(resultPostcode.nextElementSibling);
+              var codeInput = angular.element(resultPostcode.nextElementSibling);
                   codeInput.context.setAttribute('minlength', '1');
                   codeInput.attr("required","required");
-                }
+            }
+            
+            if (resultTown) {
+              resultTown.innerText = "*" + resultTown.innerText;
               
-                if (resultTown)
-                {
-                  var townInput = angular.element(resultTown.nextElementSibling);
+              angular.element(resultTown).context.setAttribute('style', "color:red!important;");
+              
+              var townInput = angular.element(resultTown.nextElementSibling);
                   townInput.context.setAttribute('minlength', '1');
                   townInput.attr("required","required");
-                }               
-                
+            }
+            
                 /*var el1 = angular.element(resultName).attr('ng-class');
 
                resultName.innerText += " *";
@@ -160,7 +167,6 @@ define(function (require) {
                 }*/
                
                 //return;
-            }
             
                       
           }
