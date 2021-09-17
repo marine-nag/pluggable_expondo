@@ -68,7 +68,7 @@ define(function (require) {
                 // Make red
                 var nameClass = angular.element(resultName).context.getAttribute('ng-class');
                
-                nameClass.replace('}', 'color: red; }');
+                nameClass.replace("}", "; color: red; }");
                
                 angular.element(resultName).context.setAttribute('ng-class', nameClass);
                 angular.element(resultCompany).context.setAttribute('ng-class', nameClass);
