@@ -35,6 +35,10 @@ define(function (require) {
             var saveTxt = searchTree(node, " Save");
             if(saveTxt) {
               var btn = angular.element(saveTxt.parentNode);
+              var attrBtn = angular.element(btn).context.getAttribute('ng-disabled');
+              
+              btn.attr("ng-disabled", attrBtn + " || true"); 
+              
               console.log(btn);
             }
             
