@@ -41,8 +41,9 @@ define(function (require) {
               var resultTown = searchTree(node, "Town");
             
              if (resultCompany && resultName) {
-               var t = angular.element(resultName);
+               var t = angular.element(resultName.nextElementSibling);
                
+               console.log(t);
                
                 /*var el1 = angular.element(resultName).attr('ng-class');
 
