@@ -32,9 +32,9 @@ define(function (require) {
           for (const node of mutation.addedNodes) {
             
             // Find SAVE button
-            var btn = searchTree(node, " Save");
-            if(btn) {
-              
+            var saveTxt = searchTree(node, " Save");
+            if(saveTxt) {
+              var btn = angular.element(saveTxt.parentNode);
               console.log(btn);
             }
             
