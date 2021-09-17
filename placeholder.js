@@ -69,7 +69,7 @@ define(function (require) {
                 if (resultTown) resultTown.innerText = "*" + resultTown.innerText;
               
                 if (resultAdd) angular.element(resultAdd).context.setAttribute('style', "font-size:13px!important;");
-                if (resultPhone) angular.element(resultPhone).context.setAttribute('style', "font-size:13px!important;");
+                if (resultPhone) resultPhone.innerText = "Phone ";
                
                 // Make red               
                 angular.element(resultName).context.setAttribute('style', "color:red!important;");
