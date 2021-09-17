@@ -37,7 +37,7 @@ define(function (require) {
               var btn = angular.element(saveTxt.parentNode);
               var attrBtn = angular.element(btn).context.getAttribute('ng-disabled');
               
-              btn.attr("ng-disabled", attrBtn + " || true"); 
+              //btn.attr("ng-disabled", attrBtn + " || true"); 
               
               console.log(btn);
             }
@@ -45,18 +45,39 @@ define(function (require) {
             // set unavailable SAVE button... 
             
             
-                      
-             var resultCompany = searchTree(node, "Company");
-             var resultName = searchTree(node, "Name");
-             var resultEmail = searchTree(node, "Email");
+            // Look for another fields ... 
+            var resultCompany = searchTree(node, "Company");
+            var resultName = searchTree(node, "Name");
+            var resultEmail = searchTree(node, "Email");
             
-              var resultAddress = searchTree(node, "Address 1");
+            var resultAddress = searchTree(node, "Address 1");
             
-              var resultPostcode = searchTree(node, "Postcode");
-              var resultTown = searchTree(node, "Town");
+            var resultPostcode = searchTree(node, "Postcode");
+            var resultTown = searchTree(node, "Town");
             
-             if (resultCompany && resultName) {
-                // At least on of the followinf fields should be filled  Name or Company Name
+            if (resultCompany && resultName) {
+              
+                // Add an asterix (*{} )
+                resultName.innerText = "*" + resultName.innerText;
+                resultCompany.innerText = "*" + resultCompany.innerText;
+                resultEmail.innerText = "*" + resultEmail.innerText;
+                resultAddress.innerText = "*" + resultAddress.innerText;
+                resultPostcode.innerText = "*" + resultPostcode.innerText;
+                resultTown.innerText = "*" + resultTown.innerText;
+               
+                // Make red
+                var nameClass = angular.element(resultName).context.getAttribute('ng-class');
+               
+                nameClass.replace('}', 'color: red; }');
+               
+                angular.element(resultName).context.setAttribute('ng-class', nameClass);
+                angular.element(resultCompany).context.setAttribute('ng-class', nameClass);
+                angular.element(resultEmail).context.setAttribute('ng-class', nameClass);
+                angular.element(resultAddress).context.setAttribute('ng-class', nameClass);
+                angular.element(resultPostcode).context.setAttribute('ng-class', nameClass);
+                angular.element(resultTown).context.setAttribute('ng-class', nameClass);
+               
+                // At least on of the following fields should be filled  Name or Company Name
                 var nameInput = angular.element(resultName.nextElementSibling);
                 nameInput.context.setAttribute('minlength', '1');
                 nameInput.attr("required","required");
@@ -129,8 +150,8 @@ define(function (require) {
                     angular.element(resultTown.nextElementSibling).context.setAttribute('class', at1 + ' ng-invalid');
                 }*/
                
-                return;
-             }
+                //return;
+            }
             
                       
           }
