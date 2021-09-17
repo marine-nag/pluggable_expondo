@@ -40,11 +40,11 @@ define(function (require) {
               var resultPostcode = searchTree(node, "Postcode");
               var resultTown = searchTree(node, "Town");
             
-             if (resultCompany) {
-               // console.log("Founded needed. :) ");
-                //console.log(resultCompany);
-
-              var el1 = angular.element(resultName).attr('ng-class');
+             if (resultCompany && resultName) {
+               var t = angular.element(resultName);
+               
+               
+                /*var el1 = angular.element(resultName).attr('ng-class');
 
                resultName.innerText += " *";
                
@@ -53,7 +53,7 @@ define(function (require) {
                resultCompany.innerText += " *";
                
                
-               var inputCompany = resultCompany.nextElementSibling;
+                var inputCompany = resultCompany.nextElementSibling;
                
                if(inputCompany)
                {
@@ -66,7 +66,7 @@ define(function (require) {
                
                
                // console.log(input);
-               console.log("resultEmail:");
+              console.log("resultEmail:");
                console.log(resultEmail.nextElementSibling);
                
                
@@ -85,7 +85,7 @@ define(function (require) {
 
                     at1.replace('ng-valid', '');
                     angular.element(resultTown.nextElementSibling).context.setAttribute('class', at1 + ' ng-invalid');
-                }
+                }*/
                
                 return;
              }
