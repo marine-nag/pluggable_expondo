@@ -64,24 +64,20 @@ define(function (require) {
                 resultName.innerText = "*" + resultName.innerText;
                 resultCompany.innerText = "*" + resultCompany.innerText;
                 resultEmail.innerText = "*" + resultEmail.innerText;
-                resultAddress.innerText = "*" + resultAddress.innerText;
-                resultPostcode.innerText = "*" + resultPostcode.innerText;
-                resultTown.innerText = "*" + resultTown.innerText;
+                if(resultAddress) resultAddress.innerText = "*" + resultAddress.innerText;
+                if(resultPostcode) resultPostcode.innerText = "*" + resultPostcode.innerText;
+                if(resultTown) resultTown.innerText = "*" + resultTown.innerText;
               
-                resultAdd.innerText = "Address";
-                resultPhone.innerText = "Phone";
+                if(resultAdd) resultAdd.innerText = "Address";
+                if(resultPhone) resultPhone.innerText = "Phone";
                
-                // Make red
-                /*var nameClass = angular.element(resultName).context.getAttribute('ng-class');
-               
-                nameClass.replace("}", "; color: red; }");*/
-               
+                // Make red               
                 angular.element(resultName).context.setAttribute('style', "color:red!important;");
                 angular.element(resultCompany).context.setAttribute('style', "color:red!important;");
                 angular.element(resultEmail).context.setAttribute('style', "color:red!important;");
-                angular.element(resultAddress).context.setAttribute('style', "color:red!important;");
-                angular.element(resultPostcode).context.setAttribute('style', "color:red!important;");
-                angular.element(resultTown).context.setAttribute('style', "color:red!important;");
+                if(resultAddress) angular.element(resultAddress).context.setAttribute('style', "color:red!important;");
+                if(resultPostcode) angular.element(resultPostcode).context.setAttribute('style', "color:red!important;");
+                if(resultTown) angular.element(resultTown).context.setAttribute('style', "color:red!important;");
                
                 // At least on of the following fields should be filled  Name or Company Name
                 var nameInput = angular.element(resultName.nextElementSibling);
@@ -99,19 +95,26 @@ define(function (require) {
                 emailInput.attr("type","email");
                
                 // Address 1, Town, Postcode => Cannot be empty (at least 1 character)
-                var addInput = angular.element(resultAddress.nextElementSibling);
-                addInput.context.setAttribute('minlength', '1');
-                addInput.attr("required","required");
-               
-                var codeInput = angular.element(resultPostcode.nextElementSibling);
-                codeInput.context.setAttribute('minlength', '1');
-                codeInput.attr("required","required");
-               
-                var townInput = angular.element(resultTown.nextElementSibling);
-                townInput.context.setAttribute('minlength', '1');
-                townInput.attr("required","required");
-               
-               
+                if(resultAddress) 
+                {
+                  var addInput = angular.element(resultAddress.nextElementSibling);
+                  addInput.context.setAttribute('minlength', '1');
+                  addInput.attr("required","required");
+                }
+              
+                if(resultPostcode) 
+                {
+                  var codeInput = angular.element(resultPostcode.nextElementSibling);
+                  codeInput.context.setAttribute('minlength', '1');
+                  codeInput.attr("required","required");
+                }
+              
+                if(resultTown)
+                {
+                  var townInput = angular.element(resultTown.nextElementSibling);
+                  townInput.context.setAttribute('minlength', '1');
+                  townInput.attr("required","required");
+                }               
                 
                 /*var el1 = angular.element(resultName).attr('ng-class');
 
