@@ -41,9 +41,9 @@ define(function (require) {
               var resultTown = searchTree(node, "Town");
             
              if (resultCompany && resultName) {
-               var t = angular.element(resultName.nextElementSibling);
+                /*var t = angular.element(resultName.nextElementSibling);
                t.context.setAttribute('minlength', '1');
-               console.log(t);
+               console.log(t);*/
                
                 /*var el1 = angular.element(resultName).attr('ng-class');
 
