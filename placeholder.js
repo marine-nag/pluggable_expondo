@@ -41,10 +41,15 @@ define(function (require) {
               var resultTown = searchTree(node, "Town");
             
              if (resultCompany && resultName) {
-                var t = angular.element(resultName.nextElementSibling);
-                t.context.setAttribute('minlength', '1');
-                t.attr("required","required");
+                // At least on of the followinf fields should be filled  Name or Company Name
+                var nameInput = angular.element(resultName.nextElementSibling);
+                nameInput.context.setAttribute('minlength', '1');
+                nameInput.attr("required","required");
                
+                var companyInput = angular.element(resultCompany.nextElementSibling);
+                companyInput.context.setAttribute('minlength', '1');
+                companyInput.attr("required","required");
+                
                 /*var el1 = angular.element(resultName).attr('ng-class');
 
                resultName.innerText += " *";
