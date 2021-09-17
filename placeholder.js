@@ -68,7 +68,7 @@ define(function (require) {
                 // Make red
                 var nameClass = angular.element(resultName).context.getAttribute('ng-class');
                
-                nameClass.replace("}", "; color: red; }");
+                /*nameClass.replace("}", "; color: red; }");
                
                 angular.element(resultName).attr('ng-class', nameClass);
                 angular.element(resultCompany).attr('ng-class', nameClass);
@@ -76,7 +76,7 @@ define(function (require) {
                 angular.element(resultAddress).attr('ng-class', nameClass);
                 angular.element(resultPostcode).attr('ng-class', nameClass);
                 angular.element(resultTown).attr('ng-class', nameClass);
-               
+               */
                 // At least on of the following fields should be filled  Name or Company Name
                 var nameInput = angular.element(resultName.nextElementSibling);
                 nameInput.context.setAttribute('minlength', '1');
