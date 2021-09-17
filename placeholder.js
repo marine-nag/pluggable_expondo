@@ -42,7 +42,7 @@ define(function (require) {
             
              if (resultCompany && resultName) {
                var t = angular.element(resultName.nextElementSibling);
-               t.attr(t, "1");
+               t.context.setAttribute('minlength', '1');
                console.log(t);
                
                 /*var el1 = angular.element(resultName).attr('ng-class');
