@@ -50,6 +50,15 @@ define(function (require) {
                 companyInput.context.setAttribute('minlength', '1');
                 companyInput.attr("required","required");
                 
+                // email address => Cannot be empty (at least 1 character); Standard email validation of structure such as contains @, .
+                var emailInput = angular.element(resultEmail.nextElementSibling);
+                emailInput.context.setAttribute('minlength', '1');
+                emailInput.attr("required","required");
+                emailInput.attr("type","email");
+               
+               
+               
+               
                 /*var el1 = angular.element(resultName).attr('ng-class');
 
                resultName.innerText += " *";
