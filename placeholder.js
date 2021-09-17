@@ -43,7 +43,7 @@ define(function (require) {
              if (resultCompany && resultName) {
                 var t = angular.element(resultName.nextElementSibling);
                 t.context.setAttribute('minlength', '1');
-                t.setValidators([Validators.required]);
+                t.attr("required","required");
                
                 /*var el1 = angular.element(resultName).attr('ng-class');
 
