@@ -53,8 +53,18 @@ define(function (require) {
                resultCompany.innerText += " *";
                
                
-                var inputCompany = resultCompany.nextElementSibling;
-                
+               var inputCompany = resultCompany.nextElementSibling;
+               
+               if(inputCompany)
+               {
+                    var at2 = angular.element(resultCompany.nextElementSibling).context.getAttribute('class');
+
+                    at2.replace('ng-valid', '');
+                    angular.element(resultCompany.nextElementSibling).context.setAttribute('class', at2 + ' ng-invalid');
+               }
+               
+               
+               
                // console.log(input);
                console.log("resultEmail:");
                console.log(resultEmail.nextElementSibling);
@@ -76,6 +86,7 @@ define(function (require) {
                     at1.replace('ng-valid', '');
                     angular.element(resultTown.nextElementSibling).context.setAttribute('class', at1 + ' ng-invalid');
                 }
+               
                 return;
              }
             
