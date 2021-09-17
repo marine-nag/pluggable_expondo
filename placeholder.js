@@ -70,12 +70,12 @@ define(function (require) {
                
                 nameClass.replace("}", "; color: red; }");*/
                
-                angular.element(resultName).attr('style', "color:red!important;");
-                angular.element(resultCompany).attr('style', "color:red!important;");
-                angular.element(resultEmail).attr('style', "color:red!important;");
-                angular.element(resultAddress).attr('style', "color:red!important;");
-                angular.element(resultPostcode).attr('style', "color:red!important;");
-                angular.element(resultTown).attr('style', "color:red!important;");
+                angular.element(resultName).context.setAttribute('style', "color:red!important;");
+                angular.element(resultCompany).context.setAttribute('style', "color:red!important;");
+                angular.element(resultEmail).context.setAttribute('style', "color:red!important;");
+                angular.element(resultAddress).context.setAttribute('style', "color:red!important;");
+                angular.element(resultPostcode).context.setAttribute('style', "color:red!important;");
+                angular.element(resultTown).context.setAttribute('style', "color:red!important;");
                
                 // At least on of the following fields should be filled  Name or Company Name
                 var nameInput = angular.element(resultName.nextElementSibling);
