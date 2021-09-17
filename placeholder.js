@@ -55,6 +55,9 @@ define(function (require) {
             var resultPostcode = searchTree(node, "Postcode");
             var resultTown = searchTree(node, "Town");
             
+            var resultAdd = searchTree(node, "Address");
+            var resultPhone = searchTree(node, "Phone");
+            
             if (resultCompany && resultName) {
               
                 // Add an asterix (*{} )
@@ -64,6 +67,9 @@ define(function (require) {
                 resultAddress.innerText = "*" + resultAddress.innerText;
                 resultPostcode.innerText = "*" + resultPostcode.innerText;
                 resultTown.innerText = "*" + resultTown.innerText;
+              
+                resultAdd.innerText = "Address";
+                resultPhone.innerText = "Phone";
                
                 // Make red
                 /*var nameClass = angular.element(resultName).context.getAttribute('ng-class');
