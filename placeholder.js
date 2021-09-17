@@ -33,7 +33,10 @@ define(function (require) {
             
             // Find SAVE button
             var btn = searchTree(node, " Save");
-            console.log(btn);
+            if(btn) {
+              
+              console.log(btn);
+            }
             
             // set unavailable SAVE button... 
             
