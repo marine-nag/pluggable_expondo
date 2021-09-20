@@ -123,52 +123,16 @@ define(function (require) {
                   townInput.attr("required","required");
             }
             
-                /*var el1 = angular.element(resultName).attr('ng-class');
-
-               resultName.innerText += " *";
-               
-               angular.element(resultName).attr('ng-class', el1);
-
-               resultCompany.innerText += " *";
-               
-               
-                var inputCompany = resultCompany.nextElementSibling;
-               
-               if(inputCompany)
-               {
-                    var at2 = angular.element(resultCompany.nextElementSibling).context.getAttribute('class');
-
-                    at2.replace('ng-valid', '');
-                    angular.element(resultCompany.nextElementSibling).context.setAttribute('class', at2 + ' ng-invalid');
-               }
-               
-               
-               
-               // console.log(input);
-              console.log("resultEmail:");
-               console.log(resultEmail.nextElementSibling);
-               
-               
-               console.log("resultAddress:");
-                console.log(resultAddress.nextElementSibling);
-               
-               console.log("resultPostcode:");
-                console.log(resultPostcode.nextElementSibling);
-               
-                console.log("resultTown:");
-                console.log(resultTown.nextElementSibling);
-               
-                 if(resultTown)
-                {
-                    var at1 = angular.element(resultTown.nextElementSibling).context.getAttribute('class');
-
-                    at1.replace('ng-valid', '');
-                    angular.element(resultTown.nextElementSibling).context.setAttribute('class', at1 + ' ng-invalid');
-                }*/
-               
-                //return;
             
-                      
+            // Sub source 
+            var resultSubSource = searchTree(node, "SubSource");
+            
+            if (resultSubSource)
+            {
+                console.log("resultSubSource has been found! And how we transform it to dropdown?");
+                console.log(resultSubSource);
+                console.log(resultSubSource.nextElementSibling);
+            }                              
           }
         }
       }
