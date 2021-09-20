@@ -63,7 +63,7 @@ define(function (require) {
             if (resultPhone) resultPhone.innerText = "Phone ";
             
             
-            if (resultName) {              
+            if (resultName && resultName.nextElementSibling.tagName == "INPUT") {              
                 resultName.innerText = "*" + resultName.innerText;
                            
                 angular.element(resultName).context.setAttribute('style', "color:red!important;");
@@ -74,7 +74,7 @@ define(function (require) {
                 nameInput.attr("required","required");
             }
             
-            if (resultCompany){
+            if (resultCompany && resultCompany.nextElementSibling.tagName == "INPUT"){
               resultCompany.innerText = "*" + resultCompany.innerText;
               angular.element(resultCompany).context.setAttribute('style', "color:red!important;");
               
@@ -83,7 +83,7 @@ define(function (require) {
                 companyInput.attr("required","required");
             }
             
-            if (resultEmail) {
+            if (resultEmail && resultEmail.nextElementSibling.tagName == "INPUT") {
               resultEmail.innerText = "*" + resultEmail.innerText;
               angular.element(resultEmail).context.setAttribute('style', "color:red!important;");
               
@@ -96,7 +96,7 @@ define(function (require) {
             
             
             // Address 1, Town, Postcode => Cannot be empty (at least 1 character)
-            if (resultAddress) {
+            if (resultAddress && resultAddress.nextElementSibling.tagName == "INPUT") {
               resultAddress.innerText = "*" + resultAddress.innerText;
               angular.element(resultAddress).context.setAttribute('style', "color:red!important;");
                var addInput = angular.element(resultAddress.nextElementSibling);
@@ -104,7 +104,7 @@ define(function (require) {
                   addInput.attr("required","required");
             }
             
-            if (resultPostcode) {
+            if (resultPostcode && resultPostcode.nextElementSibling.tagName == "INPUT") {
               resultPostcode.innerText = "*" + resultPostcode.innerText;
               angular.element(resultPostcode).context.setAttribute('style', "color:red!important;");
               
@@ -113,7 +113,7 @@ define(function (require) {
                   codeInput.attr("required","required");
             }
             
-            if (resultTown) {
+            if (resultTown && resultTown.nextElementSibling.tagName == "INPUT") {
               resultTown.innerText = "*" + resultTown.innerText;
               
               angular.element(resultTown).context.setAttribute('style', "color:red!important;");
