@@ -10,7 +10,7 @@ define(function (require) {
     const config = { childList: true, subtree: true };
 
     function searchTree(element, matchingTitle) {
-        if(element.innerText.includes(matchingTitle)){
+        if(element.innerText == matchingTitle){
           return element;
       }
 
