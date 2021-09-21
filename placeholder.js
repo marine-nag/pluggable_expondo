@@ -1,150 +1,295 @@
 "use strict";
 
 define(function (require) {
-  
- //const ngComponent = require("core/ngComponent");
-   //const template = require("text!./order-address.component.html");
-   //const angular = require('angular');
-  
-  $(document).ready(function ($scope) {
-    const config = { childList: true, subtree: true };
 
-    function searchTree(element, matchingTitle) {
-        if(element.innerText == matchingTitle){
-          return element;
-      }
+    // Subsource dropdown
+    var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
+        // controls
+        let postCodeInput = `
+        <input lw-tst="input_postalCode" list="postcodes" type="text" autocomplete="off" ng-disabled="sameAsShipping" tabindex="8" ng-model="address.PostCode" ng-change="changePostSearch()">
+        <!----><button ng-if="!isBillingAddres" lw-tst="lookUp_postalCode" type="button" ng-click="lookUp($event,'POSTALCODE', address.PostCode);" class="btn"><i class="fa fa-search"></i></button><!---->
+        <datalist id="postcodes">
+          <option ng-repeat="item in postcodes" value="{{item}}">
+        </datalist>
+        `;
 
-      
-      else if (element.children != null) {
-        var i;
-        var result = null;
-        for (i = 0; result == null && i < element.children.length; i++) {
-          result = searchTree(element.children[i], matchingTitle);
-        }
-        return result;
-      }
-      return null;
-    }
+        const lookupControl = `
+            <div class="control-group">
+                <label class="control-label">Lookup:</label>
+                <div class="controls controls-row">
+                    <div class="input-append">
+                        <input id="lookupAddressesInput" list="lookupAddresses" type="text" autocomplete="off"
+                            ng-disabled="sameAsShipping || !selectedPostcode" tabindex="-1" ng-model="lookupAddress" ng-change="changeLookupAddress()">
+                        <datalist id="lookupAddresses">
+                    <option ng-repeat="item in lookupAddresses" value="{{item.formatted}}">
+                        </datalist>
+                    </div>
+                </div>
+            </div>
+            `;
+        const DEBOUNCE_TIME = 500;
 
-    var callback = function (mutationsList, observer) {
-      for (const mutation of mutationsList) {
-        if (mutation.type === "childList") {
-          for (const node of mutation.addedNodes) {
-            
-            // Find SAVE button
-            var saveTxt = searchTree(node, " Save");
-            if(saveTxt) {
-              var btn = angular.element(saveTxt.parentNode);
-              var attrBtn = angular.element(btn).context.getAttribute('ng-disabled');
-              
-              //btn.attr("ng-disabled", attrBtn + " || true"); 
-              
-              console.log(btn);
-            }
-            
-            // set unavailable SAVE button... 
-            
-            
-            // Look for another fields ... 
-            var resultCompany = searchTree(node, "Company");
-            var resultName = searchTree(node, "Name");
-            var resultEmail = searchTree(node, "Email");
-            
-            var resultAddress = searchTree(node, "Address 1");
-            
-            var resultPostcode = searchTree(node, "Postcode");
-            var resultTown = searchTree(node, "Town");
-            
-            var resultAdd = searchTree(node, "Address");
-            var resultPhone = searchTree(node, "Phone");
-            
-            ///
-            if (resultAdd) angular.element(resultAdd).context.setAttribute('style', "font-size:13px!important;");
-            if (resultPhone) resultPhone.innerText = "Phone ";
-            
-            
-            if (resultName && resultName.nextElementSibling.tagName == "INPUT") {              
-                resultName.innerText = "*" + resultName.innerText;
-                           
-                angular.element(resultName).context.setAttribute('style', "color:red!important;");
-              
-                // At least on of the following fields should be filled  Name or Company Name
-                var nameInput = angular.element(resultName.nextElementSibling);
-                nameInput.context.setAttribute('minlength', '1');
-                nameInput.attr("required","required");
-            }
-            
-            if (resultCompany && resultCompany.nextElementSibling.tagName == "INPUT"){
-              resultCompany.innerText = "*" + resultCompany.innerText;
-              angular.element(resultCompany).context.setAttribute('style', "color:red!important;");
-              
-              var companyInput = angular.element(resultCompany.nextElementSibling);
-                companyInput.context.setAttribute('minlength', '1');
-                companyInput.attr("required","required");
-            }
-            
-            if (resultEmail && resultEmail.nextElementSibling.tagName == "INPUT") {
-              resultEmail.innerText = "*" + resultEmail.innerText;
-              angular.element(resultEmail).context.setAttribute('style', "color:red!important;");
-              
-               // email address => Cannot be empty (at least 1 character); Standard email validation of structure such as contains @, .
-                var emailInput = angular.element(resultEmail.nextElementSibling);
-                emailInput.context.setAttribute('minlength', '1');
-                emailInput.attr("required","required");
-                emailInput.attr("type","email");
-            }
-            
-            
-            // Address 1, Town, Postcode => Cannot be empty (at least 1 character)
-            if (resultAddress && resultAddress.nextElementSibling.tagName == "INPUT") {
-              resultAddress.innerText = "*" + resultAddress.innerText;
-              angular.element(resultAddress).context.setAttribute('style', "color:red!important;");
-               var addInput = angular.element(resultAddress.nextElementSibling);
-                  addInput.context.setAttribute('minlength', '1');
-                  addInput.attr("required","required");
-            }
-            
-            if (resultPostcode && resultPostcode.nextElementSibling.tagName == "INPUT") {
-              resultPostcode.innerText = "*" + resultPostcode.innerText;
-              angular.element(resultPostcode).context.setAttribute('style', "color:red!important;");
-              
-              var codeInput = angular.element(resultPostcode.nextElementSibling);
-                  codeInput.context.setAttribute('minlength', '1');
-                  codeInput.attr("required","required");
-            }
-            
-            if (resultTown && resultTown.nextElementSibling.tagName == "INPUT") {
-              resultTown.innerText = "*" + resultTown.innerText;
-              
-              angular.element(resultTown).context.setAttribute('style', "color:red!important;");
-              
-              var townInput = angular.element(resultTown.nextElementSibling);
-                  townInput.context.setAttribute('minlength', '1');
-                  townInput.attr("required","required");
-            }
-            
-            
-            // Sub source 
-            var resultSubSource = searchTree(node, "SubSource");
-            
-            if (resultSubSource)
-            {
-                console.log("resultSubSource has been found! And how we transform it to dropdown?");
-                console.log(resultSubSource);
-                console.log(resultSubSource.nextElementSibling);
-            }                              
-          }
-        }
-      }
+        // current element (subSource)
+        let subSourceInput = `<input class="fill-width margin-bottom ng-pristine ng-untouched ng-valid ng-empty" type="text" ng-model="order.GeneralInfo.SubSource" ng-disabled="locking.is_locked || order.GeneralInfo.Source != 'DIRECT'" ng-class="{'disabled-transparent': locking.is_locked}">`;
+
+        let debounceTimer = null;
+
+        const viewModule = angular.module("openOrdersViewService");
+
+        viewModule.directive("div", function () {
+            return {
+                link: function (scope, elem, attrs) {
+                    if (elem.context.children[0].getAttribute("lw-tst") === "input_postalCode") {
+                        elem.empty();
+                        elem.append($compile(postCodeInput)(scope));
+    
+                        $($compile(lookupControl)(scope)).insertAfter(elem.context.parentElement.parentElement);
+    
+                        $timeout(function () {
+                            scope.$apply(function () {
+                                scope.postcodes = [];
+                                scope.lookupAddresses = [];
+                                scope.selectedPostcode = undefined;
+                            });
+                        });
+    
+                        function findAddresses(postalCode) {
+                            $timeout(function () {
+                                scope.$apply(function () {
+                                    scope.lookupAddresses = [];
+                                });
+                            });
+    
+                            $http({
+                                method: 'GET',
+                                url: 'https://postcodelookup.prodashes.com/addresses',
+                                params: { postalCode }
+                            }).then(function (response) {
+                                const data = response.data;
+    
+                                $timeout(function () {
+                                    scope.$apply(function () {
+                                        scope.lookupAddresses = data.map(x => Object.assign({}, x, { formatted: `${x.address1}, ${x.address2}, ${x.address3}, ${x.town}, ${x.region}, ${x.country}` }));
+                                        scope.selectedPostcode = postalCode;
+                                        scope.lookupAddress = ""
+                                    });
+                                })
+                            });
+                        };
+    
+                        scope.changePostSearch = function () {
+                            debounceTimer && $timeout.cancel(debounceTimer);
+                            debounceTimer = $timeout(function () {
+                                const postalCode = scope.address.PostCode;
+                                const postcodes = scope.postcodes;
+    
+                                if (postcodes && postcodes.some(x => x === postalCode)) {
+                                    findAddresses(postalCode);
+                                }
+                                else {
+                                    $timeout(function () {
+                                        scope.$apply(function () {
+                                            scope.postcodes = [];
+                                        });
+                                    });
+                                    $http({
+                                        method: 'GET',
+                                        url: 'https://postcodelookup.prodashes.com/autocomplete',
+                                        params: { postalCode }
+                                    }).then(function (response) {
+                                        const data = response.data;
+    
+                                        $timeout(function () {
+                                            scope.$apply(function () {
+                                                scope.postcodes = data || [];
+                                                scope.selectedPostcode = undefined;
+                                            });
+                                            $timeout(function () {
+                                                if (data && Array.isArray(data) && data.some(x => x === postalCode)) {
+                                                    findAddresses(postalCode);
+                                                }
+                                            });
+                                        })
+                                    });
+                                }
+                            }, DEBOUNCE_TIME);
+                        };
+    
+                        scope.changeLookupAddress = function (e) {
+                            const addresses = scope.lookupAddresses;
+    
+                            const value = scope.lookupAddress;
+                            const address = addresses.find(x => x.formatted === value);
+                            if (address) {
+                                const country = address.country;
+                                const foundCountry = scope.countries.find(c => c.CountryName === country);
+                                $timeout(function () {
+                                    scope.$apply(function () {
+                                        scope.address.Address1 = address.address1;
+                                        scope.address.Address2 = address.address2;
+                                        scope.address.Address3 = address.address3;
+                                        scope.address.Town = address.town;
+                                        scope.address.Region = address.region;
+                                        scope.address.CountryId = foundCountry && foundCountry.CountryId;
+                                    });
+                                });
+                            }
+                        };
+                    }
+                }
+            };
+        });
     };
 
-    const observer = new MutationObserver(callback);
+    Core.PlaceHolderManager.register("OrderAddress_ShippingFields", PlaceHolder);
 
-    const session = JSON.parse(window.localStorage.getItem('SPA_auth_session'));
+    // Set validation there
+    $(document).ready(function ($scope) {
+        const config = { childList: true, subtree: true };
 
-    setTimeout(function () {
-      const targetNode = document.getElementsByClassName("opened-modules")[0];
-      observer.observe(targetNode, config);
-    }, 2000);
-  });
+        function searchTree(element, matchingTitle) {
+            if (element.innerText == matchingTitle) {
+                return element;
+            }
+
+
+            else if (element.children != null) {
+                var i;
+                var result = null;
+                for (i = 0; result == null && i < element.children.length; i++) {
+                    result = searchTree(element.children[i], matchingTitle);
+                }
+                return result;
+            }
+            return null;
+        }
+
+        var callback = function (mutationsList, observer) {
+            for (const mutation of mutationsList) {
+                if (mutation.type === "childList") {
+                    for (const node of mutation.addedNodes) {
+
+                        // Find SAVE button
+                        var saveTxt = searchTree(node, " Save");
+                        if (saveTxt) {
+                            var btn = angular.element(saveTxt.parentNode);
+                            var attrBtn = angular.element(btn).context.getAttribute('ng-disabled');
+
+                            //btn.attr("ng-disabled", attrBtn + " || true"); 
+
+                            console.log(btn);
+                        }
+
+                        // TODO: set unavailable SAVE button... 
+
+                        //#region Shipping address
+
+                        // Look for another fields ... 
+                        var resultCompany = searchTree(node, "Company");
+                        var resultName = searchTree(node, "Name");
+                        var resultEmail = searchTree(node, "Email");
+
+                        var resultAddress = searchTree(node, "Address 1");
+
+                        var resultPostcode = searchTree(node, "Postcode");
+                        var resultTown = searchTree(node, "Town");
+
+                        var resultAdd = searchTree(node, "Address");
+                        var resultPhone = searchTree(node, "Phone");
+
+                        ///
+                        if (resultAdd) angular.element(resultAdd).context.setAttribute('style', "font-size:13px!important;");
+                        if (resultPhone) resultPhone.innerText = "Phone ";
+
+
+                        if (resultName && resultName.nextElementSibling.tagName == "INPUT") {
+                            resultName.innerText = "*" + resultName.innerText;
+
+                            angular.element(resultName).context.setAttribute('style', "color:red!important;");
+
+                            // At least on of the following fields should be filled  Name or Company Name
+                            var nameInput = angular.element(resultName.nextElementSibling);
+                            nameInput.context.setAttribute('minlength', '1');
+                            nameInput.attr("required", "required");
+                        }
+
+                        if (resultCompany && resultCompany.nextElementSibling.tagName == "INPUT") {
+                            resultCompany.innerText = "*" + resultCompany.innerText;
+                            angular.element(resultCompany).context.setAttribute('style', "color:red!important;");
+
+                            var companyInput = angular.element(resultCompany.nextElementSibling);
+                            companyInput.context.setAttribute('minlength', '1');
+                            companyInput.attr("required", "required");
+                        }
+
+                        if (resultEmail && resultEmail.nextElementSibling.tagName == "INPUT") {
+                            resultEmail.innerText = "*" + resultEmail.innerText;
+                            angular.element(resultEmail).context.setAttribute('style', "color:red!important;");
+
+                            // email address => Cannot be empty (at least 1 character); Standard email validation of structure such as contains @, .
+                            var emailInput = angular.element(resultEmail.nextElementSibling);
+                            emailInput.context.setAttribute('minlength', '1');
+                            emailInput.attr("required", "required");
+                            emailInput.attr("type", "email");
+                        }
+
+
+                        // Address 1, Town, Postcode => Cannot be empty (at least 1 character)
+                        if (resultAddress && resultAddress.nextElementSibling.tagName == "INPUT") {
+                            resultAddress.innerText = "*" + resultAddress.innerText;
+                            angular.element(resultAddress).context.setAttribute('style', "color:red!important;");
+                            var addInput = angular.element(resultAddress.nextElementSibling);
+                            addInput.context.setAttribute('minlength', '1');
+                            addInput.attr("required", "required");
+                        }
+
+                        if (resultPostcode && resultPostcode.nextElementSibling.tagName == "INPUT") {
+                            resultPostcode.innerText = "*" + resultPostcode.innerText;
+                            angular.element(resultPostcode).context.setAttribute('style', "color:red!important;");
+
+                            var codeInput = angular.element(resultPostcode.nextElementSibling);
+                            codeInput.context.setAttribute('minlength', '1');
+                            codeInput.attr("required", "required");
+                        }
+
+                        if (resultTown && resultTown.nextElementSibling.tagName == "INPUT") {
+                            resultTown.innerText = "*" + resultTown.innerText;
+
+                            angular.element(resultTown).context.setAttribute('style', "color:red!important;");
+
+                            var townInput = angular.element(resultTown.nextElementSibling);
+                            townInput.context.setAttribute('minlength', '1');
+                            townInput.attr("required", "required");
+                        }
+                        //#endregion
+
+                        // Sub source  
+                        var resultSubSource = searchTree(node, " SubSource ");
+
+                        if (resultSubSource) {
+                            console.log("resultSubSource has been found! And how we transform it to dropdown?");
+                            console.log(resultSubSource);
+                            console.log(resultSubSource.nextElementSibling);
+                        }
+
+
+                        // TODO: Billing address fields
+
+                        //#region Billing address
+
+                        //#endregion
+                    }
+                }
+            }
+        };
+
+        const observer = new MutationObserver(callback);
+
+        const session = JSON.parse(window.localStorage.getItem('SPA_auth_session'));
+
+        setTimeout(function () {
+            const targetNode = document.getElementsByClassName("opened-modules")[0];
+            observer.observe(targetNode, config);
+        }, 2000);
+    });
 });
