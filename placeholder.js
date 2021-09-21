@@ -212,7 +212,7 @@ define(function (require) {
                         if (saveTxt) {
                             var btn = angular.element(saveTxt.parentNode);
                             var attrBtn = angular.element(btn).context.getAttribute('ng-disabled');
-
+debugger;
                             //btn.attr("ng-disabled", attrBtn + " || true"); 
 
                             console.log(btn);
