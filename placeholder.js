@@ -218,8 +218,15 @@ define(function (require) {
                             
                             scp.change_state.has_address_changed = address => {
                                 if (!address) return false; 
-                                return scp.change_state._object_is_different([], scp.change_state.original_customer, address) && !!address.EmailAddress
+
+                                var isValid = address.EmailAddress.length > 1 && address.Address1.length > 1 && address.Town.length > 1 
+                                && address.PostCode.length > 1 && (address.Company.length > 1 || address.FullName.length > 1);
+
+                                return scp.change_state._object_is_different([], scp.change_state.original_customer, address) 
+                                    && isValid //!!address.EmailAddress
                             };    
+
+
 
                             //btn.attr("ng-disabled", attrBtn + " || true"); 
 
