@@ -174,7 +174,7 @@ define(function (require) {
         }
 
         function searchTreeWithParent(element, matchingTitle, parentNodeName) {
-            if (element.innerText.includes(matchingTitle) && element.parentNode.parentNode.parentNode.parentNode.innerText.includes(parentNodeName)) {
+            if (element.innerText == matchingTitle && element.parentNode.parentNode.parentNode.parentNode.innerText.includes(parentNodeName)) {
                 return element;
             }
 
@@ -298,8 +298,10 @@ define(function (require) {
                             console.log(resultSubSource.nextElementSibling);
                         }
 
+
+                        // TODO: Billing address fields
+
                         //#region Billing address
-                        
                         // Look for another fields ... 
                         var resultCompanyBilling = searchTreeWithParent(node, "Company", "Billing Address");
                         var resultNameBilling = searchTreeWithParent(node, "Name", "Billing Address");
