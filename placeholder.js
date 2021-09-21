@@ -4,6 +4,13 @@ define(function (require) {
 
     // Subsource dropdown
     var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
+
+        this.getItems = function () {
+            //this is for fuzz, because he forgot to let me know that function should return empty array
+            return [];
+            //specially for fuzz and nik :)
+        }
+
         // controls
         let postCodeInput = `
         <input lw-tst="input_postalCode" list="postcodes" type="text" autocomplete="off" ng-disabled="sameAsShipping" tabindex="8" ng-model="address.PostCode" ng-change="changePostSearch()">
@@ -42,9 +49,9 @@ define(function (require) {
                     if (elem.context.children[0].getAttribute("lw-tst") === "input_postalCode") {
                         elem.empty();
                         elem.append($compile(postCodeInput)(scope));
-    
+
                         $($compile(lookupControl)(scope)).insertAfter(elem.context.parentElement.parentElement);
-    
+
                         $timeout(function () {
                             scope.$apply(function () {
                                 scope.postcodes = [];
@@ -52,21 +59,21 @@ define(function (require) {
                                 scope.selectedPostcode = undefined;
                             });
                         });
-    
+
                         function findAddresses(postalCode) {
                             $timeout(function () {
                                 scope.$apply(function () {
                                     scope.lookupAddresses = [];
                                 });
                             });
-    
+
                             $http({
                                 method: 'GET',
                                 url: 'https://postcodelookup.prodashes.com/addresses',
                                 params: { postalCode }
                             }).then(function (response) {
                                 const data = response.data;
-    
+
                                 $timeout(function () {
                                     scope.$apply(function () {
                                         scope.lookupAddresses = data.map(x => Object.assign({}, x, { formatted: `${x.address1}, ${x.address2}, ${x.address3}, ${x.town}, ${x.region}, ${x.country}` }));
@@ -76,13 +83,13 @@ define(function (require) {
                                 })
                             });
                         };
-    
+
                         scope.changePostSearch = function () {
                             debounceTimer && $timeout.cancel(debounceTimer);
                             debounceTimer = $timeout(function () {
                                 const postalCode = scope.address.PostCode;
                                 const postcodes = scope.postcodes;
-    
+
                                 if (postcodes && postcodes.some(x => x === postalCode)) {
                                     findAddresses(postalCode);
                                 }
@@ -98,7 +105,7 @@ define(function (require) {
                                         params: { postalCode }
                                     }).then(function (response) {
                                         const data = response.data;
-    
+
                                         $timeout(function () {
                                             scope.$apply(function () {
                                                 scope.postcodes = data || [];
@@ -114,10 +121,10 @@ define(function (require) {
                                 }
                             }, DEBOUNCE_TIME);
                         };
-    
+
                         scope.changeLookupAddress = function (e) {
                             const addresses = scope.lookupAddresses;
-    
+
                             const value = scope.lookupAddress;
                             const address = addresses.find(x => x.formatted === value);
                             if (address) {
