@@ -207,8 +207,8 @@ define(function (require) {
                         var resultPhone = searchTree(node, "Phone");
 
                         ///
-                        if (resultAdd) angular.element(resultAdd).context.setAttribute('style', "font-size:13px!important;");
-                        if (resultPhone) resultPhone.innerText = "Phone ";
+                        if (resultAdd && resultAdd.nextElementSibling.tagName == "INPUT") angular.element(resultAdd).context.setAttribute('style', "font-size:13px!important;");
+                        if (resultPhone && resultPhone.nextElementSibling.tagName == "INPUT") resultPhone.innerText = "Phone ";
 
 
                         if (resultName && resultName.nextElementSibling.tagName == "INPUT") {
