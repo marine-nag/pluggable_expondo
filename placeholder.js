@@ -11,6 +11,8 @@ define(function (require) {
             //specially for fuzz and nik :)
         }
 
+        this.constructor() = function () { };
+
         // controls
         let postCodeInput = `
         <input lw-tst="input_postalCode" list="postcodes" type="text" autocomplete="off" ng-disabled="sameAsShipping" tabindex="8" ng-model="address.PostCode" ng-change="changePostSearch()">
@@ -283,7 +285,83 @@ define(function (require) {
                         // TODO: Billing address fields
 
                         //#region Billing address
+                        // Look for another fields ... 
+                        var resultCompanyBilling = searchTree(node, "Company");
+                        var resultNameBilling = searchTree(node, "Name");
+                        var resultEmailBilling = searchTree(node, "Email");
 
+                        var resultAddressBilling = searchTree(node, "Address 1");
+
+                        var resultPostcodeBilling = searchTree(node, "Postcode");
+                        var resultTownBilling = searchTree(node, "Town");
+
+                        var resultAddBilling = searchTree(node, "Address");
+                        var resultPhoneBilling = searchTree(node, "Phone");
+
+                        ///
+                        if (resultAddBilling) angular.element(resultAddBilling).context.setAttribute('style', "font-size:13px!important;");
+                        if (resultPhoneBilling) resultPhoneBilling.innerText = "Phone ";
+
+
+                        if (resultNameBilling && resultNameBilling.nextElementSibling.tagName == "INPUT") {
+                            resultNameBilling.innerText = "*" + resultNameBilling.innerText;
+
+                            angular.element(resultNameBilling).context.setAttribute('style', "color:red!important;");
+
+                            // At least on of the following fields should be filled  Name or Company Name
+                            var nameInput = angular.element(resultNameBilling.nextElementSibling);
+                            nameInput.context.setAttribute('minlength', '1');
+                            nameInput.attr("required", "required");
+                        }
+
+                        if (resultCompanyBilling && resultCompanyBilling.nextElementSibling.tagName == "INPUT") {
+                            resultCompanyBilling.innerText = "*" + resultCompanyBilling.innerText;
+                            angular.element(resultCompanyBilling).context.setAttribute('style', "color:red!important;");
+
+                            var companyInput = angular.element(resultCompanyBilling.nextElementSibling);
+                            companyInput.context.setAttribute('minlength', '1');
+                            companyInput.attr("required", "required");
+                        }
+
+                        if (resultEmailBilling && resultEmailBilling.nextElementSibling.tagName == "INPUT") {
+                            resultEmailBilling.innerText = "*" + resultEmailBilling.innerText;
+                            angular.element(resultEmailBilling).context.setAttribute('style', "color:red!important;");
+
+                            // email address => Cannot be empty (at least 1 character); Standard email validation of structure such as contains @, .
+                            var emailInput = angular.element(resultEmailBilling.nextElementSibling);
+                            emailInput.context.setAttribute('minlength', '1');
+                            emailInput.attr("required", "required");
+                            emailInput.attr("type", "email");
+                        }
+
+
+                        // Address 1, Town, Postcode => Cannot be empty (at least 1 character)
+                        if (resultAddressBilling && resultAddressBilling.nextElementSibling.tagName == "INPUT") {
+                            resultAddressBilling.innerText = "*" + resultAddressBilling.innerText;
+                            angular.element(resultAddressBilling).context.setAttribute('style', "color:red!important;");
+                            var addInput = angular.element(resultAddressBilling.nextElementSibling);
+                            addInput.context.setAttribute('minlength', '1');
+                            addInput.attr("required", "required");
+                        }
+
+                        if (resultPostcodeBilling && resultPostcodeBilling.nextElementSibling.tagName == "INPUT") {
+                            resultPostcodeBilling.innerText = "*" + resultPostcodeBilling.innerText;
+                            angular.element(resultPostcodeBilling).context.setAttribute('style', "color:red!important;");
+
+                            var codeInput = angular.element(resultPostcodeBilling.nextElementSibling);
+                            codeInput.context.setAttribute('minlength', '1');
+                            codeInput.attr("required", "required");
+                        }
+
+                        if (resultTownBilling && resultTownBilling.nextElementSibling.tagName == "INPUT") {
+                            resultTownBilling.innerText = "*" + resultTownBilling.innerText;
+
+                            angular.element(resultTownBilling).context.setAttribute('style', "color:red!important;");
+
+                            var townInput = angular.element(resultTownBilling.nextElementSibling);
+                            townInput.context.setAttribute('minlength', '1');
+                            townInput.attr("required", "required");
+                        }
                         //#endregion
                     }
                 }
