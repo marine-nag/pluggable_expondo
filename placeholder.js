@@ -212,7 +212,15 @@ define(function (require) {
                         if (saveTxt) {
                             var btn = angular.element(saveTxt.parentNode);
                             var attrBtn = angular.element(btn).context.getAttribute('ng-disabled');
-debugger;
+
+                            // GET btn scope
+                            var scp = angular.element(btn).scope();
+                            
+                            scp.change_state.has_address_changed = address => {
+                                if (!address) return false; 
+                                return scp.change_state._object_is_different([], scp.change_state.original_customer, address) && !!address.EmailAddress
+                            };    
+
                             //btn.attr("ng-disabled", attrBtn + " || true"); 
 
                             console.log(btn);
