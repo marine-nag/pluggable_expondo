@@ -39,7 +39,19 @@ define(function (require) {
         const DEBOUNCE_TIME = 500;
 
         // current element (subSource)
-        let subSourceInput = `<input class="fill-width margin-bottom ng-pristine ng-untouched ng-valid ng-empty" type="text" ng-model="order.GeneralInfo.SubSource" ng-disabled="locking.is_locked || order.GeneralInfo.Source != 'DIRECT'" ng-class="{'disabled-transparent': locking.is_locked}">`;
+        let subSourceInput = `<input class="fill-width margin-bottom ng-pristine ng-untouched ng-valid ng-empty" type="text" 
+                                ng-model="order.GeneralInfo.SubSource" ng-disabled="locking.is_locked || order.GeneralInfo.Source != 'DIRECT'" 
+                                ng-class="{'disabled-transparent': locking.is_locked}">`;
+
+        // dropdown subsource
+        const subSourcecmbx = `<select class="fill-width disabled-transparent upper-case ng-pristine ng-untouched ng-valid ng-not-empty" 
+                                    ng-disabled="$ctrl.isLocked" ng-model="$ctrl.generalinfo.subsource" ng-change="$ctrl.update_subsource()" 
+                                    data-hj-ignore-attributes="">
+                   <!-- <option ng-repeat="country in $ctrl.countries" value="4079f09a-374c-4e9e-872b-1335c9e6cc40" data-hj-ignore-attributes="">
+                        Afghanistan -->
+                </select>`;
+
+
 
         let debounceTimer = null;
 
@@ -386,8 +398,6 @@ define(function (require) {
         };
 
         const observer = new MutationObserver(callback);
-
-        const session = JSON.parse(window.localStorage.getItem('SPA_auth_session'));
 
         setTimeout(function () {
             const targetNode = document.getElementsByClassName("opened-modules")[0];
