@@ -173,6 +173,23 @@ define(function (require) {
             return null;
         }
 
+        function searchTreeWithParent(element, matchingTitle, parentNodeName) {
+            if (element.innerText == matchingTitle && element.parentNode.parentNode.parentNode.parentNode.innerText.includes(parentNodeName)) {
+                return element;
+            }
+
+
+            else if (element.children != null) {
+                var i;
+                var result = null;
+                for (i = 0; result == null && i < element.children.length; i++) {
+                    result = searchTree(element.children[i], matchingTitle);
+                }
+                return result;
+            }
+            return null;
+        }
+
         var callback = function (mutationsList, observer) {
             for (const mutation of mutationsList) {
                 if (mutation.type === "childList") {
@@ -206,12 +223,20 @@ define(function (require) {
                         var resultAdd = searchTree(node, "Address");
                         var resultPhone = searchTree(node, "Phone");
 
+
+                            
+
                         ///
                         if (resultAdd && resultAdd.nextElementSibling.tagName == "INPUT") angular.element(resultAdd).context.setAttribute('style', "font-size:13px!important;");
                         if (resultPhone && resultPhone.nextElementSibling.tagName == "INPUT") resultPhone.innerText = "Phone ";
 
 
                         if (resultName && resultName.nextElementSibling.tagName == "INPUT") {
+                            if(resultName.parentNode.parentNode.parentNode.parentNode.innerText.includes("Shipping Address"))
+                            {
+                                console.log("Great!");
+                            }
+
                             resultName.innerText = "*" + resultName.innerText;
 
                             angular.element(resultName).context.setAttribute('style', "color:red!important;");
@@ -287,7 +312,7 @@ define(function (require) {
                         //#region Billing address
                         // Look for another fields ... 
                         var resultCompanyBilling = searchTree(node, "Company ");
-                        var resultNameBilling = searchTree(node, "Name ");
+                        var resultNameBilling = searchTreeWithParent(node, "Name", "Billing Address");
                         var resultEmailBilling = searchTree(node, "Email ");
 
                         var resultAddressBilling = searchTree(node, "Address 1 ");
@@ -304,6 +329,9 @@ define(function (require) {
 
 
                         if (resultNameBilling && resultNameBilling.nextElementSibling.tagName == "INPUT") {
+                            console.log("Billing!!!!!");
+
+
                             resultNameBilling.innerText = "*" + resultNameBilling.innerText;
 
                             angular.element(resultNameBilling).context.setAttribute('style', "color:red!important;");
