@@ -273,7 +273,7 @@ define(function (require) {
                         //#endregion
 
                         // Sub source  
-                        var resultSubSource = searchTree(node, " SubSource ");
+                        var resultSubSource = searchTree(node, "SubSource ");
 
                         if (resultSubSource) {
                             console.log("resultSubSource has been found! And how we transform it to dropdown?");
@@ -286,21 +286,21 @@ define(function (require) {
 
                         //#region Billing address
                         // Look for another fields ... 
-                        var resultCompanyBilling = searchTree(node, " Company ");
-                        var resultNameBilling = searchTree(node, " Name ");
-                        var resultEmailBilling = searchTree(node, " Email ");
+                        var resultCompanyBilling = searchTree(node, "Company ");
+                        var resultNameBilling = searchTree(node, "Name ");
+                        var resultEmailBilling = searchTree(node, "Email ");
 
-                        var resultAddressBilling = searchTree(node, " Address 1 ");
+                        var resultAddressBilling = searchTree(node, "Address 1 ");
 
-                        var resultPostcodeBilling = searchTree(node, " Postcode ");
+                        var resultPostcodeBilling = searchTree(node, "Postcode ");
                         var resultTownBilling = searchTree(node, "Town ");
 
-                        var resultAddBilling = searchTree(node, " Address ");
-                        var resultPhoneBilling = searchTree(node, " Phone ");
+                        var resultAddBilling = searchTree(node, "Address ");
+                        var resultPhoneBilling = searchTree(node, "Phone ");
 
                         ///
                         if (resultAddBilling) angular.element(resultAddBilling).context.setAttribute('style', "font-size:13px!important;");
-                        if (resultPhoneBilling) resultPhoneBilling.innerText = " Phone ";
+                        if (resultPhoneBilling) resultPhoneBilling.innerText = "Phone ";
 
 
                         if (resultNameBilling && resultNameBilling.nextElementSibling.tagName == "INPUT") {
