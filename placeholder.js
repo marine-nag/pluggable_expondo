@@ -229,7 +229,11 @@ define(function (require) {
                             var temp = scp.change_state;
 
                             scp.change_state.has_order_changed = (order) => {
-
+                                var t1 = scp.change_state.has_general_info_changed(order.GeneralInfo);
+                                var t2 = scp.change_state.have_items_changed(order.Items);
+                                var t3 = scp.change_state.has_shipping_info_changed(order.ShippingInfo);
+                                var t4 = scp.change_state.has_billing_address_changed(order.CustomerInfo.BillingAddress);
+                                
                                 if (scp.change_state.has_general_info_changed(order.GeneralInfo)
                                     && scp.change_state.have_items_changed(order.Items)
                                     && scp.change_state.has_shipping_info_changed(order.ShippingInfo)
@@ -290,7 +294,7 @@ define(function (require) {
                             // At least 1 item has to be there.. 
                             scp.change_state.have_items_changed = (items, ignore_service = false) => {
                                 if (items) return false;
-                                
+
                                 let item_count = Object.keys(scp.change_state.original_items).length;
                                 let check_items = [];
                                 
