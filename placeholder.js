@@ -256,10 +256,13 @@ define(function (require) {
 
                                 if (order.Items) {
                                     if (order.Items.length > 0) {
-                                        if (scp.change_stateis.have_items_changed(order.Items)) {
+                                        if (scp.change_state.have_items_changed(order.Items)) {
                                             return true;
                                         }
                                     }
+                                }
+                                else {
+                                    return false;
                                 }
                             };
 
