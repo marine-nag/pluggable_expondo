@@ -226,7 +226,7 @@ define(function (require) {
                             var scp = angular.element(btn).scope();
                             var temp = scp.change_state;
 
-                            scope.change_state.have_items_changed = (items, ignore_service = false) => {
+                            /*scp.change_state.have_items_changed = (items, ignore_service = false) => {
                                 
                                 let item_count = Object.keys(this.original_items).length;
                                 
@@ -260,7 +260,7 @@ define(function (require) {
                                         return true;
                                     }
                                 }
-                            };
+                            };*/
 
                             scp.change_state.has_address_changed = address => {
                                 if (!address) return false;
