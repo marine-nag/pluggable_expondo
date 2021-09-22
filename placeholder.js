@@ -280,8 +280,10 @@ define(function (require) {
                                 var isValid = address.EmailAddress.length > 1 && address.Address1.length > 1 && address.Town.length > 1
                                     && address.PostCode.length > 1 && (address.Company.length > 1 || address.FullName.length > 1);
 
-                                return scp.change_state._object_is_different([], scp.change_state.original_billing, address)
-                                    || isValid
+                                // return scp.change_state._object_is_different([], scp.change_state.original_billing, address)
+                                //     || isValid
+
+                                return isValid;
                             }
 
                             // General info (subsource there)
@@ -335,8 +337,10 @@ define(function (require) {
                                 var isValid = address.EmailAddress.length > 1 && address.Address1.length > 1 && address.Town.length > 1
                                     && address.PostCode.length > 1 && (address.Company.length > 1 || address.FullName.length > 1);
 
-                                return scp.change_state._object_is_different([], scp.change_state.original_customer, address)
-                                    || isValid
+                                // return scp.change_state._object_is_different([], scp.change_state.original_customer, address)
+                                //     || isValid
+
+                                return isValid;
                             };
                         }
 
