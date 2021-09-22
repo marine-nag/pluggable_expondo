@@ -5,7 +5,7 @@
 define(function (require) {
 
     // Subsource dropdown
-    var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
+    /*var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
 
         this.getItems = function () {
             //this is for fuzz, because he forgot to let me know that function should return empty array
@@ -175,7 +175,7 @@ define(function (require) {
         });
     };
 
-    Core.PlaceHolderManager.register("OrderAddress_ShippingFields", PlaceHolder);
+    Core.PlaceHolderManager.register("OrderAddress_ShippingFields", PlaceHolder);*/
 
     // Set validation there
     $(document).ready(function ($scope) {
