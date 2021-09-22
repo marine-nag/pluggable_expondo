@@ -228,43 +228,37 @@ define(function (require) {
                             var scp = angular.element(btn).scope();
                             var temp = scp.change_state;
 
-                            scp.change_state.have_items_changed = (items, ignore_service = false) => {
+                            scp.change_state.has_order_changed = (order) => {
                                 // var t = items;
 
                                 // if (items.length == 0) {
                                 //     return false;
                                 // }
 
-                                let item_count = Object.keys(scp.change_state.original_items).length;
-                                
-                                if (item_count == 0) {
-                                    console.log("0");
-                                    return false;
+                                if (scp.change_state.has_general_info_changed(order.GeneralInfo)) {
+                                    return true;
                                 }
-
-                                let check_items = [];
-                                if (ignore_service) {
-                                    for (let item of items) {
-                                        if (!(item.IsService || item.IsServiceItem)) {
-                                            check_items.push(item);
-                                        }
-                                    }
+                                if (scp.change_state.has_shipping_info_changed(order.ShippingInfo)) {
+                                    return true;
                                 }
-                                else {
-                                    item_count += Object.keys(scp.change_state.original_services).length;
-                                    check_items = items;
+                                if (scp.change_state.have_totals_changed(order.TotalsInfo)) {
+                                    return true;
                                 }
-
-                                if (item_count != check_items.length) {
+                                if (scp.change_state.has_address_changed(order.CustomerInfo.Address)) {
+                                    return true;
+                                }
+                                if (scp.change_state.has_billing_address_changed(order.CustomerInfo.BillingAddress)) {
+                                    return true;
+                                }
+                                if (scp.change_state.have_extended_properties_changed(order.ExtendedProperties || [])) {
                                     return true;
                                 }
 
-                                for (let item of check_items) {
-                                    let original_item = scp.change_state.get_original_item(item.RowId);
-                                    if (!original_item) return true;
-
-                                    if (scp.change_state.has_item_changed(item)) {
-                                        return true;
+                                if (order.Items) {
+                                    if (order.Items.length > 0) {
+                                        if (scp.change_stateis.have_items_changed(order.Items)) {
+                                            return true;
+                                        }
                                     }
                                 }
                             };
