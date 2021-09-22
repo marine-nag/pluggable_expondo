@@ -334,6 +334,8 @@ define(function (require) {
                                         return true;
                                     }
                                 }
+
+                                return true;
                             };
 
                             // Customer address...
