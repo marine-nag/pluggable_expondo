@@ -226,9 +226,10 @@ define(function (require) {
                             var scp = angular.element(btn).scope();
                             var temp = scp.change_state;
 
-                            /*scp.change_state.have_items_changed = (items, ignore_service = false) => {
-                                
-                                let item_count = Object.keys(this.original_items).length;
+                            scp.change_state.have_items_changed = (items, ignore_service = false) => {
+                                var t = items;
+                                var t1 = this;
+                                /*let item_count = Object.keys(this.original_items).length;
                                 
                                 if (item_count == 0) {
                                     console.log("0");
@@ -259,8 +260,8 @@ define(function (require) {
                                     if (this.has_item_changed(item)) {
                                         return true;
                                     }
-                                }
-                            };*/
+                                }*/
+                            };
 
                             scp.change_state.has_address_changed = address => {
                                 if (!address) return false;
