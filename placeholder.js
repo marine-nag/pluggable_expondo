@@ -71,17 +71,17 @@ define(function (require) {
                         $timeout(function () {
                             scope.$apply(function () {
                                 scope.subsources = [];
-                                
-                                
+
+
                                 scope.postcodes = [];
                                 scope.lookupAddresses = [];
                                 scope.selectedPostcode = undefined;
                             });
                         });
 
-                        function getSubSources(){
+                        function getSubSources() {
                             var query = "SELECT DISTICT o.SubSource FROM [Order] o";
-                            
+
 
                         }
 
@@ -226,15 +226,51 @@ define(function (require) {
                             var scp = angular.element(btn).scope();
                             var temp = scp.change_state;
 
+                            scope.change_state.have_items_changed = (items, ignore_service = false) => {
+                                
+                                let item_count = Object.keys(this.original_items).length;
+                                
+                                if (item_count == 0) {
+                                    console.log("0");
+                                    return false;
+                                }
+
+                                let check_items = [];
+                                if (ignore_service) {
+                                    for (let item of items) {
+                                        if (!(item.IsService || item.IsServiceItem)) {
+                                            check_items.push(item);
+                                        }
+                                    }
+                                }
+                                else {
+                                    item_count += Object.keys(this.original_services).length;
+                                    check_items = items;
+                                }
+
+                                if (item_count != check_items.length) {
+                                    return true;
+                                }
+
+                                for (let item of check_items) {
+                                    let original_item = this.get_original_item(item.RowId);
+                                    if (!original_item) return true;
+
+                                    if (this.has_item_changed(item)) {
+                                        return true;
+                                    }
+                                }
+                            };
+
                             scp.change_state.has_address_changed = address => {
-                                if (!address) return false; 
+                                if (!address) return false;
 
-                                var isValid = address.EmailAddress.length > 1 && address.Address1.length > 1 && address.Town.length > 1 
-                                && address.PostCode.length > 1 && (address.Company.length > 1 || address.FullName.length > 1);
+                                var isValid = address.EmailAddress.length > 1 && address.Address1.length > 1 && address.Town.length > 1
+                                    && address.PostCode.length > 1 && (address.Company.length > 1 || address.FullName.length > 1);
 
-                                return scp.change_state._object_is_different([], scp.change_state.original_customer, address) 
-                                    && isValid //!!address.EmailAddress
-                            };    
+                                return scp.change_state._object_is_different([], scp.change_state.original_customer, address)
+                                    && isValid
+                            };
 
                             // TODO: What if billing and shipping addresses are different ? 
 
