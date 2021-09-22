@@ -354,68 +354,85 @@ define(function (require) {
                         var resultPhone = searchTree(node, "Phone");
 
                         ///
-                        if (resultAdd && resultAdd.nextElementSibling.tagName == "INPUT") angular.element(resultAdd).context.setAttribute('style', "font-size:13px!important;");
-                        if (resultPhone && resultPhone.nextElementSibling.tagName == "INPUT") resultPhone.innerText = "Phone ";
-
-
-                        if (resultName && resultName.nextElementSibling.tagName == "INPUT") {
-                            resultName.innerText = "*" + resultName.innerText;
-
-                            angular.element(resultName).context.setAttribute('style', "color:red!important;");
-
-                            // At least on of the following fields should be filled  Name or Company Name
-                            var nameInput = angular.element(resultName.nextElementSibling);
-                            nameInput.context.setAttribute('minlength', '1');
-                            nameInput.attr("required", "required");
+                        if (resultAdd) {
+                            if (resultAdd.nextElementSibling.tagName == "INPUT") angular.element(resultAdd).context.setAttribute('style', "font-size:13px!important;");
                         }
 
-                        if (resultCompany && resultCompany.nextElementSibling.tagName == "INPUT") {
-                            resultCompany.innerText = "*" + resultCompany.innerText;
-                            angular.element(resultCompany).context.setAttribute('style', "color:red!important;");
-
-                            var companyInput = angular.element(resultCompany.nextElementSibling);
-                            companyInput.context.setAttribute('minlength', '1');
-                            companyInput.attr("required", "required");
+                        if (resultPhone) {
+                            if (resultPhone.nextElementSibling.tagName == "INPUT") resultPhone.innerText = "Phone ";
                         }
 
-                        if (resultEmail && resultEmail.nextElementSibling.tagName == "INPUT") {
-                            resultEmail.innerText = "*" + resultEmail.innerText;
-                            angular.element(resultEmail).context.setAttribute('style', "color:red!important;");
 
-                            // email address => Cannot be empty (at least 1 character); Standard email validation of structure such as contains @, .
-                            var emailInput = angular.element(resultEmail.nextElementSibling);
-                            emailInput.context.setAttribute('minlength', '1');
-                            emailInput.attr("required", "required");
-                            emailInput.attr("type", "email");
+                        if (resultName) {
+                            if (resultName.nextElementSibling.tagName == "INPUT") {
+                                resultName.innerText = "*" + resultName.innerText;
+
+                                angular.element(resultName).context.setAttribute('style', "color:red!important;");
+
+                                // At least on of the following fields should be filled  Name or Company Name
+                                var nameInput = angular.element(resultName.nextElementSibling);
+                                nameInput.context.setAttribute('minlength', '1');
+                                nameInput.attr("required", "required");
+                            }
+                        }
+
+                        if (resultCompany) {
+                            if (resultCompany.nextElementSibling.tagName == "INPUT") {
+                                resultCompany.innerText = "*" + resultCompany.innerText;
+                                angular.element(resultCompany).context.setAttribute('style', "color:red!important;");
+
+                                var companyInput = angular.element(resultCompany.nextElementSibling);
+                                companyInput.context.setAttribute('minlength', '1');
+                                companyInput.attr("required", "required");
+                            }
+                        }
+
+                        if (resultEmail) {
+                            if (resultEmail.nextElementSibling.tagName == "INPUT") {
+                                resultEmail.innerText = "*" + resultEmail.innerText;
+                                angular.element(resultEmail).context.setAttribute('style', "color:red!important;");
+
+                                // email address => Cannot be empty (at least 1 character); Standard email validation of structure such as contains @, .
+                                var emailInput = angular.element(resultEmail.nextElementSibling);
+                                emailInput.context.setAttribute('minlength', '1');
+                                emailInput.attr("required", "required");
+                                emailInput.attr("type", "email");
+                            }
                         }
 
 
                         // Address 1, Town, Postcode => Cannot be empty (at least 1 character)
-                        if (resultAddress && resultAddress.nextElementSibling.tagName == "INPUT") {
-                            resultAddress.innerText = "*" + resultAddress.innerText;
-                            angular.element(resultAddress).context.setAttribute('style', "color:red!important;");
-                            var addInput = angular.element(resultAddress.nextElementSibling);
-                            addInput.context.setAttribute('minlength', '1');
-                            addInput.attr("required", "required");
+                        if (resultAddress) {
+                            if (resultAddress.nextElementSibling.tagName == "INPUT") {
+                                resultAddress.innerText = "*" + resultAddress.innerText;
+                                angular.element(resultAddress).context.setAttribute('style', "color:red!important;");
+                                var addInput = angular.element(resultAddress.nextElementSibling);
+                                addInput.context.setAttribute('minlength', '1');
+                                addInput.attr("required", "required");
+                            }
                         }
 
-                        if (resultPostcode && resultPostcode.nextElementSibling.tagName == "INPUT") {
-                            resultPostcode.innerText = "*" + resultPostcode.innerText;
-                            angular.element(resultPostcode).context.setAttribute('style', "color:red!important;");
+                        if (resultPostcode) {
+                            if (resultPostcode.nextElementSibling.tagName == "INPUT") {
+                                resultPostcode.innerText = "*" + resultPostcode.innerText;
+                                angular.element(resultPostcode).context.setAttribute('style', "color:red!important;");
 
-                            var codeInput = angular.element(resultPostcode.nextElementSibling);
-                            codeInput.context.setAttribute('minlength', '1');
-                            codeInput.attr("required", "required");
+                                var codeInput = angular.element(resultPostcode.nextElementSibling);
+                                codeInput.context.setAttribute('minlength', '1');
+                                codeInput.attr("required", "required");
+                            }
                         }
 
-                        if (resultTown && resultTown.nextElementSibling.tagName == "INPUT") {
-                            resultTown.innerText = "*" + resultTown.innerText;
+                        if (resultTown) {
+                            if (resultTown.nextElementSibling.tagName == "INPUT") {
+                                resultTown.innerText = "*" + resultTown.innerText;
 
-                            angular.element(resultTown).context.setAttribute('style', "color:red!important;");
+                                angular.element(resultTown).context.setAttribute('style', "color:red!important;");
 
-                            var townInput = angular.element(resultTown.nextElementSibling);
-                            townInput.context.setAttribute('minlength', '1');
-                            townInput.attr("required", "required");
+                                var townInput = angular.element(resultTown.nextElementSibling);
+                                townInput.context.setAttribute('minlength', '1');
+                                townInput.attr("required", "required");
+                            }
                         }
                         //#endregion
 
@@ -433,7 +450,7 @@ define(function (require) {
 
                         //#region Billing address
                         // Look for another fields ... 
-                        var resultCompanyBilling = searchTreeWithParent(node, "Company", "Billing Address");
+                        /*var resultCompanyBilling = searchTreeWithParent(node, "Company", "Billing Address");
                         var resultNameBilling = searchTreeWithParent(node, "Name", "Billing Address");
                         var resultEmailBilling = searchTreeWithParent(node, "Email", "Billing Address");
 
@@ -508,7 +525,7 @@ define(function (require) {
                             var townInput = angular.element(resultTownBilling.nextElementSibling);
                             townInput.context.setAttribute('minlength', '1');
                             townInput.attr("required", "required");
-                        }
+                        }*/
                         //#endregion
                     }
                 }
