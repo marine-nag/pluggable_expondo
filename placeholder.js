@@ -224,7 +224,8 @@ define(function (require) {
 
                             // GET btn scope
                             var scp = angular.element(btn).scope();
-                            
+                            var temp = scp.change_state;
+
                             scp.change_state.has_address_changed = address => {
                                 if (!address) return false; 
 
