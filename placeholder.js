@@ -228,46 +228,46 @@ define(function (require) {
                             var scp = angular.element(btn).scope();
                             var temp = scp.change_state;
 
-                            // scp.change_state.have_items_changed = (items, ignore_service = false) => {
-                            //     // var t = items;
+                            scp.change_state.have_items_changed = (items, ignore_service = false) => {
+                                // var t = items;
 
-                            //     // if (items.length == 0) {
-                            //     //     return false;
-                            //     // }
+                                // if (items.length == 0) {
+                                //     return false;
+                                // }
 
-                            //     let item_count = Object.keys(scp.change_state.original_items).length;
+                                let item_count = Object.keys(scp.change_state.original_items).length;
                                 
-                            //     if (item_count == 0) {
-                            //         console.log("0");
-                            //         return false;
-                            //     }
+                                if (item_count == 0) {
+                                    console.log("0");
+                                    return false;
+                                }
 
-                            //     let check_items = [];
-                            //     if (ignore_service) {
-                            //         for (let item of items) {
-                            //             if (!(item.IsService || item.IsServiceItem)) {
-                            //                 check_items.push(item);
-                            //             }
-                            //         }
-                            //     }
-                            //     else {
-                            //         item_count += Object.keys(scp.change_state.original_services).length;
-                            //         check_items = items;
-                            //     }
+                                let check_items = [];
+                                if (ignore_service) {
+                                    for (let item of items) {
+                                        if (!(item.IsService || item.IsServiceItem)) {
+                                            check_items.push(item);
+                                        }
+                                    }
+                                }
+                                else {
+                                    item_count += Object.keys(scp.change_state.original_services).length;
+                                    check_items = items;
+                                }
 
-                            //     if (item_count != check_items.length) {
-                            //         return true;
-                            //     }
+                                if (item_count != check_items.length) {
+                                    return true;
+                                }
 
-                            //     for (let item of check_items) {
-                            //         let original_item = scp.change_state.get_original_item(item.RowId);
-                            //         if (!original_item) return true;
+                                for (let item of check_items) {
+                                    let original_item = scp.change_state.get_original_item(item.RowId);
+                                    if (!original_item) return true;
 
-                            //         if (scp.change_state.has_item_changed(item)) {
-                            //             return true;
-                            //         }
-                            //     }
-                            // };
+                                    if (scp.change_state.has_item_changed(item)) {
+                                        return true;
+                                    }
+                                }
+                            };
 
                             scp.change_state.has_address_changed = address => {
                                 if (!address) return false;
