@@ -229,48 +229,98 @@ define(function (require) {
                             var temp = scp.change_state;
 
                             scp.change_state.has_order_changed = (order) => {
-                                // var t = items;
 
-                                // if (items.length == 0) {
-                                //     return false;
-                                // }
+                                if (scp.change_state.has_general_info_changed(order.GeneralInfo)
+                                    && scp.change_state.have_items_changed(order.Items)
+                                    && scp.change_state.has_shipping_info_changed(order.ShippingInfo)
+                                    && scp.change_state.has_billing_address_changed(order.CustomerInfo.BillingAddress)) {
+                                    return true;
+                                }
 
-                                if (scp.change_state.has_general_info_changed(order.GeneralInfo)) {
-                                    return true;
-                                }
-                                if (scp.change_state.has_shipping_info_changed(order.ShippingInfo)) {
-                                    return true;
-                                }
-                                if (scp.change_state.have_totals_changed(order.TotalsInfo)) {
-                                    return true;
-                                }
                                 if (scp.change_state.has_address_changed(order.CustomerInfo.Address)) {
                                     return true;
                                 }
-                                if (scp.change_state.has_billing_address_changed(order.CustomerInfo.BillingAddress)) {
+
+                                if (scp.change_state.have_totals_changed(order.TotalsInfo)) {
                                     return true;
                                 }
                                 if (scp.change_state.have_extended_properties_changed(order.ExtendedProperties || [])) {
                                     return true;
                                 }
+                            };
 
-                                if (order.Items) {
-                                    if (order.Items.length > 0) {
-                                        if (scp.change_state.have_items_changed(order.Items)) {
-                                            return true;
+                            // Shipping address
+                            scp.change_state.has_shipping_info_changed = shipping => {
+
+                                if (!shipping) return false;
+
+                                var address = shipping;
+
+                                var isValid = address.EmailAddress.length > 1 && address.Address1.length > 1 && address.Town.length > 1
+                                && address.PostCode.length > 1 && (address.Company.length > 1 || address.FullName.length > 1);
+
+                                return this._object_is_different(scp.change_state.shipping_excluded_fields, scp.change_state.original_shipping, shipping) && isValid;
+                            };
+
+                            // Billing address
+                            scp.change_state.has_billing_address_changed = address => {
+                                // if (!address) return false;
+                                // return scp.change_state._object_is_different([], scp.change_state.original_billing, address);
+
+                                if (!address) return false;
+
+                                var isValid = address.EmailAddress.length > 1 && address.Address1.length > 1 && address.Town.length > 1
+                                    && address.PostCode.length > 1 && (address.Company.length > 1 || address.FullName.length > 1);
+
+                                return scp.change_state._object_is_different([], scp.change_state.original_billing, address)
+                                    && isValid
+                            }
+
+                            // General info (subsource there)
+                            scp.change_state.has_general_info_changed = general_info => {
+                                if (!general_info) return false;
+
+                                if (general_info.SubSource == "" || general_info.SubSource == null) {
+                                    return false;
+                                }
+
+                                return scp.change_state._object_is_different(scp.change_state.general_excluded_fields, scp.change_state.original_general, general_info);
+                            }
+
+                            // At least 1 item has to be there.. 
+                            scp.change_state.have_items_changed = (items, ignore_service = false) => {
+                                if (items) return false;
+                                
+                                let item_count = Object.keys(scp.change_state.original_items).length;
+                                let check_items = [];
+                                
+                                if (ignore_service) {
+                                    for (let item of items) {
+                                        if (!(item.IsService || item.IsServiceItem)) {
+                                            check_items.push(item);
                                         }
-                                    }
-                                    else {
-                                        console.log("NOO1O");
-                                        return false;
                                     }
                                 }
                                 else {
-                                    console.log("NOOOOOOOO");
-                                    return false;
+                                    item_count += Object.keys(scp.change_state.original_services).length;
+                                    check_items = items;
+                                }
+
+                                if (item_count != check_items.length) {
+                                    return true;
+                                }
+
+                                for (let item of check_items) {
+                                    let original_item = scp.change_state.get_original_item(item.RowId);
+                                    if (!original_item) return true;
+
+                                    if (scp.change_state.has_item_changed(item)) {
+                                        return true;
+                                    }
                                 }
                             };
 
+                            // Customer address...
                             scp.change_state.has_address_changed = address => {
                                 if (!address) return false;
 
@@ -280,12 +330,6 @@ define(function (require) {
                                 return scp.change_state._object_is_different([], scp.change_state.original_customer, address)
                                     && isValid
                             };
-
-                            // TODO: What if billing and shipping addresses are different ? 
-
-                            //btn.attr("ng-disabled", attrBtn + " || true"); 
-
-                            console.log(btn);
                         }
 
                         // TODO: set unavailable SAVE button... 
