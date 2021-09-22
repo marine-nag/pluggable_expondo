@@ -51,15 +51,17 @@ define(function (require) {
                         Afghanistan -->
                 </select>`;
 
-
-
         let debounceTimer = null;
 
         const viewModule = angular.module("openOrdersViewService");
 
+        const dashboards = angular.module("dashboardsService");
+
         viewModule.directive("div", function () {
             return {
                 link: function (scope, elem, attrs) {
+
+                    console.log("viewModule openOrdersViewService");
                     if (elem.context.children[0].getAttribute("lw-tst") === "input_postalCode") {
                         elem.empty();
                         elem.append($compile(postCodeInput)(scope));
@@ -68,11 +70,20 @@ define(function (require) {
 
                         $timeout(function () {
                             scope.$apply(function () {
+                                scope.subsources = [];
+                                
+                                
                                 scope.postcodes = [];
                                 scope.lookupAddresses = [];
                                 scope.selectedPostcode = undefined;
                             });
                         });
+
+                        function getSubSources(){
+                            var query = "SELECT DISTICT o.SubSource FROM [Order] o";
+                            
+
+                        }
 
                         function findAddresses(postalCode) {
                             $timeout(function () {
@@ -172,8 +183,6 @@ define(function (require) {
             if (element.innerText == matchingTitle) {
                 return element;
             }
-
-
             else if (element.children != null) {
                 var i;
                 var result = null;
@@ -226,7 +235,7 @@ define(function (require) {
                                     && isValid //!!address.EmailAddress
                             };    
 
-
+                            // TODO: What if billing and shipping addresses are different ? 
 
                             //btn.attr("ng-disabled", attrBtn + " || true"); 
 
