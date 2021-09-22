@@ -297,7 +297,7 @@ define(function (require) {
 
                             // At least 1 item has to be there.. 
                             scp.change_state.have_items_changed = (items, ignore_service = false) => {
-                                if (items) return false;
+                                if (items) return true;
 
                                 let item_count = Object.keys(scp.change_state.original_items).length;
                                 let check_items = [];
