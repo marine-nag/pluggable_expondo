@@ -238,18 +238,22 @@ define(function (require) {
                                     && scp.change_state.have_items_changed(order.Items)
                                     && scp.change_state.has_address_changed(order.CustomerInfo.Address)
                                     && scp.change_state.has_billing_address_changed(order.CustomerInfo.BillingAddress)) {
-                                    return true;
-                                }
 
-                                if (scp.change_state.has_shipping_info_changed(order.ShippingInfo)) {
-                                    return true;
-                                }
+                                    if (scp.change_state.has_shipping_info_changed(order.ShippingInfo)) {
+                                        return true;
+                                    }
 
-                                if (scp.change_state.have_totals_changed(order.TotalsInfo)) {
+                                    if (scp.change_state.have_totals_changed(order.TotalsInfo)) {
+                                        return true;
+                                    }
+                                    if (scp.change_state.have_extended_properties_changed(order.ExtendedProperties || [])) {
+                                        return true;
+                                    }
+
                                     return true;
                                 }
-                                if (scp.change_state.have_extended_properties_changed(order.ExtendedProperties || [])) {
-                                    return true;
+                                else {
+                                    return false;
                                 }
                             };
 
