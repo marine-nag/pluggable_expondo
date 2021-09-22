@@ -293,13 +293,19 @@ define(function (require) {
                                 if (general_info.SubSource == "" || general_info.SubSource == null) {
                                     return false;
                                 }
+                                else
+                                {
+                                    return true;
+                                }
 
                                 return scp.change_state._object_is_different(scp.change_state.general_excluded_fields, scp.change_state.original_general, general_info);
                             }
 
                             // At least 1 item has to be there.. 
                             scp.change_state.have_items_changed = (items, ignore_service = false) => {
-                                if (items) return true;
+
+                                var realCount = scp.items.get_items_count();
+                                if(realCount == 0) return false;
 
                                 let item_count = Object.keys(scp.change_state.original_items).length;
                                 let check_items = [];
