@@ -231,17 +231,17 @@ define(function (require) {
                             scp.change_state.has_order_changed = (order) => {
                                 var t1 = scp.change_state.has_general_info_changed(order.GeneralInfo);
                                 var t2 = scp.change_state.have_items_changed(order.Items);
-                                var t3 = scp.change_state.has_shipping_info_changed(order.ShippingInfo);
+                                var t3 = scp.change_state.has_address_changed(order.CustomerInfo.Address);
                                 var t4 = scp.change_state.has_billing_address_changed(order.CustomerInfo.BillingAddress);
-                                
+
                                 if (scp.change_state.has_general_info_changed(order.GeneralInfo)
                                     && scp.change_state.have_items_changed(order.Items)
-                                    && scp.change_state.has_shipping_info_changed(order.ShippingInfo)
+                                    && scp.change_state.has_address_changed(order.CustomerInfo.Address)
                                     && scp.change_state.has_billing_address_changed(order.CustomerInfo.BillingAddress)) {
                                     return true;
                                 }
 
-                                if (scp.change_state.has_address_changed(order.CustomerInfo.Address)) {
+                                if (scp.change_state.has_shipping_info_changed(order.ShippingInfo)) {
                                     return true;
                                 }
 
@@ -254,7 +254,7 @@ define(function (require) {
                             };
 
                             // Shipping address
-                            scp.change_state.has_shipping_info_changed = shipping => {
+                            /*scp.change_state.has_shipping_info_changed = shipping => {
 
                                 if (!shipping) return false;
 
@@ -264,7 +264,7 @@ define(function (require) {
                                 && address.PostCode.length > 1 && (address.Company.length > 1 || address.FullName.length > 1);
 
                                 return this._object_is_different(scp.change_state.shipping_excluded_fields, scp.change_state.original_shipping, shipping) && isValid;
-                            };
+                            };*/
 
                             // Billing address
                             scp.change_state.has_billing_address_changed = address => {
@@ -297,7 +297,7 @@ define(function (require) {
 
                                 let item_count = Object.keys(scp.change_state.original_items).length;
                                 let check_items = [];
-                                
+
                                 if (ignore_service) {
                                     for (let item of items) {
                                         if (!(item.IsService || item.IsServiceItem)) {
