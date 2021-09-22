@@ -260,8 +260,13 @@ define(function (require) {
                                             return true;
                                         }
                                     }
+                                    else {
+                                        console.log("NOO1O");
+                                        return false;
+                                    }
                                 }
                                 else {
+                                    console.log("NOOOOOOOO");
                                     return false;
                                 }
                             };
