@@ -1,5 +1,7 @@
 "use strict";
 
+const { SSL_OP_DONT_INSERT_EMPTY_FRAGMENTS } = require("constants");
+
 define(function (require) {
 
     // Subsource dropdown
@@ -227,9 +229,13 @@ define(function (require) {
                             var temp = scp.change_state;
 
                             scp.change_state.have_items_changed = (items, ignore_service = false) => {
-                                var t = items;
-                                var t1 = this;
-                                /*let item_count = Object.keys(this.original_items).length;
+                                // var t = items;
+
+                                // if (items.length == 0) {
+                                //     return false;
+                                // }
+
+                                let item_count = Object.keys(scp.change_state.original_items).length;
                                 
                                 if (item_count == 0) {
                                     console.log("0");
@@ -245,7 +251,7 @@ define(function (require) {
                                     }
                                 }
                                 else {
-                                    item_count += Object.keys(this.original_services).length;
+                                    item_count += Object.keys(scp.change_state.original_services).length;
                                     check_items = items;
                                 }
 
@@ -254,13 +260,13 @@ define(function (require) {
                                 }
 
                                 for (let item of check_items) {
-                                    let original_item = this.get_original_item(item.RowId);
+                                    let original_item = scp.change_state.get_original_item(item.RowId);
                                     if (!original_item) return true;
 
-                                    if (this.has_item_changed(item)) {
+                                    if (scp.change_state.has_item_changed(item)) {
                                         return true;
                                     }
-                                }*/
+                                }
                             };
 
                             scp.change_state.has_address_changed = address => {
