@@ -281,7 +281,7 @@ define(function (require) {
                                     && address.PostCode.length > 1 && (address.Company.length > 1 || address.FullName.length > 1);
 
                                 return scp.change_state._object_is_different([], scp.change_state.original_billing, address)
-                                    && isValid
+                                    || isValid
                             }
 
                             // General info (subsource there)
@@ -336,7 +336,7 @@ define(function (require) {
                                     && address.PostCode.length > 1 && (address.Company.length > 1 || address.FullName.length > 1);
 
                                 return scp.change_state._object_is_different([], scp.change_state.original_customer, address)
-                                    && isValid
+                                    || isValid
                             };
                         }
 
