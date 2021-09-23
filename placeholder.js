@@ -64,7 +64,15 @@ define(function (require) {
                 link: function (scope, elem, attrs) {
 
                     console.log("viewModule openOrdersViewService");
-                    if (elem.context.children[0].getAttribute("lw-tst") === "input_postalCode") {
+
+                    
+                    var y = elem;
+                    var t = elem.context;
+
+
+                    debugger;
+
+                    /* if (elem.context.children[0].getAttribute("lw-tst") === "input_subsource") {
                         elem.empty();
                         elem.append($compile(postCodeInput)(scope));
 
@@ -73,6 +81,7 @@ define(function (require) {
                         $timeout(function () {
                             scope.$apply(function () {
                                 scope.subsources = [];
+                                scope.selectedSubSource = null;
 
 
                                 scope.postcodes = [];
@@ -83,7 +92,8 @@ define(function (require) {
 
                         function getSubSources() {
                             var query = "SELECT DISTICT o.SubSource FROM [Order] o";
-
+                            var obj = { Script = query };
+                            var t = dashboards.ExecuteCustomQueryScript(obj);
 
                         }
 
@@ -169,7 +179,7 @@ define(function (require) {
                                 });
                             }
                         };
-                    }
+                    } */
                 }
             };
         });
@@ -293,8 +303,7 @@ define(function (require) {
                                 if (general_info.SubSource == "" || general_info.SubSource == null) {
                                     return false;
                                 }
-                                else
-                                {
+                                else {
                                     return true;
                                 }
 
@@ -305,7 +314,7 @@ define(function (require) {
                             scp.change_state.have_items_changed = (items, ignore_service = false) => {
 
                                 var realCount = scp.items.get_items_count();
-                                if(realCount == 0) return false;
+                                if (realCount == 0) return false;
 
                                 let item_count = Object.keys(scp.change_state.original_items).length;
                                 let check_items = [];
