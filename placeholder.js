@@ -205,17 +205,17 @@ define(function (require) {
                         //                 Afghanistan -->
                         //         </select>`;
 
-                        const subSourceCmbx = `<br/>
-                                            <select style="width: 100%;"
-                                                     ng-disabled="locking.is_locked" ng-model="order.GeneralInfo.SubSource"
-                                                     data-hj-ignore-attributes="">
-                                            <!-- <option ng-repeat="country in $ctrl.countries" value="4079f09a-374c-4e9e-872b-1335c9e6cc40" data-hj-ignore-attributes="">
-                                                Afghanistan -->
-                                                        <option value="" selected></option>
-                                                        <option value="volvo">Volvo</option>
-                                                        <option value="mercedes">Mercedes</option>
-                                                        <option value="audi">Audi</option> 
-                                            </select>`;
+                        // const subSourceCmbx = `<br/>
+                        //                     <select style="width: 100%;"
+                        //                              ng-disabled="locking.is_locked" ng-model="order.GeneralInfo.SubSource"
+                        //                              data-hj-ignore-attributes="">
+                        //                     <!-- <option ng-repeat="country in $ctrl.countries" value="4079f09a-374c-4e9e-872b-1335c9e6cc40" data-hj-ignore-attributes="">
+                        //                         Afghanistan -->
+                        //                                 <option value="" selected></option>
+                        //                                 <option value="volvo">Volvo</option>
+                        //                                 <option value="mercedes">Mercedes</option>
+                        //                                 <option value="audi">Audi</option> 
+                        //                     </select>`;
 
 
                         // Look for SubSource input
@@ -233,18 +233,32 @@ define(function (require) {
 
                             var subsources = [];
                             var query = "SELECT DISTINCT o.SubSource From [Order] o ORDER BY o.SubSource";
-                            
+
 
                             $scope.subsources = ["1111", "2222"];
 
-                            dashService.ExecuteCustomScriptQuery(query, function(data){
+                            dashService.ExecuteCustomScriptQuery(query, function (data) {
                                 //subsources = data.Results;
+                                for (var i = 0; i < data.result.Results.length; i++) {
+                                    var item = data.result.Results[i];
 
-                                var t = $scope.subsources;
-                                        console.log(data);
+                                    $scope.subsources.push(item.SubSource);
+                                }
                             });
-                        
+
                             if (input) {
+                                var subSourceCmbx = `<br/>
+                                <select style="width: 100%;"
+                                         ng-disabled="locking.is_locked" ng-model="order.GeneralInfo.SubSource"
+                                         data-hj-ignore-attributes="">`;
+                                         
+                                for (var i = 0; i < $scope.subsources.length; i++) {
+                                   // Add new option
+                                   subSourceCmbx += `<option value="`+ $scope.subsources[i] + `"></option>`;
+                                }
+
+                                subSourceCmbx += `</select>`;
+
                                 //angular.element(input).replaceWith("<h2>SubSource dropdown here! </h2>");
                                 angular.element(input).replaceWith(subSourceCmbx);
                             }
