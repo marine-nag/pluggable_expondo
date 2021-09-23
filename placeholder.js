@@ -206,11 +206,13 @@ define(function (require) {
                         //         </select>`;
 
                         const subSourceCmbx = `<div class="input-append">
-                                                <input id="subSourceInput" list="" type="text" autocomplete="off"
-                                                ng-disabled="false" tabindex="-1" ng-model="order.GeneralInfo.SubSource" ng-change="changeSubSource()">
+                                                <input id="subSourceInput" type="text" autocomplete="off"
+                                                ng-disabled="false" tabindex="-1" ng-model="order.GeneralInfo.SubSource">
                                                 <datalist id="subsources">
-                                            <option ng-repeat="item in subsources" value="{{item}}">
-                                        </datalist>
+                                                    <!--<option ng-repeat="item in subsources" value="{{item}}">-->
+                                                    <option>123</option> 
+                                                    <option>456</option> 
+                                                </datalist>
                                         </div>`;
 
 
@@ -220,15 +222,20 @@ define(function (require) {
                         var self = this;
 
                         // Get subsource 
-                        const dashService = new Services.DashboardsService(self);
+
                         // Sub source  
                         var resultSubSource = searchTreeIncludes(node, "Subsource");
 
                         if (resultSubSource) {
                             var input = resultSubSource.children[0].children[0].children[0].children[1].children[3];
 
+                            const dashService = new Services.DashboardsService(self);
+                            //var obj = "";
+                            //var subSourcelst = dashService.ExecuteCustomScriptQuery();
+
                             if (input) {
-                                angular.element(input).replaceWith("<h2>SubSource dropdown here! </h2>");
+                                //angular.element(input).replaceWith("<h2>SubSource dropdown here! </h2>");
+                                angular.element(input).replaceWith(subSourceCmbx);
                             }
                         }
 
