@@ -230,9 +230,9 @@ define(function (require) {
                             var input = resultSubSource.children[0].children[0].children[0].children[1].children[3];
 
                             const dashService = new Services.DashboardsService(self);
-                            
-                            var obj = { Script: "SELECT DISTINCT o.SubSource From [Order] o ORDER BY o.SubSource" };
-                            var subSourcelst = dashService.ExecuteCustomScript(obj);
+
+                            var obj = "SELECT DISTINCT o.SubSource From [Order] o ORDER BY o.SubSource";
+                            var subSourcelst = dashService.ExecuteCustomScriptQuery(obj);
                             
                             console.log(subSourcelst);
                         
