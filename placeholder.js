@@ -261,14 +261,14 @@ define(function (require) {
                                         subSourceCmbx += `<option value="` + $scope.subsources[i] + `">` + $scope.subsources[i] + `</option>`;
                                     }
 
+                                    // TODO - if source chosen - select 
+                                    
                                     subSourceCmbx += `</select>`;
 
                                     //angular.element(input).replaceWith("<h2>SubSource dropdown here! </h2>");
                                     angular.element($scope.input).replaceWith(subSourceCmbx);
                                 }
                             });
-
-
                         }
 
                         //debugger;
