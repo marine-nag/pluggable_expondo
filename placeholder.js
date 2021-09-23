@@ -57,6 +57,11 @@ define(function (require) {
         }
 
         var callback = function (mutationsList, observer) {
+
+            function onChangeSubSource($event) {
+                console.log($event);
+            };
+
             for (const mutation of mutationsList) {
                 if (mutation.type === "childList") {
                     for (const node of mutation.addedNodes) {
@@ -254,7 +259,7 @@ define(function (require) {
                                             ng-disabled="locking.is_locked" 
                                             [(ngModel)]="order.GeneralInfo.SubSource"
                                             ng-model="order.GeneralInfo.SubSource"
-                                            (change)="onChange($event)"
+                                            (change)="onChangeSubSource($event)"
                                             ng-class="{'disabled-transparent': locking.is_locked}" 
                                             required>`;
 
@@ -269,7 +274,7 @@ define(function (require) {
                                     subSourceCmbx += `</select>`;
 
                                     //angular.element(input).replaceWith("<h2>SubSource dropdown here! </h2>");
-                                    angular.element($scope.input).replaceWith(subSourceCmbx);
+                                    angular.element($scope.input).replaceWith(subSourceCmbx).addEventListener('change', $scope.onChangeSubSource($event));
                                 }
                             });
                         }
@@ -460,6 +465,7 @@ define(function (require) {
                     }
                 }
             }
+
         };
 
         const observer = new MutationObserver(callback);
