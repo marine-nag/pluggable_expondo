@@ -83,7 +83,7 @@ define(function (require) {
 
         const viewModule = angular.module("openOrdersViewService");
 
-        const dashboards = angular.module("dashboardsService");
+        //const dashboards = angular.module("dashboardsService");
 
         viewModule.directive("div", function () {
             return {
