@@ -221,7 +221,7 @@ define(function (require) {
                         // Look for SubSource input
 
 
-                        var self = this;
+                        const self = this;
 
                         // Get subsource 
                         var resultSubSource = searchTreeIncludes(node, "Subsource");
@@ -229,12 +229,15 @@ define(function (require) {
                         if (resultSubSource) {
                             var input = resultSubSource.children[0].children[0].children[0].children[1].children[3];
 
-                            const dashService = new Services.DashboardsService(self);
+                            const dashService = new Services.DashboardsService(this);
 
-                            var obj = "SELECT DISTINCT o.SubSource From [Order] o ORDER BY o.SubSource";
-                            var subSourcelst = dashService.ExecuteCustomScriptQuery(obj);
+                            var subsources = [];
+                            var query = "SELECT DISTINCT o.SubSource From [Order] o ORDER BY o.SubSource";
                             
-                            console.log(subSourcelst);
+                            dashService.ExecuteCustomScriptQuery(query, function(data){
+                                //subsources = data.Results;
+                                        console.log(data);
+                            });
                         
                             if (input) {
                                 //angular.element(input).replaceWith("<h2>SubSource dropdown here! </h2>");
