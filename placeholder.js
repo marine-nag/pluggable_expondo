@@ -22,8 +22,8 @@ define(function (require) {
             return null;
         }
 
-        function searchTreeHTML(element, matchingTitle) {
-            if (element.innerHTML == matchingTitle) {
+        function searchTreeIncludes(element, matchingTitle) {
+            if (element.innerText.includes(matchingTitle)) {
                 return element;
             }
             else if (element.children != null) {
@@ -222,13 +222,13 @@ define(function (require) {
                         // Get subsource 
                         const dashService = new Services.DashboardsService(self);
                         // Sub source  
-                        var resultSubSource = searchTreeHTML(node, "\n                                                    Subsource\n                                                ");
-
+                        var resultSubSource = searchTreeIncludes(node, "Subsource");
                         
                         if (resultSubSource) {
                             console.log("resultSubSource has been found! And how we transform it to dropdown?");
                             console.log(resultSubSource);
                             console.log(resultSubSource.nextElementSibling);
+                            //debugger;
                         }
                         
                         //debugger;
