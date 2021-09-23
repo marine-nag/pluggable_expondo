@@ -23,16 +23,18 @@ define(function (require) {
         }
 
         function searchTreeIncludes(element, matchingTitle) {
-            if (element.innerText.includes(matchingTitle)) {
-                return element;
-            }
-            else if (element.children != null) {
-                var i;
-                var result = null;
-                for (i = 0; result == null && i < element.children.length; i++) {
-                    result = searchTree(element.children[i], matchingTitle);
+            if (element) {
+                if (element.innerText.includes(matchingTitle)) {
+                    return element;
                 }
-                return result;
+                else if (element.children != null) {
+                    var i;
+                    var result = null;
+                    for (i = 0; result == null && i < element.children.length; i++) {
+                        result = searchTree(element.children[i], matchingTitle);
+                    }
+                    return result;
+                }
             }
             return null;
         }
@@ -256,13 +258,13 @@ define(function (require) {
                                             required>`;
 
                                     for (var i = 0; i < $scope.subsources.length; i++) {
-                                        
+
                                         // Add new option
                                         subSourceCmbx += `<option value="` + $scope.subsources[i] + `">` + $scope.subsources[i] + `</option>`;
                                     }
 
                                     // TODO - if source chosen - select 
-                                    
+
                                     subSourceCmbx += `</select>`;
 
                                     //angular.element(input).replaceWith("<h2>SubSource dropdown here! </h2>");
