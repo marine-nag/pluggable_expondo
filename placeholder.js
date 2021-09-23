@@ -5,7 +5,7 @@
 define(function (require) {
 
     // Subsource dropdown
-    /*var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
+    var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
 
         this.getItems = function () {
             //this is for fuzz, because he forgot to let me know that function should return empty array
@@ -16,28 +16,28 @@ define(function (require) {
         this.constructor() = function () { };
 
         // controls
-        let postCodeInput = `
-        <input lw-tst="input_postalCode" list="postcodes" type="text" autocomplete="off" ng-disabled="sameAsShipping" tabindex="8" ng-model="address.PostCode" ng-change="changePostSearch()">
-        <!----><button ng-if="!isBillingAddres" lw-tst="lookUp_postalCode" type="button" ng-click="lookUp($event,'POSTALCODE', address.PostCode);" class="btn"><i class="fa fa-search"></i></button><!---->
-        <datalist id="postcodes">
-          <option ng-repeat="item in postcodes" value="{{item}}">
-        </datalist>
-        `;
+        // let postCodeInput = `
+        // <input lw-tst="input_postalCode" list="postcodes" type="text" autocomplete="off" ng-disabled="sameAsShipping" tabindex="8" ng-model="address.PostCode" ng-change="changePostSearch()">
+        // <!----><button ng-if="!isBillingAddres" lw-tst="lookUp_postalCode" type="button" ng-click="lookUp($event,'POSTALCODE', address.PostCode);" class="btn"><i class="fa fa-search"></i></button><!---->
+        // <datalist id="postcodes">
+        //   <option ng-repeat="item in postcodes" value="{{item}}">
+        // </datalist>
+        // `;
 
-        const lookupControl = `
-            <div class="control-group">
-                <label class="control-label">Lookup:</label>
-                <div class="controls controls-row">
-                    <div class="input-append">
-                        <input id="lookupAddressesInput" list="lookupAddresses" type="text" autocomplete="off"
-                            ng-disabled="sameAsShipping || !selectedPostcode" tabindex="-1" ng-model="lookupAddress" ng-change="changeLookupAddress()">
-                        <datalist id="lookupAddresses">
-                    <option ng-repeat="item in lookupAddresses" value="{{item.formatted}}">
-                        </datalist>
-                    </div>
-                </div>
-            </div>
-            `;
+        // const lookupControl = `
+        //     <div class="control-group">
+        //         <label class="control-label">Lookup:</label>
+        //         <div class="controls controls-row">
+        //             <div class="input-append">
+        //                 <input id="lookupAddressesInput" list="lookupAddresses" type="text" autocomplete="off"
+        //                     ng-disabled="sameAsShipping || !selectedPostcode" tabindex="-1" ng-model="lookupAddress" ng-change="changeLookupAddress()">
+        //                 <datalist id="lookupAddresses">
+        //             <option ng-repeat="item in lookupAddresses" value="{{item.formatted}}">
+        //                 </datalist>
+        //             </div>
+        //         </div>
+        //     </div>
+        //     `;
         const DEBOUNCE_TIME = 500;
 
         // current element (subSource)
@@ -175,7 +175,7 @@ define(function (require) {
         });
     };
 
-    Core.PlaceHolderManager.register("OrderAddress_ShippingFields", PlaceHolder);*/
+    Core.PlaceHolderManager.register("OrderAddress_ShippingFields", PlaceHolder);
 
     // Set validation there
     $(document).ready(function ($scope) {
@@ -466,7 +466,7 @@ define(function (require) {
 
                         //#region Billing address
                         // Look for another fields ... 
-                        /*var resultCompanyBilling = searchTreeWithParent(node, "Company", "Billing Address");
+                        var resultCompanyBilling = searchTreeWithParent(node, "Company", "Billing Address");
                         var resultNameBilling = searchTreeWithParent(node, "Name", "Billing Address");
                         var resultEmailBilling = searchTreeWithParent(node, "Email", "Billing Address");
 
@@ -541,7 +541,7 @@ define(function (require) {
                             var townInput = angular.element(resultTownBilling.nextElementSibling);
                             townInput.context.setAttribute('minlength', '1');
                             townInput.attr("required", "required");
-                        }*/
+                        }
                         //#endregion
                     }
                 }
