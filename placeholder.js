@@ -254,6 +254,7 @@ define(function (require) {
                                             ng-disabled="locking.is_locked" 
                                             [(ngModel)]="order.GeneralInfo.SubSource"
                                             ng-model="order.GeneralInfo.SubSource"
+                                            (change)="onChange($event)"
                                             ng-class="{'disabled-transparent': locking.is_locked}" 
                                             required>`;
 
@@ -272,6 +273,10 @@ define(function (require) {
                                 }
                             });
                         }
+
+                        $scope.onChangeSubSource = ($event) => {
+                            console.log($event);
+                        };
 
                         //debugger;
 
