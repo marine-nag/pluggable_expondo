@@ -6,12 +6,18 @@ define(function (require) {
 
     // Subsource dropdown
     var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
+        self = this;
 
         this.getItems = function () {
             //this is for fuzz, because he forgot to let me know that function should return empty array
             return [];
             //specially for fuzz and nik :)
         }
+
+        self.onInit = async (msg) => {
+
+            console.log("self.onInit");
+        };
 
         this.constructor() = function () {
             return null;
