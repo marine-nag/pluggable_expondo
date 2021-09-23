@@ -215,7 +215,7 @@ define(function (require) {
 
 
                         // Look for SubSource input
-                        
+
 
                         var self = this;
 
@@ -223,14 +223,15 @@ define(function (require) {
                         const dashService = new Services.DashboardsService(self);
                         // Sub source  
                         var resultSubSource = searchTreeIncludes(node, "Subsource");
-                        
+
                         if (resultSubSource) {
-                            console.log("resultSubSource has been found! And how we transform it to dropdown?");
-                            console.log(resultSubSource);
-                            console.log(resultSubSource.nextElementSibling);
-                            //debugger;
+                            var input = resultSubSource.children[0].children[0].children[0].children[1].children[3];
+
+                            if (input) {
+                                angular.element(input).replaceWith("<h2>SubSource dropdown here! </h2>");
+                            }
                         }
-                        
+
                         //debugger;
 
                         //#region Shipping address
