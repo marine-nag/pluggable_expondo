@@ -234,8 +234,13 @@ define(function (require) {
                             var subsources = [];
                             var query = "SELECT DISTINCT o.SubSource From [Order] o ORDER BY o.SubSource";
                             
+
+                            $scope.subsources = ["1111", "2222"];
+
                             dashService.ExecuteCustomScriptQuery(query, function(data){
                                 //subsources = data.Results;
+
+                                var t = $scope.subsources;
                                         console.log(data);
                             });
                         
