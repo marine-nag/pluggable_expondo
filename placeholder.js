@@ -19,10 +19,19 @@ define(function (require) {
             console.log("self.onInit");
         };
 
-        this.constructor() = function () {
-            return null;
+        self.init = () => {
 
-         };
+        };
+
+        self.oninit = () => {
+
+        };
+
+
+        // this.constructor() = function () {
+        //     return null;
+
+        //  };
 
         // controls
         // let postCodeInput = `
