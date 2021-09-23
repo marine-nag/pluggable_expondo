@@ -46,12 +46,20 @@ define(function (require) {
                                 ng-class="{'disabled-transparent': locking.is_locked}">`;
 
         // dropdown subsource
-        const subSourcecmbx = `<select class="fill-width disabled-transparent upper-case ng-pristine ng-untouched ng-valid ng-not-empty" 
-                                    ng-disabled="$ctrl.isLocked" ng-model="$ctrl.generalinfo.subsource" ng-change="$ctrl.update_subsource()" 
-                                    data-hj-ignore-attributes="">
-                   <!-- <option ng-repeat="country in $ctrl.countries" value="4079f09a-374c-4e9e-872b-1335c9e6cc40" data-hj-ignore-attributes="">
-                        Afghanistan -->
-                </select>`;
+        // const subSourcecmbx = `<select class="fill-width disabled-transparent upper-case ng-pristine ng-untouched ng-valid ng-not-empty" 
+        //                             ng-disabled="$ctrl.isLocked" ng-model="$ctrl.generalinfo.subsource" ng-change="$ctrl.update_subsource()" 
+        //                             data-hj-ignore-attributes="">
+        //            <!-- <option ng-repeat="country in $ctrl.countries" value="4079f09a-374c-4e9e-872b-1335c9e6cc40" data-hj-ignore-attributes="">
+        //                 Afghanistan -->
+        //         </select>`;
+
+        const subSourceCmbx = `<div class="input-append">
+                                    <input id="lookupAddressesInput" list="lookupAddresses" type="text" autocomplete="off"
+                                    ng-disabled="false" tabindex="-1" ng-model="order.GeneralInfo.SubSource" ng-change="changeSubSource()">
+                                    <datalist id="lookupAddresses">
+                                <option ng-repeat="item in lookupAddresses" value="{{item.formatted}}">
+                         </datalist>
+                     </div>`;
 
         let debounceTimer = null;
 
@@ -59,18 +67,40 @@ define(function (require) {
 
         const dashboards = angular.module("dashboardsService");
 
-        viewModule.directive("div", function () {
+        viewModule.directive("input", function () {
             return {
                 link: function (scope, elem, attrs) {
 
                     console.log("viewModule openOrdersViewService");
 
-                    
                     var y = elem;
                     var t = elem.context;
 
-
                     debugger;
+
+                    if (elem.context.children[0]) {
+                        console.log("elem.context.children[0]");
+                        console.log(elem.context.children[0]);
+
+                        console.log("elem.context");
+                        console.log(elem.context);
+
+
+                        elem.empty();
+                        elem.append($compile(subSourceCmbx)(scope));
+                    }
+
+                    scope.changeSubSource = function (e) {
+                        console.log("changeSubSource");
+                        console.log(e);
+                    }
+
+                    function getSubSources() {
+                        var query = "SELECT DISTICT o.SubSource FROM [Order] o";
+                        var obj = { Script = query };
+                        var t = dashboards.ExecuteCustomQueryScript(obj);
+
+                    }
 
                     /* if (elem.context.children[0].getAttribute("lw-tst") === "input_subsource") {
                         elem.empty();
@@ -90,12 +120,7 @@ define(function (require) {
                             });
                         });
 
-                        function getSubSources() {
-                            var query = "SELECT DISTICT o.SubSource FROM [Order] o";
-                            var obj = { Script = query };
-                            var t = dashboards.ExecuteCustomQueryScript(obj);
-
-                        }
+                        
 
                         function findAddresses(postalCode) {
                             $timeout(function () {
