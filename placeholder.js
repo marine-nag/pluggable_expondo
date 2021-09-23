@@ -97,8 +97,8 @@ define(function (require) {
 
                     function getSubSources() {
                         var query = "SELECT DISTICT o.SubSource FROM [Order] o";
-                        var obj = { Script = query };
-                        var t = dashboards.ExecuteCustomQueryScript(obj);
+                        // var obj = { Script = query };
+                        // var t = dashboards.ExecuteCustomQueryScript(obj);
 
                     }
 
