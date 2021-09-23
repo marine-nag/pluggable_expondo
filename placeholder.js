@@ -205,15 +205,17 @@ define(function (require) {
                         //                 Afghanistan -->
                         //         </select>`;
 
-                        const subSourceCmbx = `<div class="input-append">
-                                                <input id="subSourceInput" type="text" autocomplete="off"
-                                                ng-disabled="false" tabindex="-1" ng-model="order.GeneralInfo.SubSource">
-                                                <datalist id="subsources">
-                                                    <!--<option ng-repeat="item in subsources" value="{{item}}">-->
-                                                    <option>123</option> 
-                                                    <option>456</option> 
-                                                </datalist>
-                                        </div>`;
+                        const subSourceCmbx = `<br/>
+                                            <select style="width: 100%;"
+                                                     ng-disabled="locking.is_locked" ng-model="order.GeneralInfo.SubSource"
+                                                     data-hj-ignore-attributes="">
+                                            <!-- <option ng-repeat="country in $ctrl.countries" value="4079f09a-374c-4e9e-872b-1335c9e6cc40" data-hj-ignore-attributes="">
+                                                Afghanistan -->
+                                                        <option value="" selected></option>
+                                                        <option value="volvo">Volvo</option>
+                                                        <option value="mercedes">Mercedes</option>
+                                                        <option value="audi">Audi</option> 
+                                            </select>`;
 
 
                         // Look for SubSource input
@@ -222,17 +224,18 @@ define(function (require) {
                         var self = this;
 
                         // Get subsource 
-
-                        // Sub source  
                         var resultSubSource = searchTreeIncludes(node, "Subsource");
 
                         if (resultSubSource) {
                             var input = resultSubSource.children[0].children[0].children[0].children[1].children[3];
 
                             const dashService = new Services.DashboardsService(self);
-                            //var obj = "";
-                            //var subSourcelst = dashService.ExecuteCustomScriptQuery();
-
+                            
+                            var obj = { Script: "SELECT DISTINCT o.SubSource From [Order] o ORDER BY o.SubSource" };
+                            var subSourcelst = dashService.ExecuteCustomScript(obj);
+                            
+                            console.log(subSourcelst);
+                        
                             if (input) {
                                 //angular.element(input).replaceWith("<h2>SubSource dropdown here! </h2>");
                                 angular.element(input).replaceWith(subSourceCmbx);
