@@ -247,11 +247,16 @@ define(function (require) {
 
                                 if ($scope.input) {
                                     var subSourceCmbx = `<br/>
-                                    <select style="width: 100%;"
-                                             ng-disabled="locking.is_locked" ng-model="order.GeneralInfo.SubSource"
-                                             data-hj-ignore-attributes="">`;
+                                    <select 
+                                            class="fill-width margin-bottom ng-pristine ng-untouched ng-valid ng-not-empty disabled-transparent"
+                                            ng-disabled="locking.is_locked" 
+                                            [(ngModel)]="order.GeneralInfo.SubSource"
+                                            ng-model="order.GeneralInfo.SubSource"
+                                            ng-class="{'disabled-transparent': locking.is_locked}" 
+                                            required>`;
 
                                     for (var i = 0; i < $scope.subsources.length; i++) {
+                                        
                                         // Add new option
                                         subSourceCmbx += `<option value="` + $scope.subsources[i] + `">` + $scope.subsources[i] + `</option>`;
                                     }
