@@ -227,7 +227,7 @@ define(function (require) {
                         var resultSubSource = searchTreeIncludes(node, "Subsource");
 
                         if (resultSubSource) {
-                            var input = resultSubSource.children[0].children[0].children[0].children[1].children[3];
+                            $scope.input = resultSubSource.children[0].children[0].children[0].children[1].children[3];
 
                             const dashService = new Services.DashboardsService(this);
 
@@ -235,7 +235,7 @@ define(function (require) {
                             var query = "SELECT DISTINCT o.SubSource From [Order] o ORDER BY o.SubSource";
 
 
-                            $scope.subsources = ["1111", "2222"];
+                            $scope.subsources = [];
 
                             dashService.ExecuteCustomScriptQuery(query, function (data) {
                                 //subsources = data.Results;
@@ -244,24 +244,26 @@ define(function (require) {
 
                                     $scope.subsources.push(item.SubSource);
                                 }
+
+                                if ($scope.input) {
+                                    var subSourceCmbx = `<br/>
+                                    <select style="width: 100%;"
+                                             ng-disabled="locking.is_locked" ng-model="order.GeneralInfo.SubSource"
+                                             data-hj-ignore-attributes="">`;
+
+                                    for (var i = 0; i < $scope.subsources.length; i++) {
+                                        // Add new option
+                                        subSourceCmbx += `<option value="` + $scope.subsources[i] + `">` + $scope.subsources[i] + `</option>`;
+                                    }
+
+                                    subSourceCmbx += `</select>`;
+
+                                    //angular.element(input).replaceWith("<h2>SubSource dropdown here! </h2>");
+                                    angular.element($scope.input).replaceWith(subSourceCmbx);
+                                }
                             });
 
-                            if (input) {
-                                var subSourceCmbx = `<br/>
-                                <select style="width: 100%;"
-                                         ng-disabled="locking.is_locked" ng-model="order.GeneralInfo.SubSource"
-                                         data-hj-ignore-attributes="">`;
-                                         
-                                for (var i = 0; i < $scope.subsources.length; i++) {
-                                   // Add new option
-                                   subSourceCmbx += `<option value="`+ $scope.subsources[i] + `"></option>`;
-                                }
 
-                                subSourceCmbx += `</select>`;
-
-                                //angular.element(input).replaceWith("<h2>SubSource dropdown here! </h2>");
-                                angular.element(input).replaceWith(subSourceCmbx);
-                            }
                         }
 
                         //debugger;
