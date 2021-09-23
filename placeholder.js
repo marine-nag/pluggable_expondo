@@ -13,7 +13,10 @@ define(function (require) {
             //specially for fuzz and nik :)
         }
 
-        this.constructor() = function () { };
+        this.constructor() = function () {
+            return null;
+
+         };
 
         // controls
         // let postCodeInput = `
@@ -54,10 +57,10 @@ define(function (require) {
         //         </select>`;
 
         const subSourceCmbx = `<div class="input-append">
-                                    <input id="lookupAddressesInput" list="lookupAddresses" type="text" autocomplete="off"
+                                    <input id="subSourceInput" list="" type="text" autocomplete="off"
                                     ng-disabled="false" tabindex="-1" ng-model="order.GeneralInfo.SubSource" ng-change="changeSubSource()">
-                                    <datalist id="lookupAddresses">
-                                <option ng-repeat="item in lookupAddresses" value="{{item.formatted}}">
+                                    <datalist id="subsources">
+                                <option ng-repeat="item in subsources" value="{{item}}">
                          </datalist>
                      </div>`;
 
@@ -67,7 +70,7 @@ define(function (require) {
 
         const dashboards = angular.module("dashboardsService");
 
-        viewModule.directive("input", function () {
+        viewModule.directive("div", function () {
             return {
                 link: function (scope, elem, attrs) {
 
@@ -88,10 +91,25 @@ define(function (require) {
 
                         elem.empty();
                         elem.append($compile(subSourceCmbx)(scope));
+
+                        $($compile(subSourceCmbx)(scope)).insertAfter(elem);
+
+                        $timeout(function () {
+                            scope.$apply(function () {
+                                scope.subsources = [];
+                                scope.selectedSubSource = null;
+
+
+                                // scope.postcodes = [];
+                                // scope.lookupAddresses = [];
+                                // scope.selectedPostcode = undefined;
+                            });
+                        });
+
                     }
 
                     scope.changeSubSource = function (e) {
-                        console.log("changeSubSource");
+                        console.log("changeSubSource. e =>");
                         console.log(e);
                     }
 
