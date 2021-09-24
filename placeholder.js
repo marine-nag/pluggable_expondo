@@ -4,7 +4,7 @@
 
 define(function (require) {
     // Set validation there
-    $(document).ready(function ($scope, $compile) {
+    $(document).ready(function ($scope) {
         const config = { childList: true, subtree: true };
 
         function searchTree(element, matchingTitle) {
