@@ -26,7 +26,13 @@ define(function (require) {
                 {
                     text: "Fuck them.",
                     type: "input",
-                    init: () => {
+                    key: "fuckinput",
+                    content: {
+                        moduleName: "placeholder1111111",
+                        controlName: "placeholder1111111"
+                    },
+                    init: () => { return null; },
+                    onInit: () => {
                         return null;
                     }
                 }
