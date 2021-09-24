@@ -2,9 +2,9 @@
 
 //const { SSL_OP_DONT_INSERT_EMPTY_FRAGMENTS } = require("constants");
 
-define(function (require) {
+define(function (require, $compile) {
     // Set validation there
-    $(document).ready(function ($scope, $compile) {
+    $(document).ready(function ($scope) {
         const config = { childList: true, subtree: true };
 
         function searchTree(element, matchingTitle) {
