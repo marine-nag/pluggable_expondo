@@ -259,23 +259,26 @@ define(function (require) {
                                     var subSourceCmbx = `<br/>
                                      <select id="cmbxSubSourceOpenOrder" 
                                              class="fill-width margin-bottom ng-pristine ng-untouched ng-valid ng-not-empty disabled-transparent"
-                                             ng-model="order.GeneralInfo.SubSource"
-                                             ng-change="$scope.onChangeSubSource()"
+                                             ng-model="order.Generalinfo.SubSource"
+                                             onchange="var e = document.getElementById('cmbxSubSourceOpenOrder'); angular.element(e.parentNode.children[1]).scope().order.GeneralInfo.SubSource = e.options[e.selectedIndex].text;"
                                              required>`;
 
                                     //subSourceCmbx += `<option value="` + $scope.subsources[i] + `">` + $scope.subsources[i] + `</option>`;
-
+                                    // TODO if Subsource exists - set this one.
                                     for (var i = 0; i < $scope.subsources.length; i++) {
 
                                         // Add new option
-                                        if (i == 1) {
+                                        if (i == 0) {
                                             subSourceCmbx += `<option value="` + $scope.subsources[i] + `" selected="selected">` + $scope.subsources[i] + `</option>`;
                                         }
                                         else {
                                             subSourceCmbx += `<option value="` + $scope.subsources[i] + `">` + $scope.subsources[i] + `</option>`;
                                         }
                                     }
-
+                                    /*if(!scope.locking.is_locked)
+                                    {
+ disabled = "angular.element(document.getElementById('cmbxSubSourceOpenOrder').parentNode.children[1]).scope().locking.is_locked"
+                                    }*/
                                     // TODO - if source chosen - select 
 
                                     subSourceCmbx += `</select>`;
@@ -290,7 +293,7 @@ define(function (require) {
                                     // var e = document.getElementById("cmbxSubSourceOpenOrder");
                                     // var strSub = e.options[e.selectedIndex].text;
 
-                                    console.log(strSub);
+                                    //console.log(strSub);
                                     //.addEventListener('change', $scope.onChangeSubSource($event));
                                 }
                             });
