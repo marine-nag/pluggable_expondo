@@ -280,9 +280,12 @@ define(function (require, $compile) {
                                     // TODO - if source chosen - select 
 
                                     subSourceCmbx += `</select>`;
-                                    //var cmbx = $compile(subSourceCmbx)($scope);
+                                    var cmbx = $compile(subSourceCmbx)($scope);
+                                    
+                                    angular.element($scope.input).replaceWith(cmbx);
+                                    
                                     //angular.element(input).replaceWith("<h2>SubSource dropdown here! </h2>");
-                                    angular.element($scope.input).replaceWith(subSourceCmbx);
+                                    //angular.element($scope.input).replaceWith(subSourceCmbx);
                                     //.addEventListener('change', $scope.onChangeSubSource($event));
                                 }
                             });
