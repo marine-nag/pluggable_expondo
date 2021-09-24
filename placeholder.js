@@ -3,141 +3,6 @@
 //const { SSL_OP_DONT_INSERT_EMPTY_FRAGMENTS } = require("constants");
 
 define(function (require) {
-    
-    /*var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
-       let debounceTimer = null;
-
-       const viewModule = angular.module("openOrdersViewService");
-
-       viewModule.directive("div", function () {
-           return {
-               link: function (scope, elem, attrs) {
-                   //console.log(elem);
-                   function searchTreeIncludes(element, matchingTitle) {
-                       if (element) {
-                           if (element.innerText) {
-                               if (element.innerText.includes(matchingTitle)) {
-                                   return element;
-                               }
-                           }
-                           else if (element.children != null) {
-                               var i;
-                               var result = null;
-                               for (i = 0; result == null && i < element.children.length; i++) {
-                                   result = searchTree(element.children[i], matchingTitle);
-                               }
-                               return result;
-                           }
-                       }
-                       return null;
-                   }
-
-                   const self = this;
-
-                   // Get subsource 
-                   var resultSubSource = searchTreeIncludes(node, "Subsource");
-
-                   if (resultSubSource) {
-                       $scope.input = resultSubSource.children[0].children[0].children[0].children[1].children[3];
-
-                       const dashService = new Services.DashboardsService(this);
-
-                       var subsources = [];
-                       var query = "SELECT DISTINCT o.SubSource From [Order] o ORDER BY o.SubSource";
-
-
-                       $scope.subsources = [];
-
-                       dashService.ExecuteCustomScriptQuery(query, function (data) {
-                           //subsources = data.Results;
-                           for (var i = 0; i < data.result.Results.length; i++) {
-                               var item = data.result.Results[i];
-
-                               $scope.subsources.push(item.SubSource);
-                           }
-
-                           if ($scope.input && $scope.subsources.length && $scope.subsources.length > 0) {
-                               var subSourceCmbx = `<br/>
-                               <select id="cmbxSubSourceOpenOrder" 
-                                       class="fill-width margin-bottom ng-pristine ng-untouched ng-valid ng-not-empty disabled-transparent"
-                                       ng-model="order.Generalinfo.SubSource"
-                                       ng-change="$scope.onChangeSubSource()"
-                                       required>`;
-
-                               //subSourceCmbx += `<option value="` + $scope.subsources[i] + `">` + $scope.subsources[i] + `</option>`;
-
-                               for (var i = 0; i < $scope.subsources.length; i++) {
-
-                                   // Add new option
-                                   if (i == 1) {
-                                       subSourceCmbx += `<option value="` + $scope.subsources[i] + `" selected="selected">` + $scope.subsources[i] + `</option>`;
-                                   }
-                                   else {
-                                       subSourceCmbx += `<option value="` + $scope.subsources[i] + `">` + $scope.subsources[i] + `</option>`;
-                                   }
-                               }
-
-                               // TODO - if source chosen - select 
-
-                               subSourceCmbx += `</select>`;
-                               var cmbx = $compile(subSourceCmbx)($scope);
-
-                               angular.element($scope.input).replaceWith(cmbx);
-
-                               //angular.element(input).replaceWith("<h2>SubSource dropdown here! </h2>");
-                               //angular.element($scope.input).replaceWith(subSourceCmbx);
-
-
-                               //var e = document.getElementById("cmbxSubSourceOpenOrder");
-                               //var strSub = e.options[e.selectedIndex].text;
-
-                               //console.log(strSub);
-                               //.addEventListener('change', $scope.onChangeSubSource($event));
-                           }
-                       });
-                   }
-
-               }
-           };
-       });
-
-       this.getItems = () => {
-
-           return [
-               {
-                   text: "input them.",
-                   type: "input",
-                   key: "finput",
-                   content: {
-                       moduleName: "placeholder1111111",
-                       controlName: "placeholder1111111"
-                   },
-                   init: () => { return null; },
-                   onInit: () => {
-                       return null;
-                   }
-               }
-           ];
-       };
-
-       this.initInput = () => {
-
-       };
-
-       this.constructor = () => {
-           return null;
-       };
-
-       return null;
-   };
-
-
-   Core.PlaceHolderManager.register("OrderAddress_ShippingFields", PlaceHolder);*/
-    
-    
-    
-    
-    
     // Set validation there
     $(document).ready(function ($scope) {
         const config = { childList: true, subtree: true };
@@ -394,8 +259,8 @@ define(function (require) {
                                     var subSourceCmbx = `<br/>
                                      <select id="cmbxSubSourceOpenOrder" 
                                              class="fill-width margin-bottom ng-pristine ng-untouched ng-valid ng-not-empty disabled-transparent"
-                                             ng-model="order.GeneralInfo.SubSource"
-                                             (change)="alert($scope.order.GeneralInfo.SubSource)"
+                                             ng-model="order.Generalinfo.SubSource"
+                                             ng-change="$scope.onChangeSubSource()"
                                              required>`;
 
                                     //subSourceCmbx += `<option value="` + $scope.subsources[i] + `">` + $scope.subsources[i] + `</option>`;
@@ -632,5 +497,133 @@ define(function (require) {
 
     // ===============================================
 
-    
+    /*var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
+       let debounceTimer = null;
+
+       const viewModule = angular.module("openOrdersViewService");
+
+       viewModule.directive("div", function () {
+           return {
+               link: function (scope, elem, attrs) {
+                   //console.log(elem);
+                   function searchTreeIncludes(element, matchingTitle) {
+                       if (element) {
+                           if (element.innerText) {
+                               if (element.innerText.includes(matchingTitle)) {
+                                   return element;
+                               }
+                           }
+                           else if (element.children != null) {
+                               var i;
+                               var result = null;
+                               for (i = 0; result == null && i < element.children.length; i++) {
+                                   result = searchTree(element.children[i], matchingTitle);
+                               }
+                               return result;
+                           }
+                       }
+                       return null;
+                   }
+
+                   const self = this;
+
+                   // Get subsource 
+                   var resultSubSource = searchTreeIncludes(node, "Subsource");
+
+                   if (resultSubSource) {
+                       $scope.input = resultSubSource.children[0].children[0].children[0].children[1].children[3];
+
+                       const dashService = new Services.DashboardsService(this);
+
+                       var subsources = [];
+                       var query = "SELECT DISTINCT o.SubSource From [Order] o ORDER BY o.SubSource";
+
+
+                       $scope.subsources = [];
+
+                       dashService.ExecuteCustomScriptQuery(query, function (data) {
+                           //subsources = data.Results;
+                           for (var i = 0; i < data.result.Results.length; i++) {
+                               var item = data.result.Results[i];
+
+                               $scope.subsources.push(item.SubSource);
+                           }
+
+                           if ($scope.input && $scope.subsources.length && $scope.subsources.length > 0) {
+                               var subSourceCmbx = `<br/>
+                               <select id="cmbxSubSourceOpenOrder" 
+                                       class="fill-width margin-bottom ng-pristine ng-untouched ng-valid ng-not-empty disabled-transparent"
+                                       ng-model="order.Generalinfo.SubSource"
+                                       ng-change="$scope.onChangeSubSource()"
+                                       required>`;
+
+                               //subSourceCmbx += `<option value="` + $scope.subsources[i] + `">` + $scope.subsources[i] + `</option>`;
+
+                               for (var i = 0; i < $scope.subsources.length; i++) {
+
+                                   // Add new option
+                                   if (i == 1) {
+                                       subSourceCmbx += `<option value="` + $scope.subsources[i] + `" selected="selected">` + $scope.subsources[i] + `</option>`;
+                                   }
+                                   else {
+                                       subSourceCmbx += `<option value="` + $scope.subsources[i] + `">` + $scope.subsources[i] + `</option>`;
+                                   }
+                               }
+
+                               // TODO - if source chosen - select 
+
+                               subSourceCmbx += `</select>`;
+                               var cmbx = $compile(subSourceCmbx)($scope);
+
+                               angular.element($scope.input).replaceWith(cmbx);
+
+                               //angular.element(input).replaceWith("<h2>SubSource dropdown here! </h2>");
+                               //angular.element($scope.input).replaceWith(subSourceCmbx);
+
+
+                               //var e = document.getElementById("cmbxSubSourceOpenOrder");
+                               //var strSub = e.options[e.selectedIndex].text;
+
+                               //console.log(strSub);
+                               //.addEventListener('change', $scope.onChangeSubSource($event));
+                           }
+                       });
+                   }
+
+               }
+           };
+       });
+
+       this.getItems = () => {
+
+           return [
+               {
+                   text: "input them.",
+                   type: "input",
+                   key: "finput",
+                   content: {
+                       moduleName: "placeholder1111111",
+                       controlName: "placeholder1111111"
+                   },
+                   init: () => { return null; },
+                   onInit: () => {
+                       return null;
+                   }
+               }
+           ];
+       };
+
+       this.initInput = () => {
+
+       };
+
+       this.constructor = () => {
+           return null;
+       };
+
+       return null;
+   };
+
+
+   Core.PlaceHolderManager.register("OrderAddress_ShippingFields", PlaceHolder);*/
 });
