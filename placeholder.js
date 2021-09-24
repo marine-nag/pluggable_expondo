@@ -282,28 +282,14 @@ define(function (require) {
                                     // TODO - if source chosen - select 
 
                                     subSourceCmbx += `</select>`;
-                                    // var cmbx = $compile(subSourceCmbx)($scope);
 
-                                    // angular.element($scope.input).replaceWith(cmbx);
-
-                                    //angular.element(input).replaceWith("<h2>SubSource dropdown here! </h2>");
                                     angular.element($scope.input).replaceWith(subSourceCmbx);
 
-
-                                    // var e = document.getElementById("cmbxSubSourceOpenOrder");
-                                    // var strSub = e.options[e.selectedIndex].text;
-
-                                    //console.log(strSub);
-                                    //.addEventListener('change', $scope.onChangeSubSource($event));
+                                    var scp = angular.element(document.getElementById('cmbxSubSourceOpenOrder').parentNode.children[1]).scope();
+                                    var loc = scp.locking.is_locked;
                                 }
                             });
                         }
-
-                        $scope.onChangeSubSource = () => {
-                            console.log("$scope.onChangeSubSource");
-                        };
-
-                        //debugger;
 
                         //#region Shipping address
 
