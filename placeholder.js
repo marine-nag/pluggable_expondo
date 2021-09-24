@@ -259,8 +259,8 @@ define(function (require) {
                                     var subSourceCmbx = `<br/>
                                      <select id="cmbxSubSourceOpenOrder" 
                                              class="fill-width margin-bottom ng-pristine ng-untouched ng-valid ng-not-empty disabled-transparent"
-                                             ng-model="order.Generalinfo.SubSource"
-                                             ng-change="$scope.onChangeSubSource()"
+                                             ng-model="order.GeneralInfo.SubSource"
+                                             (change)="alert($scope.order.GeneralInfo.SubSource)"
                                              required>`;
 
                                     //subSourceCmbx += `<option value="` + $scope.subsources[i] + `">` + $scope.subsources[i] + `</option>`;
