@@ -258,24 +258,32 @@ define(function (require) {
                                     var subSourceCmbx = `<br/>
                                     <select 
                                             class="fill-width margin-bottom ng-pristine ng-untouched ng-valid ng-not-empty disabled-transparent"
-                                            ng-model="order.generalinfo.subsource"
-                                            ng-change="onChangeSubSource()"
+                                            ng-model="order.Generalinfo.SubSource"
+                                            ng-change="$scope.onChangeSubSource()"
                                             ng-options="opt as opt for opt in $scope.subsources"
                                             required>`;
 
-                                    /*subSourceCmbx += `<option value="` + $scope.subsources[i] + `">` + $scope.subsources[i] + `</option>`;
+                                    //subSourceCmbx += `<option value="` + $scope.subsources[i] + `">` + $scope.subsources[i] + `</option>`;
 
                                     for (var i = 0; i < $scope.subsources.length; i++) {
+                                        
                                         // Add new option
-                                        subSourceCmbx += `<option value="` + $scope.subsources[i] + `">` + $scope.subsources[i] + `</option>`;
-                                    }*/
+                                        if (i == 0)
+                                        {
+                                            subSourceCmbx += `<option value="` + $scope.subsources[i] + `" selected="selected">` + $scope.subsources[i] + `</option>`;
+                                        }
+                                        else
+                                        {
+                                            subSourceCmbx += `<option value="` + $scope.subsources[i] + `">` + $scope.subsources[i] + `</option>`;
+                                        }
+                                    }
 
                                     // TODO - if source chosen - select 
 
                                     subSourceCmbx += `</select>`;
-                                    var cmbx = $compile(subSourceCmbx)($scope);
+                                    //var cmbx = $compile(subSourceCmbx)($scope);
                                     //angular.element(input).replaceWith("<h2>SubSource dropdown here! </h2>");
-                                    angular.element($scope.input).replaceWith(cmbx);
+                                    angular.element($scope.input).replaceWith(subSourceCmbx);
                                     //.addEventListener('change', $scope.onChangeSubSource($event));
                                 }
                             });
