@@ -207,13 +207,13 @@ define(function (require) {
                         var resultSubSource = searchTreeIncludes(node, "Subsource");
 
                         if (resultSubSource) {
-                            if (!angular.element(resultSubSource).scope().locking.is_locked) {
+                            var isLocked = !angular.element(resultSubSource).scope().locking.is_locked;
 
+                            if (isLocked) {
                                 $scope.input = resultSubSource.children[0].children[0].children[0].children[1].children[3];
 
                                 const dashService = new Services.DashboardsService(this);
 
-                                var subsources = [];
                                 var query = "SELECT DISTINCT o.SubSource From [Order] o ORDER BY o.SubSource";
 
                                 $scope.subsources = [];
