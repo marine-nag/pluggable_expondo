@@ -3,6 +3,33 @@
 //const { SSL_OP_DONT_INSERT_EMPTY_FRAGMENTS } = require("constants");
 
 define(function (require) {
+
+
+    var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
+        let debounceTimer = null;
+
+        const viewModule = angular.module("openOrdersViewService");
+    
+        viewModule.directive("div", function () {
+            return {
+                link: function (scope, elem, attrs) {
+                    console.log(elem);
+
+
+                }
+            };
+        });
+
+        return [];
+    };
+
+
+    Core.PlaceHolderManager.register("OrderAddress_ShippingFields", PlaceHolder);
+
+
+
+
+    // ===============================================
     // Set validation there
     $(document).ready(function ($scope) {
         const config = { childList: true, subtree: true };
