@@ -22,7 +22,15 @@ define(function (require) {
 
         this.getItems = () => {
 
-            return [];
+            return [
+                {
+                    text: "Fuck them.",
+                    type: "input",
+                    init: () => {
+                        return null;
+                    }
+                }
+            ];
         };
 
         this.initInput = () => {
@@ -32,6 +40,8 @@ define(function (require) {
         this.constructor = () => {
             return null;
         };
+
+        return null;
     };
 
 
