@@ -267,7 +267,7 @@ define(function (require) {
                                     for (var i = 0; i < $scope.subsources.length; i++) {
                                         
                                         // Add new option
-                                        if (i == 0)
+                                        if (i == 1)
                                         {
                                             subSourceCmbx += `<option value="` + $scope.subsources[i] + `" selected="selected">` + $scope.subsources[i] + `</option>`;
                                         }
