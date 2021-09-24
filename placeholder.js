@@ -60,8 +60,8 @@ define(function (require) {
 
         var callback = function (mutationsList, observer) {
 
-            function onChangeSubSource($event) {
-                console.log($event);
+            function onChangeSubSource() {
+                console.log("onChangeSubSource");
             };
 
             for (const mutation of mutationsList) {
@@ -259,9 +259,8 @@ define(function (require) {
                                     <select 
                                             class="fill-width margin-bottom ng-pristine ng-untouched ng-valid ng-not-empty disabled-transparent"
                                             ng-disabled="locking.is_locked" 
-                                            [(ngModel)]="order.GeneralInfo.SubSource"
                                             ng-model="order.GeneralInfo.SubSource"
-                                            (change)="onChangeSubSource($event)"
+                                            ng-change="onChangeSubSource()"
                                             ng-class="{'disabled-transparent': locking.is_locked}" 
                                             required>`;
 
@@ -276,13 +275,14 @@ define(function (require) {
                                     subSourceCmbx += `</select>`;
 
                                     //angular.element(input).replaceWith("<h2>SubSource dropdown here! </h2>");
-                                    angular.element($scope.input).replaceWith(subSourceCmbx).addEventListener('change', $scope.onChangeSubSource($event));
+                                    angular.element($scope.input).replaceWith(subSourceCmbx);
+                                    //.addEventListener('change', $scope.onChangeSubSource($event));
                                 }
                             });
                         }
 
-                        $scope.onChangeSubSource = ($event) => {
-                            console.log($event);
+                        $scope.onChangeSubSource = () => {
+                            console.log("$scope.onChangeSubSource");
                         };
 
                         //debugger;
