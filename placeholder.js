@@ -9,7 +9,7 @@ define(function (require) {
         let debounceTimer = null;
 
         const viewModule = angular.module("openOrdersViewService");
-    
+
         viewModule.directive("div", function () {
             return {
                 link: function (scope, elem, attrs) {
@@ -20,7 +20,14 @@ define(function (require) {
             };
         });
 
-        return [];
+        this.getItems = () => {
+
+            return [];
+        };
+
+        this.initInput = () => {
+
+        };
     };
 
 
