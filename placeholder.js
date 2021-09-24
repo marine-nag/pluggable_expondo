@@ -256,7 +256,7 @@ define(function (require) {
 
                                 if ($scope.input && $scope.subsources.length && $scope.subsources.length > 0) {
                                     var subSourceCmbx = `<br/>
-                                    <select 
+                                    <select id="cmbxSubSourceOpenOrder" 
                                             class="fill-width margin-bottom ng-pristine ng-untouched ng-valid ng-not-empty disabled-transparent"
                                             ng-model="order.Generalinfo.SubSource"
                                             ng-change="$scope.onChangeSubSource()"
@@ -284,6 +284,12 @@ define(function (require) {
 
                                     //angular.element(input).replaceWith("<h2>SubSource dropdown here! </h2>");
                                     angular.element($scope.input).replaceWith(subSourceCmbx);
+
+
+                                    var e = document.getElementById("cmbxSubSourceOpenOrder");
+                                    var strSub = e.options[e.selectedIndex].text;
+
+                                    console.log(strSub);
                                     //.addEventListener('change', $scope.onChangeSubSource($event));
                                 }
                             });
