@@ -1,5 +1,7 @@
 "use strict";
 
+const { ifError } = require("assert");
+
 //const { SSL_OP_DONT_INSERT_EMPTY_FRAGMENTS } = require("constants");
 
 define(function (require) {
@@ -232,63 +234,69 @@ define(function (require) {
 
                         const self = this;
 
+
+                        var resultSource = searchTreeIncludes(node, "Source");
+
                         // Get subsource 
                         var resultSubSource = searchTreeIncludes(node, "Subsource");
 
                         if (resultSubSource) {
-                            $scope.input = resultSubSource.children[0].children[0].children[0].children[1].children[3];
+                            if (!angular.element(resultSubSource).scope().scp.locking.is_locked) {
 
-                            const dashService = new Services.DashboardsService(this);
+                                $scope.input = resultSubSource.children[0].children[0].children[0].children[1].children[3];
 
-                            var subsources = [];
-                            var query = "SELECT DISTINCT o.SubSource From [Order] o ORDER BY o.SubSource";
+                                const dashService = new Services.DashboardsService(this);
 
+                                var subsources = [];
+                                var query = "SELECT DISTINCT o.SubSource From [Order] o ORDER BY o.SubSource";
 
-                            $scope.subsources = [];
+                                $scope.subsources = [];
 
-                            dashService.ExecuteCustomScriptQuery(query, function (data) {
-                                //subsources = data.Results;
-                                for (var i = 0; i < data.result.Results.length; i++) {
-                                    var item = data.result.Results[i];
+                                dashService.ExecuteCustomScriptQuery(query, function (data) {
+                                    //subsources = data.Results;
+                                    for (var i = 0; i < data.result.Results.length; i++) {
+                                        var item = data.result.Results[i];
 
-                                    $scope.subsources.push(item.SubSource);
-                                }
-
-                                if ($scope.input && $scope.subsources.length && $scope.subsources.length > 0) {
-
-                                    var subSourceCmbx = `<br/>
-                                     <select id="cmbxSubSourceOpenOrder" 
-                                             class="fill-width margin-bottom ng-pristine ng-untouched ng-valid ng-not-empty disabled-transparent"
-                                             ng-model="order.Generalinfo.SubSource"
-                                             onchange="var e = document.getElementById('cmbxSubSourceOpenOrder'); angular.element(e.parentNode.children[1]).scope().order.GeneralInfo.SubSource = e.options[e.selectedIndex].text;"
-                                             required>`;
-
-                                    //subSourceCmbx += `<option value="` + $scope.subsources[i] + `">` + $scope.subsources[i] + `</option>`;
-                                    // TODO if Subsource exists - set this one.
-                                    for (var i = 0; i < $scope.subsources.length; i++) {
-
-                                        // Add new option
-                                        if (i == 0) {
-                                            subSourceCmbx += `<option value="` + $scope.subsources[i] + `" selected="selected">` + $scope.subsources[i] + `</option>`;
-                                        }
-                                        else {
-                                            subSourceCmbx += `<option value="` + $scope.subsources[i] + `">` + $scope.subsources[i] + `</option>`;
-                                        }
+                                        $scope.subsources.push(item.SubSource);
                                     }
-                                    /*if(!scope.locking.is_locked)
-                                    {
- disabled = "angular.element(document.getElementById('cmbxSubSourceOpenOrder').parentNode.children[1]).scope().locking.is_locked"
-                                    }*/
-                                    // TODO - if source chosen - select 
 
-                                    subSourceCmbx += `</select>`;
+                                    if ($scope.input && $scope.subsources.length && $scope.subsources.length > 0) {
 
-                                    angular.element($scope.input).replaceWith(subSourceCmbx);
+                                        var subSourceCmbx = `<br/>
+                                         <select id="cmbxSubSourceOpenOrder" 
+                                                 class="fill-width margin-bottom ng-pristine ng-untouched ng-valid ng-not-empty disabled-transparent"
+                                                 ng-model="order.Generalinfo.SubSource"
+                                                 onchange="var e = document.getElementById('cmbxSubSourceOpenOrder'); angular.element(e.parentNode.children[1]).scope().order.GeneralInfo.SubSource = e.options[e.selectedIndex].text;"
+                                                 required>`;
 
-                                    var scp = angular.element(document.getElementById('cmbxSubSourceOpenOrder').parentNode.children[1]).scope();
-                                    var loc = scp.locking.is_locked;
-                                }
-                            });
+                                        //subSourceCmbx += `<option value="` + $scope.subsources[i] + `">` + $scope.subsources[i] + `</option>`;
+                                        // TODO if Subsource exists - set this one.
+                                        for (var i = 0; i < $scope.subsources.length; i++) {
+
+                                            // Add new option
+                                            if (i == 0) {
+                                                subSourceCmbx += `<option value="` + $scope.subsources[i] + `" selected="selected">` + $scope.subsources[i] + `</option>`;
+                                            }
+                                            else {
+                                                subSourceCmbx += `<option value="` + $scope.subsources[i] + `">` + $scope.subsources[i] + `</option>`;
+                                            }
+                                        }
+                                        /*if(!scope.locking.is_locked)
+                                        {
+     disabled = "angular.element(document.getElementById('cmbxSubSourceOpenOrder').parentNode.children[1]).scope().locking.is_locked"
+                                        }*/
+
+                                        // TODO - if source chosen - select 
+
+                                        subSourceCmbx += `</select>`;
+
+                                        angular.element($scope.input).replaceWith(subSourceCmbx);
+
+                                        var scp = angular.element(document.getElementById('cmbxSubSourceOpenOrder').parentNode.children[1]).scope();
+                                        var loc = scp.locking.is_locked;
+                                    }
+                                });
+                            }
                         }
 
                         //#region Shipping address
