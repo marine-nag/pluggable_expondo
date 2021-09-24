@@ -258,16 +258,17 @@ define(function (require) {
                                     var subSourceCmbx = `<br/>
                                     <select 
                                             class="fill-width margin-bottom ng-pristine ng-untouched ng-valid ng-not-empty disabled-transparent"
-                                            ng-disabled="$ctrl.isLocked" 
-                                            ng-model="$ctrl.generalinfo.subsource"
+                                            ng-model="order.generalinfo.subsource"
                                             ng-change="onChangeSubSource()"
-                                            ng-class="{'disabled-transparent': $ctrl.isLocked}" 
+                                            ng-options="opt as opt for opt in $scope.subsources"
                                             required>`;
+
+                                    /*subSourceCmbx += `<option value="` + $scope.subsources[i] + `">` + $scope.subsources[i] + `</option>`;
 
                                     for (var i = 0; i < $scope.subsources.length; i++) {
                                         // Add new option
                                         subSourceCmbx += `<option value="` + $scope.subsources[i] + `">` + $scope.subsources[i] + `</option>`;
-                                    }
+                                    }*/
 
                                     // TODO - if source chosen - select 
 
@@ -477,3 +478,4 @@ define(function (require) {
         }, 2000);
     });
 });
+
