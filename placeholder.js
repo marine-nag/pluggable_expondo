@@ -254,7 +254,7 @@ define(function (require) {
                                     $scope.subsources.push(item.SubSource);
                                 }
 
-                                if ($scope.input) {
+                                if ($scope.input && $scope.subsources.length && $scope.subsources.length > 0) {
                                     var subSourceCmbx = `<br/>
                                     <select 
                                             class="fill-width margin-bottom ng-pristine ng-untouched ng-valid ng-not-empty disabled-transparent"
