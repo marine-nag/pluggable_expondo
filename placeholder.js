@@ -24,8 +24,10 @@ define(function (require) {
 
         function searchTreeIncludes(element, matchingTitle) {
             if (element) {
-                if (element.innerText.includes(matchingTitle)) {
-                    return element;
+                if (element.innerText) {
+                    if (element.innerText.includes(matchingTitle)) {
+                        return element;
+                    }
                 }
                 else if (element.children != null) {
                     var i;
