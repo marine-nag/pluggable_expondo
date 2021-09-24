@@ -260,7 +260,6 @@ define(function (require) {
                                             class="fill-width margin-bottom ng-pristine ng-untouched ng-valid ng-not-empty disabled-transparent"
                                             ng-model="order.Generalinfo.SubSource"
                                             ng-change="$scope.onChangeSubSource()"
-                                            ng-options="opt as opt for opt in $scope.subsources"
                                             required>`;
 
                                     //subSourceCmbx += `<option value="` + $scope.subsources[i] + `">` + $scope.subsources[i] + `</option>`;
