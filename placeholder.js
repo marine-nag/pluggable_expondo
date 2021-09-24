@@ -366,7 +366,7 @@ define(function (require) {
                         // Look for SubSource input
 
 
-                        const self = this;
+                        /*const self = this;
 
                         // Get subsource 
                         var resultSubSource = searchTreeIncludes(node, "Subsource");
@@ -433,7 +433,7 @@ define(function (require) {
 
                         $scope.onChangeSubSource = () => {
                             console.log("$scope.onChangeSubSource");
-                        };
+                        };*/
 
                         //debugger;
 
