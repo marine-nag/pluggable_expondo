@@ -4,7 +4,7 @@
 
 define(function (require) {
     
-    var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
+    /*var PlaceHolder = function ($scope, $element, $http, $timeout, $compile) {
        let debounceTimer = null;
 
        const viewModule = angular.module("openOrdersViewService");
@@ -132,7 +132,7 @@ define(function (require) {
    };
 
 
-   Core.PlaceHolderManager.register("OrderAddress_ShippingFields", PlaceHolder);
+   Core.PlaceHolderManager.register("OrderAddress_ShippingFields", PlaceHolder);*/
     
     
     
