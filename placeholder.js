@@ -24,9 +24,9 @@ define(function (require) {
 
             return [
                 {
-                    text: "Fuck them.",
+                    text: "input them.",
                     type: "input",
-                    key: "fuckinput",
+                    key: "finput",
                     content: {
                         moduleName: "placeholder1111111",
                         controlName: "placeholder1111111"
