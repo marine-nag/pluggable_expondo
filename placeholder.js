@@ -256,105 +256,41 @@ define(function (require) {
 
                                 if ($scope.input && $scope.subsources.length && $scope.subsources.length > 0) {
 
-                                    var app = angular.module("ViewOrderModule", []);
-
-                                    app.controller("OpenOrdersController", function ($scope, $compile) {
-
-                                        $scope.val = 0;
-
-                                        $scope.add = function () {
-
-
-
-                                            var subSourceCmbx = `<br/>
-                                            <select id="cmbxSubSourceOpenOrder" 
-                                                    class="fill-width margin-bottom ng-pristine ng-untouched ng-valid ng-not-empty disabled-transparent"
-                                                    ng-model="order.Generalinfo.SubSource"
-                                                    ng-change="$scope.onChangeSubSource()"
-                                                    required>`;
-
-                                            //subSourceCmbx += `<option value="` + $scope.subsources[i] + `">` + $scope.subsources[i] + `</option>`;
-
-                                            for (var i = 0; i < $scope.subsources.length; i++) {
-
-                                                // Add new option
-                                                if (i == 1) {
-                                                    subSourceCmbx += `<option value="` + $scope.subsources[i] + `" selected="selected">` + $scope.subsources[i] + `</option>`;
-                                                }
-                                                else {
-                                                    subSourceCmbx += `<option value="` + $scope.subsources[i] + `">` + $scope.subsources[i] + `</option>`;
-                                                }
-                                            }
-
-                                            // TODO - if source chosen - select 
-
-                                            subSourceCmbx += `</select>`;
-
-                                            var cmbx = $compile(subSourceCmbx)($scope);
-
-                                            angular.element($scope.input).replaceWith(cmbx);
-
-                                            //angular.element(input).replaceWith("<h2>SubSource dropdown here! </h2>");
-                                            //angular.element($scope.input).replaceWith(subSourceCmbx);
-
-                                            /*var container = angular.element(document.getElementById("container")),
-                                                btn = $compile("<btn val=" + $scope.val + "></btn>")($scope);
-                                            //  btn = $compile("<btn val='{{val}}'></btn>")($scope);
-
-                                            container.append(btn);*/
-
-                                        };
-
-                                    });
-
-
-                                    app.directive("select", function ($compile) {
-                                        return {
-                                            link: function (scope, element, attrs) {
-
-                                            }
-                                        };
-
-                                    });
-
-
-
-
-                                    /* var subSourceCmbx = `<br/>
+                                    var subSourceCmbx = `<br/>
                                      <select id="cmbxSubSourceOpenOrder" 
                                              class="fill-width margin-bottom ng-pristine ng-untouched ng-valid ng-not-empty disabled-transparent"
                                              ng-model="order.Generalinfo.SubSource"
                                              ng-change="$scope.onChangeSubSource()"
                                              required>`;
- 
-                                     //subSourceCmbx += `<option value="` + $scope.subsources[i] + `">` + $scope.subsources[i] + `</option>`;
- 
-                                     for (var i = 0; i < $scope.subsources.length; i++) {
- 
-                                         // Add new option
-                                         if (i == 1) {
-                                             subSourceCmbx += `<option value="` + $scope.subsources[i] + `" selected="selected">` + $scope.subsources[i] + `</option>`;
-                                         }
-                                         else {
-                                             subSourceCmbx += `<option value="` + $scope.subsources[i] + `">` + $scope.subsources[i] + `</option>`;
-                                         }
-                                     }
- 
-                                     // TODO - if source chosen - select 
- 
-                                     subSourceCmbx += `</select>`;
-                                     // var cmbx = $compile(subSourceCmbx)($scope);
- 
-                                     // angular.element($scope.input).replaceWith(cmbx);
- 
-                                     //angular.element(input).replaceWith("<h2>SubSource dropdown here! </h2>");
-                                     angular.element($scope.input).replaceWith(subSourceCmbx);
- 
- 
-                                     var e = document.getElementById("cmbxSubSourceOpenOrder");
-                                     var strSub = e.options[e.selectedIndex].text;
- 
-                                     console.log(strSub);*/
+
+                                    //subSourceCmbx += `<option value="` + $scope.subsources[i] + `">` + $scope.subsources[i] + `</option>`;
+
+                                    for (var i = 0; i < $scope.subsources.length; i++) {
+
+                                        // Add new option
+                                        if (i == 1) {
+                                            subSourceCmbx += `<option value="` + $scope.subsources[i] + `" selected="selected">` + $scope.subsources[i] + `</option>`;
+                                        }
+                                        else {
+                                            subSourceCmbx += `<option value="` + $scope.subsources[i] + `">` + $scope.subsources[i] + `</option>`;
+                                        }
+                                    }
+
+                                    // TODO - if source chosen - select 
+
+                                    subSourceCmbx += `</select>`;
+                                    // var cmbx = $compile(subSourceCmbx)($scope);
+
+                                    // angular.element($scope.input).replaceWith(cmbx);
+
+                                    //angular.element(input).replaceWith("<h2>SubSource dropdown here! </h2>");
+                                    angular.element($scope.input).replaceWith(subSourceCmbx);
+
+
+                                    // var e = document.getElementById("cmbxSubSourceOpenOrder");
+                                    // var strSub = e.options[e.selectedIndex].text;
+
+                                    console.log(strSub);
                                     //.addEventListener('change', $scope.onChangeSubSource($event));
                                 }
                             });
