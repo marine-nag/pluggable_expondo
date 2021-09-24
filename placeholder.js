@@ -2,7 +2,7 @@
 
 //const { SSL_OP_DONT_INSERT_EMPTY_FRAGMENTS } = require("constants");
 
-define(function (require, $compile) {
+define(function (require) {
     // Set validation there
     $(document).ready(function ($scope) {
         const config = { childList: true, subtree: true };
@@ -265,14 +265,12 @@ define(function (require, $compile) {
                                     //subSourceCmbx += `<option value="` + $scope.subsources[i] + `">` + $scope.subsources[i] + `</option>`;
 
                                     for (var i = 0; i < $scope.subsources.length; i++) {
-                                        
+
                                         // Add new option
-                                        if (i == 1)
-                                        {
+                                        if (i == 1) {
                                             subSourceCmbx += `<option value="` + $scope.subsources[i] + `" selected="selected">` + $scope.subsources[i] + `</option>`;
                                         }
-                                        else
-                                        {
+                                        else {
                                             subSourceCmbx += `<option value="` + $scope.subsources[i] + `">` + $scope.subsources[i] + `</option>`;
                                         }
                                     }
@@ -280,12 +278,12 @@ define(function (require, $compile) {
                                     // TODO - if source chosen - select 
 
                                     subSourceCmbx += `</select>`;
-                                    var cmbx = $compile(subSourceCmbx)($scope);
-                                    
-                                    angular.element($scope.input).replaceWith(cmbx);
-                                    
+                                    // var cmbx = $compile(subSourceCmbx)($scope);
+
+                                    // angular.element($scope.input).replaceWith(cmbx);
+
                                     //angular.element(input).replaceWith("<h2>SubSource dropdown here! </h2>");
-                                    //angular.element($scope.input).replaceWith(subSourceCmbx);
+                                    angular.element($scope.input).replaceWith(subSourceCmbx);
                                     //.addEventListener('change', $scope.onChangeSubSource($event));
                                 }
                             });
