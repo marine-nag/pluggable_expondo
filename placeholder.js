@@ -28,6 +28,10 @@ define(function (require) {
         this.initInput = () => {
 
         };
+
+        this.constructor = () => {
+            return null;
+        };
     };
 
 
