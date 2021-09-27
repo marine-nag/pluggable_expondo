@@ -1,5 +1,7 @@
 "use strict";
 
+//const { ifError } = require("assert");
+
 //const { SSL_OP_DONT_INSERT_EMPTY_FRAGMENTS } = require("constants");
 
 define(function (require) {
@@ -205,13 +207,13 @@ define(function (require) {
                         var resultSubSource = searchTreeIncludes(node, "Subsource");
 
                         if (resultSubSource) {
-                            var isLocked = !angular.element(resultSubSource).scope().locking.is_locked;
+                            if (!angular.element(resultSubSource).scope().locking.is_locked) {
 
-                            if (isLocked) {
                                 $scope.input = resultSubSource.children[0].children[0].children[0].children[1].children[3];
 
                                 const dashService = new Services.DashboardsService(this);
 
+                                var subsources = [];
                                 var query = "SELECT DISTINCT o.SubSource From [Order] o ORDER BY o.SubSource";
 
                                 $scope.subsources = [];
@@ -238,7 +240,7 @@ define(function (require) {
                                         for (var i = 0; i < $scope.subsources.length; i++) {
 
                                             // Add new option
-                                            if (i == 0) {
+                                            if (i == 2) {
                                                 subSourceCmbx += `<option value="` + $scope.subsources[i] + `" selected="selected">` + $scope.subsources[i] + `</option>`;
                                             }
                                             else {
