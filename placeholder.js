@@ -1,7 +1,5 @@
 "use strict";
 
-const { ifError } = require("assert");
-
 //const { SSL_OP_DONT_INSERT_EMPTY_FRAGMENTS } = require("constants");
 
 define(function (require) {
