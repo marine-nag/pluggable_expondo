@@ -214,7 +214,7 @@ define(function (require) {
                                 const dashService = new Services.DashboardsService(this);
 
                                 var query = "SELECT DISTINCT o.SubSource From [Order] o ORDER BY o.SubSource";
-                                $scope.selectedSubSource = !angular.element(resultSubSource).scope().order.GeneralInfo.SubSource;
+                                $scope.selectedSubSource = angular.element(resultSubSource).scope().order.GeneralInfo.SubSource;
 
                                 $scope.subsources = [];
 
