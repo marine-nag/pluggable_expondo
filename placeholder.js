@@ -202,7 +202,7 @@ define(function (require) {
                                 return isValid;
                             };
                         }
-                        
+
                         // Get subsource 
                         var resultSubSource = searchTreeIncludes(node, "Subsource");
 
@@ -213,8 +213,8 @@ define(function (require) {
 
                                 const dashService = new Services.DashboardsService(this);
 
-                                var subsources = [];
                                 var query = "SELECT DISTINCT o.SubSource From [Order] o ORDER BY o.SubSource";
+                                $scope.selectedSubSource = !angular.element(resultSubSource).scope().order.GeneralInfo.SubSource;
 
                                 $scope.subsources = [];
 
@@ -236,11 +236,11 @@ define(function (require) {
                                                  required>`;
 
                                         //subSourceCmbx += `<option value="` + $scope.subsources[i] + `">` + $scope.subsources[i] + `</option>`;
-                                        // TODO if Subsource exists - set this one.
+                                    
                                         for (var i = 0; i < $scope.subsources.length; i++) {
 
                                             // Add new option
-                                            if (i == 2) {
+                                            if ($scope.subsources[i] == $scope.selectedSubSource) {
                                                 subSourceCmbx += `<option value="` + $scope.subsources[i] + `" selected="selected">` + $scope.subsources[i] + `</option>`;
                                             }
                                             else {
@@ -252,7 +252,7 @@ define(function (require) {
      disabled = "angular.element(document.getElementById('cmbxSubSourceOpenOrder').parentNode.children[1]).scope().locking.is_locked"
                                         }*/
 
-                                        // TODO - if source chosen - select 
+
 
                                         subSourceCmbx += `</select>`;
 
