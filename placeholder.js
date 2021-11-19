@@ -85,9 +85,13 @@ define(function (require) {
                                 // GET btn scope
                                 var btnScp = angular.element(btn).scope();
 
-                                btnScp.alert = function (arg) {
-                                    alert(arg);
-                                };
+                                btnScp.alert = window.alert;
+                                
+                                // function (arg) {
+                                //     alert(arg);
+                                // };
+
+                                // $scope.alert = window.alert;
 
                                 btnScp.check_order = function(){
                                     console.log('checking....');
