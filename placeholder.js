@@ -221,8 +221,6 @@ define(function (require) {
 
                         //#region Billing address
                         // Look for another fields ... 
-                        var resultCompanyBilling = searchTreeWithParent(node, "Company", "Billing Address");
-                        var resultNameBilling = searchTreeWithParent(node, "Name", "Billing Address");
                         var resultEmailBilling = searchTreeWithParent(node, "Email", "Billing Address");
 
                         var resultAddressBilling = searchTreeWithParent(node, "Address 1", "Billing Address");
@@ -236,27 +234,6 @@ define(function (require) {
                         ///
                         if (resultAddBilling) angular.element(resultAddBilling).context.setAttribute('style', "font-size:13px!important;");
                         if (resultPhoneBilling) resultPhoneBilling.innerText = "Phone ";
-
-
-                        if (resultNameBilling && resultNameBilling.nextElementSibling.tagName == "INPUT") {
-                            resultNameBilling.innerText = "*" + resultNameBilling.innerText;
-
-                            angular.element(resultNameBilling).context.setAttribute('style', "color:red!important;");
-
-                            // At least on of the following fields should be filled  Name or Company Name
-                            var nameInput = angular.element(resultNameBilling.nextElementSibling);
-                            nameInput.context.setAttribute('minlength', '1');
-                            nameInput.attr("required", "required");
-                        }
-
-                        if (resultCompanyBilling && resultCompanyBilling.nextElementSibling.tagName == "INPUT") {
-                            resultCompanyBilling.innerText = "*" + resultCompanyBilling.innerText;
-                            angular.element(resultCompanyBilling).context.setAttribute('style', "color:red!important;");
-
-                            var companyInput = angular.element(resultCompanyBilling.nextElementSibling);
-                            companyInput.context.setAttribute('minlength', '1');
-                            companyInput.attr("required", "required");
-                        }
 
                         if (resultEmailBilling && resultEmailBilling.nextElementSibling.tagName == "INPUT") {
                             resultEmailBilling.innerText = "*" + resultEmailBilling.innerText;
