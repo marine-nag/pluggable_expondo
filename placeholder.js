@@ -85,6 +85,8 @@ define(function (require) {
                                 // GET btn scope
                                 var btnScp = angular.element(btn).scope();
 
+                                var btnAng = angular.element(btn);
+
                                 //btnScp.alert = window.alert;
                                 
                                 // function (arg) {
@@ -93,11 +95,13 @@ define(function (require) {
 
                                 // $scope.alert = window.alert;
 
-                                btnScp.check_order = function(){
-                                    console.log('checking....');
-                                };
+                                // btnScp.check_order = function(){
+                                //     console.log('checking....');
+                                // };
 
-                                angular.element(btn).attr('ng-click', "check_order()");
+                                // angular.element(btn).attr('ng-click', "check_order()");
+
+
                             }
 
                         }
