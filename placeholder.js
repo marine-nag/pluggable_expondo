@@ -5,6 +5,9 @@
 //const { SSL_OP_DONT_INSERT_EMPTY_FRAGMENTS } = require("constants");
 
 define(function (require) {
+
+    //const OrderChangeState = require('modules/orderbook/orders/classes/orderchangestate');
+
     // Set validation there
     $(document).ready(function ($scope) {
         const config = { childList: true, subtree: true };
@@ -78,129 +81,167 @@ define(function (require) {
 
                             // GET btn scope
                             var scp = angular.element(btn).scope();
-                            var temp = scp.change_state;
 
-                            scp.change_state.has_order_changed = (order) => {
-                                var t1 = scp.change_state.has_general_info_changed(order.GeneralInfo);
-                                var t2 = scp.change_state.have_items_changed(order.Items);
-                                var t3 = scp.change_state.has_address_changed(order.CustomerInfo.Address);
-                                var t4 = scp.change_state.has_billing_address_changed(order.CustomerInfo.BillingAddress);
+                            scp.elSave = btn;
 
-                                if (scp.change_state.has_general_info_changed(order.GeneralInfo)
-                                    && scp.change_state.have_items_changed(order.Items)
-                                    && scp.change_state.has_address_changed(order.CustomerInfo.Address)
-                                    && scp.change_state.has_billing_address_changed(order.CustomerInfo.BillingAddress)) {
+                            var is_new = Boolean(scp.config.is_new);
 
-                                    if (scp.change_state.has_shipping_info_changed(order.ShippingInfo)) {
-                                        return true;
-                                    }
+                            if (is_new) {
+                                scp.saving.is_saving = () => {
 
-                                    if (scp.change_state.have_totals_changed(order.TotalsInfo)) {
-                                        return true;
-                                    }
-                                    if (scp.change_state.have_extended_properties_changed(order.ExtendedProperties || [])) {
-                                        return true;
-                                    }
+                                    scp.change_state.has_order_changed = (order) => {
+                                        var address = scp.$parent.$parent.order.CustomerInfo.Address;
 
-                                    return true;
+                                        var isValidEmail = address.EmailAddress.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/);
+
+                                        var isValidAddress = address.EmailAddress.length > 1 && isValidEmail && address.Address1.length > 1 && address.Town.length > 1
+                                            && address.PostCode.length > 1 && (address.Company.length > 1 || address.FullName.length > 1);
+
+                                        address = scp.$parent.$parent.order.CustomerInfo.BillingAddress;
+
+                                        isValidEmail = address.EmailAddress.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/);
+
+                                        var isValidBilling = address.EmailAddress.length > 1 && isValidEmail && address.Address1.length > 1 && address.Town.length > 1
+                                            && address.PostCode.length > 1 && (address.Company.length > 1 || address.FullName.length > 1);
+
+                                        var haveItems = scp.$parent.$parent.order.Items != null && scp.$parent.$parent.order.Items.length > 0;
+
+                                        var isGeneralInfo = scp.$parent.$parent.order.GeneralInfo.SubSource != "" && scp.$parent.$parent.order.GeneralInfo.SubSource != null;
+
+                                        var is_saving = isValidAddress && isValidBilling && haveItems && isGeneralInfo;
+
+                                        return is_saving;
+                                    };
+
+                                    return this.chain != null;
                                 }
-                                else {
-                                    return false;
-                                }
-                            };
+                            }
+                            else if (scp.change_state) {
+                                scp.change_state.has_order_changed = (order) => {
+                                    var t1 = scp.change_state.has_general_info_changed(order.GeneralInfo);
+                                    var t2 = scp.change_state.have_items_changed(order.Items);
+                                    var t3 = scp.change_state.has_address_changed(order.CustomerInfo.Address);
+                                    var t4 = scp.change_state.has_billing_address_changed(order.CustomerInfo.BillingAddress);
 
-                            // Shipping address
-                            /*scp.change_state.has_shipping_info_changed = shipping => {
+                                    if (scp.change_state.has_general_info_changed(order.GeneralInfo)
+                                        && scp.change_state.have_items_changed(order.Items)
+                                        && scp.change_state.has_address_changed(order.CustomerInfo.Address)
+                                        && scp.change_state.has_billing_address_changed(order.CustomerInfo.BillingAddress)) {
 
-                                if (!shipping) return false;
+                                        if (scp.change_state.has_shipping_info_changed(order.ShippingInfo)) {
+                                            return true;
+                                        }
 
-                                var address = shipping;
+                                        if (scp.change_state.have_totals_changed(order.TotalsInfo)) {
+                                            return true;
+                                        }
+                                        if (scp.change_state.have_extended_properties_changed(order.ExtendedProperties || [])) {
+                                            return true;
+                                        }
 
-                                var isValid = address.EmailAddress.length > 1 && address.Address1.length > 1 && address.Town.length > 1
-                                && address.PostCode.length > 1 && (address.Company.length > 1 || address.FullName.length > 1);
+                                        return true;
+                                    }
+                                    else {
+                                        return false;
+                                    }
+                                };
 
-                                return this._object_is_different(scp.change_state.shipping_excluded_fields, scp.change_state.original_shipping, shipping) && isValid;
-                            };*/
-
-                            // Billing address
-                            scp.change_state.has_billing_address_changed = address => {
-                                // if (!address) return false;
-                                // return scp.change_state._object_is_different([], scp.change_state.original_billing, address);
-
-                                if (!address) return false;
-
-                                var isValid = address.EmailAddress.length > 1 && address.Address1.length > 1 && address.Town.length > 1
+                                // Shipping address
+                                /*scp.change_state.has_shipping_info_changed = shipping => {
+    
+                                    if (!shipping) return false;
+    
+                                    var address = shipping;
+    
+                                    var isValid = address.EmailAddress.length > 1 && address.Address1.length > 1 && address.Town.length > 1
                                     && address.PostCode.length > 1 && (address.Company.length > 1 || address.FullName.length > 1);
+    
+                                    return this._object_is_different(scp.change_state.shipping_excluded_fields, scp.change_state.original_shipping, shipping) && isValid;
+                                };*/
 
-                                // return scp.change_state._object_is_different([], scp.change_state.original_billing, address)
-                                //     || isValid
+                                // Billing address
+                                scp.change_state.has_billing_address_changed = address => {
+                                    // if (!address) return false;
+                                    // return scp.change_state._object_is_different([], scp.change_state.original_billing, address);
 
-                                return isValid;
-                            }
+                                    if (!address) return false;
+                                    var isValidEmail = address.EmailAddress.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/);
 
-                            // General info (subsource there)
-                            scp.change_state.has_general_info_changed = general_info => {
-                                if (!general_info) return false;
+                                    var isValid = address.EmailAddress.length > 1 && isValidEmail && address.Address1.length > 1 && address.Town.length > 1
+                                        && address.PostCode.length > 1 && (address.Company.length > 1 || address.FullName.length > 1);
 
-                                if (general_info.SubSource == "" || general_info.SubSource == null) {
-                                    return false;
+                                    // return scp.change_state._object_is_different([], scp.change_state.original_billing, address)
+                                    //     || isValid
+
+                                    return isValid;
                                 }
-                                else {
-                                    return true;
+
+                                // General info (subsource there)
+                                scp.change_state.has_general_info_changed = general_info => {
+                                    if (!general_info) return false;
+
+                                    if (general_info.SubSource == "" || general_info.SubSource == null) {
+                                        return false;
+                                    }
+                                    else {
+                                        return true;
+                                    }
+
+                                    return scp.change_state._object_is_different(scp.change_state.general_excluded_fields, scp.change_state.original_general, general_info);
                                 }
 
-                                return scp.change_state._object_is_different(scp.change_state.general_excluded_fields, scp.change_state.original_general, general_info);
-                            }
+                                // At least 1 item has to be there.. 
+                                scp.change_state.have_items_changed = (items, ignore_service = false) => {
 
-                            // At least 1 item has to be there.. 
-                            scp.change_state.have_items_changed = (items, ignore_service = false) => {
+                                    var realCount = scp.items.get_items_count();
+                                    if (realCount == 0) return false;
 
-                                var realCount = scp.items.get_items_count();
-                                if (realCount == 0) return false;
+                                    let item_count = Object.keys(scp.change_state.original_items).length;
+                                    let check_items = [];
 
-                                let item_count = Object.keys(scp.change_state.original_items).length;
-                                let check_items = [];
-
-                                if (ignore_service) {
-                                    for (let item of items) {
-                                        if (!(item.IsService || item.IsServiceItem)) {
-                                            check_items.push(item);
+                                    if (ignore_service) {
+                                        for (let item of items) {
+                                            if (!(item.IsService || item.IsServiceItem)) {
+                                                check_items.push(item);
+                                            }
                                         }
                                     }
-                                }
-                                else {
-                                    item_count += Object.keys(scp.change_state.original_services).length;
-                                    check_items = items;
-                                }
+                                    else {
+                                        item_count += Object.keys(scp.change_state.original_services).length;
+                                        check_items = items;
+                                    }
 
-                                if (item_count != check_items.length) {
-                                    return true;
-                                }
-
-                                for (let item of check_items) {
-                                    let original_item = scp.change_state.get_original_item(item.RowId);
-                                    if (!original_item) return true;
-
-                                    if (scp.change_state.has_item_changed(item)) {
+                                    if (item_count != check_items.length) {
                                         return true;
                                     }
-                                }
 
-                                return true;
-                            };
+                                    for (let item of check_items) {
+                                        let original_item = scp.change_state.get_original_item(item.RowId);
+                                        if (!original_item) return true;
 
-                            // Customer address...
-                            scp.change_state.has_address_changed = address => {
-                                if (!address) return false;
+                                        if (scp.change_state.has_item_changed(item)) {
+                                            return true;
+                                        }
+                                    }
 
-                                var isValid = address.EmailAddress.length > 1 && address.Address1.length > 1 && address.Town.length > 1
-                                    && address.PostCode.length > 1 && (address.Company.length > 1 || address.FullName.length > 1);
+                                    return true;
+                                };
 
-                                // return scp.change_state._object_is_different([], scp.change_state.original_customer, address)
-                                //     || isValid
+                                // Customer address...
+                                scp.change_state.has_address_changed = address => {
+                                    if (!address) return false;
+                                    
+                                    var isValidEmail = address.EmailAddress.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/);
 
-                                return isValid;
-                            };
+                                    var isValid = address.EmailAddress.length > 1 && isValidEmail && address.Address1.length > 1 && address.Town.length > 1
+                                        && address.PostCode.length > 1 && (address.Company.length > 1 || address.FullName.length > 1);
+
+                                    // return scp.change_state._object_is_different([], scp.change_state.original_customer, address)
+                                    //     || isValid
+
+                                    return isValid;
+                                };
+                            }
                         }
 
                         // Get subsource 
@@ -236,8 +277,13 @@ define(function (require) {
                                                  required>`;
 
                                         //subSourceCmbx += `<option value="` + $scope.subsources[i] + `">` + $scope.subsources[i] + `</option>`;
-                                    
-                                        for (var i = 0; i < $scope.subsources.length; i++) {
+                                        subSourceCmbx += `<option value=" "> </option>`;
+                                        subSourceCmbx += `<option value="Email" selected="selected">Email</option>`;
+                                        subSourceCmbx += `<option value="Phone">Phone</option>`;
+                                        subSourceCmbx += `<option value="PL Email">PL Email</option>`;
+                                        subSourceCmbx += `<option value="PL Phone">PL Phone</option>`;
+                                        
+                                        /*for (var i = 0; i < $scope.subsources.length; i++) {
 
                                             // Add new option
                                             if ($scope.subsources[i] == $scope.selectedSubSource) {
@@ -246,13 +292,11 @@ define(function (require) {
                                             else {
                                                 subSourceCmbx += `<option value="` + $scope.subsources[i] + `">` + $scope.subsources[i] + `</option>`;
                                             }
-                                        }
+                                        }*/
                                         /*if(!scope.locking.is_locked)
                                         {
      disabled = "angular.element(document.getElementById('cmbxSubSourceOpenOrder').parentNode.children[1]).scope().locking.is_locked"
                                         }*/
-
-
 
                                         subSourceCmbx += `</select>`;
 
