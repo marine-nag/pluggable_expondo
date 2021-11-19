@@ -88,7 +88,7 @@ define(function (require) {
                                 var btnAng = angular.element(btn);
 
                                 //btnScp.alert = window.alert;
-                                
+
                                 // function (arg) {
                                 //     alert(arg);
                                 // };
@@ -114,60 +114,43 @@ define(function (require) {
 
                                 $scope.input = resultSubSource.children[0].children[0].children[0].children[1].children[3];
 
-                                const dashService = new Services.DashboardsService(this);
-
-                                var query = "SELECT DISTINCT o.SubSource From [Order] o ORDER BY o.SubSource";
                                 $scope.selectedSubSource = angular.element(resultSubSource).scope().order.GeneralInfo.SubSource;
 
-                                $scope.subsources = [];
+                                var sources = ["Email", "Phone", "PL Email", "PL Phone"];
 
-                                dashService.ExecuteCustomScriptQuery(query, function (data) {
-                                    //subsources = data.Results;
-                                    for (var i = 0; i < data.result.Results.length; i++) {
-                                        var item = data.result.Results[i];
+                                if ($scope.input) {
 
-                                        $scope.subsources.push(item.SubSource);
+                                    var subSourceCmbx = `<br/>
+                                     <select id="cmbxSubSourceOpenOrder" 
+                                             class="fill-width margin-bottom ng-pristine ng-untouched ng-valid ng-not-empty disabled-transparent"
+                                             ng-model="order.Generalinfo.SubSource"
+                                             onchange="var e = document.getElementById('cmbxSubSourceOpenOrder'); angular.element(e.parentNode.children[1]).scope().order.GeneralInfo.SubSource = e.options[e.selectedIndex].text;"
+                                             required>`;
+
+                                    subSourceCmbx += `<option value=" "> </option>`;
+
+                                    for (var i = 0; i < sources.length; i++) {
+                                        // Add new option
+                                        if (sources[i] == $scope.selectedSubSource) {
+                                            subSourceCmbx += `<option value="` + sources[i] + `" selected="selected">` + sources[i] + `</option>`;
+                                        }
+                                        else {
+                                            subSourceCmbx += `<option value="` + sources[i] + `">` + sources[i] + `</option>`;
+                                        }
                                     }
 
-                                    if ($scope.input && $scope.subsources.length && $scope.subsources.length > 0) {
 
-                                        var subSourceCmbx = `<br/>
-                                         <select id="cmbxSubSourceOpenOrder" 
-                                                 class="fill-width margin-bottom ng-pristine ng-untouched ng-valid ng-not-empty disabled-transparent"
-                                                 ng-model="order.Generalinfo.SubSource"
-                                                 onchange="var e = document.getElementById('cmbxSubSourceOpenOrder'); angular.element(e.parentNode.children[1]).scope().order.GeneralInfo.SubSource = e.options[e.selectedIndex].text;"
-                                                 required>`;
+                                    subSourceCmbx += `<option value="Email" selected="selected">Email</option>`;
+                                    subSourceCmbx += `<option value="Phone">Phone</option>`;
+                                    subSourceCmbx += `<option value="PL Email">PL Email</option>`;
+                                    subSourceCmbx += `<option value="PL Phone">PL Phone</option>`;
 
-                                        //subSourceCmbx += `<option value="` + $scope.subsources[i] + `">` + $scope.subsources[i] + `</option>`;
-                                        subSourceCmbx += `<option value=" "> </option>`;
-                                        subSourceCmbx += `<option value="Email" selected="selected">Email</option>`;
-                                        subSourceCmbx += `<option value="Phone">Phone</option>`;
-                                        subSourceCmbx += `<option value="PL Email">PL Email</option>`;
-                                        subSourceCmbx += `<option value="PL Phone">PL Phone</option>`;
+                                    subSourceCmbx += `</select>`;
 
-                                        /*for (var i = 0; i < $scope.subsources.length; i++) {
+                                    angular.element($scope.input).replaceWith(subSourceCmbx);
 
-                                            // Add new option
-                                            if ($scope.subsources[i] == $scope.selectedSubSource) {
-                                                subSourceCmbx += `<option value="` + $scope.subsources[i] + `" selected="selected">` + $scope.subsources[i] + `</option>`;
-                                            }
-                                            else {
-                                                subSourceCmbx += `<option value="` + $scope.subsources[i] + `">` + $scope.subsources[i] + `</option>`;
-                                            }
-                                        }*/
-                                        /*if(!scope.locking.is_locked)
-                                        {
-     disabled = "angular.element(document.getElementById('cmbxSubSourceOpenOrder').parentNode.children[1]).scope().locking.is_locked"
-                                        }*/
-
-                                        subSourceCmbx += `</select>`;
-
-                                        angular.element($scope.input).replaceWith(subSourceCmbx);
-
-                                        var scp = angular.element(document.getElementById('cmbxSubSourceOpenOrder').parentNode.children[1]).scope();
-                                        var loc = scp.locking.is_locked;
-                                    }
-                                });
+                                    var scp = angular.element(document.getElementById('cmbxSubSourceOpenOrder').parentNode.children[1]).scope();
+                                }
                             }
                         }
 
