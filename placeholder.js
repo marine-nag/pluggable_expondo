@@ -85,7 +85,7 @@ define(function (require) {
                                 // GET btn scope
                                 var btnScp = angular.element(btn).scope();
 
-                                btnScp.alert = window.alert;
+                                //btnScp.alert = window.alert;
                                 
                                 // function (arg) {
                                 //     alert(arg);
@@ -97,7 +97,7 @@ define(function (require) {
                                     console.log('checking....');
                                 };
 
-                                angular.element(btn).attr('ng-click', "alert('Nice job!')");
+                                angular.element(btn).attr('ng-click', "check_order()");
                             }
 
                         }
