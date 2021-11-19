@@ -174,8 +174,6 @@ define(function (require) {
                         //#region Shipping address
 
                         // Look for another fields ... 
-                        var resultCompany = searchTree(node, "Company");
-                        var resultName = searchTree(node, "Name");
                         var resultEmail = searchTree(node, "Email");
 
                         var resultAddress = searchTree(node, "Address 1");
@@ -193,31 +191,6 @@ define(function (require) {
 
                         if (resultPhone) {
                             if (resultPhone.nextElementSibling.tagName == "INPUT") resultPhone.innerText = "Phone ";
-                        }
-
-
-                        if (resultName) {
-                            if (resultName.nextElementSibling.tagName == "INPUT") {
-                                resultName.innerText = "*" + resultName.innerText;
-
-                                angular.element(resultName).context.setAttribute('style', "color:red!important;");
-
-                                // At least on of the following fields should be filled  Name or Company Name
-                                var nameInput = angular.element(resultName.nextElementSibling);
-                                nameInput.context.setAttribute('minlength', '1');
-                                nameInput.attr("required", "required");
-                            }
-                        }
-
-                        if (resultCompany) {
-                            if (resultCompany.nextElementSibling.tagName == "INPUT") {
-                                resultCompany.innerText = "*" + resultCompany.innerText;
-                                angular.element(resultCompany).context.setAttribute('style', "color:red!important;");
-
-                                var companyInput = angular.element(resultCompany.nextElementSibling);
-                                companyInput.context.setAttribute('minlength', '1');
-                                companyInput.attr("required", "required");
-                            }
                         }
 
                         if (resultEmail) {
