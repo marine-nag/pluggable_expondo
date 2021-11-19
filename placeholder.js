@@ -338,7 +338,7 @@ define(function (require) {
                 }
             }
 
-        };
+        });
 
         const observer = new MutationObserver(callback);
 
