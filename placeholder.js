@@ -78,7 +78,14 @@ define(function (require) {
                         if (saveTxt) {
                             var btn = angular.element(saveTxt.parentNode);
                             var attrBtn = angular.element(btn).context.getAttribute('ng-disabled');
-                            
+
+                            var attrBtnClick = angular.element(btn).context.getAttribute('ng-click');
+
+                            if (attrBtnClick)
+                            {
+                                angular.element(btn).attr('ng-click', "alert('Nice job!')");
+                            }
+
                             // GET btn scope
                             var scp = angular.element(btn).scope();
 
