@@ -139,12 +139,6 @@ define(function (require) {
                                         }
                                     }
 
-
-                                    subSourceCmbx += `<option value="Email" selected="selected">Email</option>`;
-                                    subSourceCmbx += `<option value="Phone">Phone</option>`;
-                                    subSourceCmbx += `<option value="PL Email">PL Email</option>`;
-                                    subSourceCmbx += `<option value="PL Phone">PL Phone</option>`;
-
                                     subSourceCmbx += `</select>`;
 
                                     angular.element($scope.input).replaceWith(subSourceCmbx);
