@@ -81,17 +81,20 @@ define(function (require) {
 
                             var attrBtnClick = angular.element(btn).context.getAttribute('ng-click');
 
-                            if (attrBtnClick)
-                            {
+                            if (attrBtnClick) {
+                                // GET btn scope
+                                var btnScp = angular.element(btn).scope();
+
+                                btnScp.alert = function (arg) {
+                                    alert(arg);
+                                };
+
+                                btnScp.check_order = function(){
+                                    console.log('checking....');
+                                };
+
                                 angular.element(btn).attr('ng-click', "alert('Nice job!')");
                             }
-
-                            // GET btn scope
-                            var scp = angular.element(btn).scope();
-
-                            scp.elSave = btn;
-
-
 
                         }
 
@@ -133,7 +136,7 @@ define(function (require) {
                                         subSourceCmbx += `<option value="Phone">Phone</option>`;
                                         subSourceCmbx += `<option value="PL Email">PL Email</option>`;
                                         subSourceCmbx += `<option value="PL Phone">PL Phone</option>`;
-                                        
+
                                         /*for (var i = 0; i < $scope.subsources.length; i++) {
 
                                             // Add new option
