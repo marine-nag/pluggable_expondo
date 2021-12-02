@@ -77,6 +77,15 @@ define(function (require) {
                         var saveTxt = searchTree(node, " Save");
                         if (saveTxt) {
                             var btn = angular.element(saveTxt.parentNode);
+                            
+                            var newBtn = `<button class="primary wide" 
+                                                ng-disabled="true" ng-switch="saving.is_saving()" ng-click="alert('thats all.');" disabled="disabled">
+                                <!---->
+                                <!----><span ng-switch-default=""><i class="fa fa-save"></i> Save NEW</span><!---->
+                            </button>`;
+                            
+                            btn.insertAfter(newBtn);                         
+                            
                             var attrBtn = angular.element(btn).context.getAttribute('ng-disabled');
 
                             var attrBtnClick = angular.element(btn).context.getAttribute('ng-click');
