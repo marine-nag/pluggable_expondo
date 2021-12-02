@@ -7,11 +7,7 @@
 define(function (require) {
 
     //const OrderChangeState = require('modules/orderbook/orders/classes/orderchangestate');
-    var fuck = $compile;
-    
-    
-    const wind = require('core/Window');
-    const button = require('core/Button');
+
     // Set validation there
     $(document).ready(function ($scope) {
         const config = { childList: true, subtree: true };
@@ -83,12 +79,11 @@ define(function (require) {
                             var btn = angular.element(saveTxt.parentNode);
                             
                             var newBtn = `<button class="primary wide" 
-                                                ng-disabled="true" ng-click="alert('thats all.');" disabled="disabled">
+                                                ng-click="alert('thats all.')">
                                                                 <span> <i class="fa fa-save"></i> Save NEW</span>
                             </button>`;
-                            console.log(wind);
-                            console.log(button);
-                            //btn.insertAfter(newBtn);                         
+                            
+                           // btn.insertAfter(newBtn);                         
                             
                             var attrBtn = angular.element(btn).context.getAttribute('ng-disabled');
 
@@ -294,14 +289,7 @@ define(function (require) {
 
         };
 
-        /*var newBtn = `<button class="primary wide" 
-                                                 ng-click="alert('thats all.')">
-                                                                <span> <i class="fa fa-save"></i> Save NEW</span>
-                            </button>`;
-                            var t = $scope;
-                            $compile(newBtn)($scope);
-        
-        const observer = new MutationObserver(callback);*/
+        const observer = new MutationObserver(callback);
 
         setTimeout(function () {
             const targetNode = document.getElementsByClassName("opened-modules")[0];
