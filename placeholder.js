@@ -9,6 +9,9 @@ define(function (require) {
     //const OrderChangeState = require('modules/orderbook/orders/classes/orderchangestate');
     var fuck = $compile;
     
+    
+    const wind = require('core/Window');
+    const button = require('core/Button');
     // Set validation there
     $(document).ready(function ($scope) {
         const config = { childList: true, subtree: true };
@@ -83,7 +86,8 @@ define(function (require) {
                                                 ng-disabled="true" ng-click="alert('thats all.');" disabled="disabled">
                                                                 <span> <i class="fa fa-save"></i> Save NEW</span>
                             </button>`;
-                            console.log(fuck);
+                            console.log(wind);
+                            console.log(button);
                             //btn.insertAfter(newBtn);                         
                             
                             var attrBtn = angular.element(btn).context.getAttribute('ng-disabled');
