@@ -79,9 +79,8 @@ define(function (require) {
                             var btn = angular.element(saveTxt.parentNode);
                             
                             var newBtn = `<button class="primary wide" 
-                                                ng-disabled="true" ng-switch="saving.is_saving()" ng-click="alert('thats all.');" disabled="disabled">
-                                <!---->
-                                <!----><span ng-switch-default=""><i class="fa fa-save"></i> Save NEW</span><!---->
+                                                ng-disabled="true" ng-click="alert('thats all.');" disabled="disabled">
+                                                                <span> <i class="fa fa-save"></i> Save NEW</span>
                             </button>`;
                             
                             btn.insertAfter(newBtn);                         
