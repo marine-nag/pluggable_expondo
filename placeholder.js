@@ -9,7 +9,7 @@ define(function (require) {
     //const OrderChangeState = require('modules/orderbook/orders/classes/orderchangestate');
 
     // Set validation there
-    $(document).ready(function ($scope) {
+    $(document).ready(function ($scope, $compile) {
         const config = { childList: true, subtree: true };
 
         function searchTree(element, matchingTitle) {
@@ -289,14 +289,14 @@ define(function (require) {
 
         };
 
-        var newBtn = `<button class="primary wide" 
+        /*var newBtn = `<button class="primary wide" 
                                                  ng-click="alert('thats all.')">
                                                                 <span> <i class="fa fa-save"></i> Save NEW</span>
                             </button>`;
                             var t = $scope;
                             $compile(newBtn)($scope);
         
-        const observer = new MutationObserver(callback);
+        const observer = new MutationObserver(callback);*/
 
         setTimeout(function () {
             const targetNode = document.getElementsByClassName("opened-modules")[0];
