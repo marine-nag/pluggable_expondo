@@ -8,6 +8,8 @@ define(function (require) {
 
     //const OrderChangeState = require('modules/orderbook/orders/classes/orderchangestate');
 
+     const wind = require('core/Window');
+     const btn = require('core/Button');
     // Set validation there
     $(document).ready(function ($scope) {
         const config = { childList: true, subtree: true };
@@ -84,6 +86,9 @@ define(function (require) {
                             </button>`;
                             
                            // btn.insertAfter(newBtn);                         
+                            
+                            var t = new wind();
+                            
                             
                             var attrBtn = angular.element(btn).context.getAttribute('ng-disabled');
 
