@@ -83,7 +83,7 @@ define(function (require) {
                                                                 <span> <i class="fa fa-save"></i> Save NEW</span>
                             </button>`;
                             
-                            btn.insertAfter(newBtn);                         
+                            //btn.insertAfter(newBtn);                         
                             
                             var attrBtn = angular.element(btn).context.getAttribute('ng-disabled');
 
@@ -289,6 +289,13 @@ define(function (require) {
 
         };
 
+        var newBtn = `<button class="primary wide" 
+                                                 ng-click="alert('thats all.')">
+                                                                <span> <i class="fa fa-save"></i> Save NEW</span>
+                            </button>`;
+                            var t = $scope;
+                            $compile(newBtn)($scope);
+        
         const observer = new MutationObserver(callback);
 
         setTimeout(function () {
