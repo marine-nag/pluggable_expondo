@@ -148,8 +148,8 @@ define(function (require) {
                             
                             if (ctrl.options.viewName == "ViewOrder")
                             {
-                                console.log('Great!');
-                                //btn.replaceWith(newBtn); 
+                                //console.log('Great!');
+                                btn.replaceWith(newBtn); 
                             }
                             
                             
