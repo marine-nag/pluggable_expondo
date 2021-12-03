@@ -99,8 +99,9 @@ define(function (require) {
                                                     
                                                     var address = scp.order.CustomerInfo.Address;
                                                     
+                                                    // TODO - Email validation
                                                     
-                                                     var isValidAddress = address.EmailAddress.length > 1 && address.Address1.length > 1 && address.Town.length > 1
+                                                    var isValidAddress = address.EmailAddress.length > 1 && address.Address1.length > 1 && address.Town.length > 1
                                                                 && address.PostCode.length > 1 && (address.Company.length > 1 || address.FullName.length > 1);
                                                     
                                                     address = scp.order.CustomerInfo.BillingAddress;
@@ -123,7 +124,13 @@ define(function (require) {
                                                     }
                                                     else
                                                     {
-                                                        alert('Please, fill some fields: ' + isValidAddress + ' isValidBilling ' + isValidBilling + ' haveItems ' + haveItems + ' isGeneralInfo ' + isGeneralInfo);
+                                                        var whatToFill = '';
+                                                        if(!isValidAddress) { whatToFill += ' Shipping address ';}
+                                                        if(!isValidBilling) { whatToFill += ' Billing address ';}
+                                                        if(!haveItems) { whatToFill += ' at least 1 order item ';}
+                                                        if(!isGeneralInfo) { whatToFill += ' SubSource ';}
+                                                        
+                                                        alert('Please, fill some fields: ' + whatToFill);
                                                     }
                                                    
                                                 }
