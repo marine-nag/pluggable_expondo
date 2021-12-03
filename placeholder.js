@@ -73,6 +73,14 @@ define(function (require) {
                 if (mutation.type === "childList") {
                     for (const node of mutation.addedNodes) {
 
+                        //Find close button
+                        var closeBtn = searchTree(node, " Close");
+                        
+                        if (closeBtn)
+                        {
+                            console.log('fuck');    
+                        }
+                        
                         // Find SAVE button
                         var saveTxt = searchTree(node, " Save");
                         if (saveTxt) {
