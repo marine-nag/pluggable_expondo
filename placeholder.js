@@ -113,7 +113,7 @@ define(function (require) {
 
                                                     var haveItems = scp.order.Items != null && scp.order.Items.length > 0;
 
-                                                    var isGeneralInfo = scp.order.GeneralInfo.SubSource != "" && scp.order.GeneralInfo.SubSource != null;
+                                                    var isGeneralInfo = scp.order.GeneralInfo.SubSource != '' && scp.order.GeneralInfo.SubSource != null;
 
                                                     var is_saving = isValidAddress && isValidBilling && haveItems && isGeneralInfo;
                                                     if (is_saving)
