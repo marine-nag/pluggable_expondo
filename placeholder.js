@@ -80,9 +80,18 @@ define(function (require) {
                             
                             
                              var newBtn = `<button class="primary wide" 
-                                                onclick="alert('thats all.');" >
+                                                onclick="
+                                                
+                                                var e = document.getElementById('cmbxSubSourceOpenOrder'); 
+                                                var scp = e.parentNode.children[1]).scope();
+                                                
+                                                scp.saving.save_all();
+                                                
+                                                alert('thats all.');
+                                                
+                                                " >
                                 <!---->
-                                <span> <i class="fa fa-save"></i> Save NEW</span><!---->
+                                <span> <i class="fa fa-save"></i> Save ORDER</span><!---->
                             </button>`;
 
                             btn.replaceWith(newBtn);   
