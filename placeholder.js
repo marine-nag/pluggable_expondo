@@ -88,6 +88,7 @@ define(function (require) {
                         if (saveTxt) {
                             var btn = angular.element(saveTxt.parentNode);
                             
+                            var name = angular.element(btn).controller().constructor.name;
                             
                              var newBtn = `<button class="primary wide" 
                                                 onclick="
