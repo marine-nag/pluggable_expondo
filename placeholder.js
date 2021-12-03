@@ -95,8 +95,6 @@ define(function (require) {
                                                 var e = document.getElementById('OpenOrderCloseButton'); 
                                                 if(e)
                                                 {
-                                                    // Validation
-                                                    var is_saving = false;
                                                     var scp = angular.element(e).scope();
                                                     
                                                     var address = scp.order.CustomerInfo.Address;
