@@ -125,7 +125,7 @@ define(function (require) {
                                                     }
                                                     else
                                                     {
-                                                        alert('fuck.');
+                                                        alert('Please, fill some fields: . isValidAddress ' + isValidAddress + ' isValidBilling ' + isValidBilling + ' haveItems ' + haveItems + ' isGeneralInfo ' + isGeneralInfo);
                                                     }
                                                    
                                                 }
