@@ -88,7 +88,7 @@ define(function (require) {
                         if (saveTxt) {
                             var btn = angular.element(saveTxt.parentNode);
                             
-                            var name = angular.element(btn).controller();
+                           
                             
                              var newBtn = `<button class="primary wide" 
                                                 onclick="
@@ -143,8 +143,14 @@ define(function (require) {
                                 <span> <i class="fa fa-save"></i> Save ORDER</span><!---->
                             </button>`;
 
-                            //btn.replaceWith(newBtn);   
+                             
+                            var ctrl = angular.element(btn).controller();
                             
+                            if (ctrl.options.viewName == "ViewOrder")
+                            {
+                                console.log('Great!');
+                                //btn.replaceWith(newBtn); 
+                            }
                             
                             
                             
