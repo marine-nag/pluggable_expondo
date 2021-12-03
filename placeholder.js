@@ -74,11 +74,12 @@ define(function (require) {
                     for (const node of mutation.addedNodes) {
 
                         //Find close button
-                        var closeBtn = searchTree(node, " Close");
+                        var closeBtn = searchTree(node, "Close");
                         
                         if (closeBtn)
                         {
-                            console.log('fuck');    
+                            console.log('fuck');
+                            angular.element(closeBtn.parentNode).attr('id', "OpenOrderCloseButton");
                         }
                         
                         // Find SAVE button
@@ -90,7 +91,7 @@ define(function (require) {
                              var newBtn = `<button class="primary wide" 
                                                 onclick="
                                                 
-                                                var e = document.getElementById('cmbxSubSourceOpenOrder'); 
+                                                var e = document.getElementById('OpenOrderCloseButton'); 
                                                 var scp = e.parentNode.children[1]).scope();
                                                 
                                                 scp.saving.save_all();
