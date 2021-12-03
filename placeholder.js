@@ -125,7 +125,7 @@ define(function (require) {
                                                     }
                                                     else
                                                     {
-                                                        alert('Please, fill some fields: isValidEmailB ' + isValidEmailB + ' isValidEmail ' + isValidEmail +  ' isValidAddress ' + isValidAddress + ' isValidBilling ' + isValidBilling + ' haveItems ' + haveItems + ' isGeneralInfo ' + isGeneralInfo);
+                                                        alert('Please, fill some fields: isValidEmailB ' + isValidEmailB + ' isValidEmail ' + ' address.EmailAddress ' + address.EmailAddress + isValidEmail +  ' isValidAddress ' + isValidAddress + ' isValidBilling ' + isValidBilling + ' haveItems ' + haveItems + ' isGeneralInfo ' + isGeneralInfo);
                                                     }
                                                    
                                                 }
