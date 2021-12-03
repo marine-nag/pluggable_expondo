@@ -99,14 +99,17 @@ define(function (require) {
                                                     
                                                     var address = scp.order.CustomerInfo.Address;
                                                     
-                                                    var isValidEmail = Boolean(address.EmailAddress.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/));
+                                                    var isValidEmail = Boolean(address.EmailAddress.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  ));
                                                     
                                                      var isValidAddress = address.EmailAddress.length > 1 && isValidEmail && address.Address1.length > 1 && address.Town.length > 1
                                                                 && address.PostCode.length > 1 && (address.Company.length > 1 || address.FullName.length > 1);
                                                     
                                                     address = scp.order.CustomerInfo.BillingAddress;
 
-                                                    var isValidEmailB = Boolean(address.EmailAddress.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/));
+                                                    var isValidEmailB = Boolean(address.EmailAddress.match(
+    /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  ));
 
                                                     var isValidBilling = address.EmailAddress.length > 1 && isValidEmailB && address.Address1.length > 1 && address.Town.length > 1
                                                         && address.PostCode.length > 1 && (address.Company.length > 1 || address.FullName.length > 1);
