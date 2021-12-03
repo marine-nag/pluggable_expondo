@@ -142,7 +142,7 @@ define(function (require) {
                                 <span> <i class="fa fa-save"></i> Save ORDER</span><!---->
                             </button>`;
 
-                            btn.replaceWith(newBtn);   
+                            //btn.replaceWith(newBtn);   
                             
                             
                             
