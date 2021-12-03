@@ -99,16 +99,14 @@ define(function (require) {
                                                     
                                                     var address = scp.order.CustomerInfo.Address;
                                                     
-                                                    var isValidEmail = Boolean(address.EmailAddress.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/));
                                                     
-                                                     var isValidAddress = address.EmailAddress.length > 1 && isValidEmail && address.Address1.length > 1 && address.Town.length > 1
+                                                     var isValidAddress = address.EmailAddress.length > 1 && address.Address1.length > 1 && address.Town.length > 1
                                                                 && address.PostCode.length > 1 && (address.Company.length > 1 || address.FullName.length > 1);
                                                     
                                                     address = scp.order.CustomerInfo.BillingAddress;
 
-                                                    var isValidEmailB = Boolean(address.EmailAddress.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/));
 
-                                                    var isValidBilling = address.EmailAddress.length > 1 && isValidEmailB && address.Address1.length > 1 && address.Town.length > 1
+                                                    var isValidBilling = address.EmailAddress.length > 1 && address.Address1.length > 1 && address.Town.length > 1
                                                         && address.PostCode.length > 1 && (address.Company.length > 1 || address.FullName.length > 1);
 
                                                     var haveItems = scp.order.Items != null && scp.order.Items.length > 0;
@@ -125,7 +123,7 @@ define(function (require) {
                                                     }
                                                     else
                                                     {
-                                                        alert('Please, fill some fields: isValidEmailB ' + isValidEmailB + ' isValidEmail ' + ' address.EmailAddress ' + address.EmailAddress + isValidEmail +  ' isValidAddress ' + isValidAddress + ' isValidBilling ' + isValidBilling + ' haveItems ' + haveItems + ' isGeneralInfo ' + isGeneralInfo);
+                                                        alert('Please, fill some fields: ' + isValidAddress + ' isValidBilling ' + isValidBilling + ' haveItems ' + haveItems + ' isGeneralInfo ' + isGeneralInfo);
                                                     }
                                                    
                                                 }
