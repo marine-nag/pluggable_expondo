@@ -79,7 +79,8 @@ define(function (require) {
                         if (closeBtn)
                         {
                             console.log('fuck');
-                            angular.element(closeBtn.parentNode).attr('id', "OpenOrderCloseButton");
+                            closeBtn.parentNode.id = "OpenOrderCloseButton"
+                            //angular.element(closeBtn.parentNode).attr('id', );
                         }
                         
                         // Find SAVE button
@@ -92,7 +93,7 @@ define(function (require) {
                                                 onclick="
                                                 
                                                 var e = document.getElementById('OpenOrderCloseButton'); 
-                                                var scp = e.parentNode.children[1]).scope();
+                                                var scp = e.scope();
                                                 
                                                 scp.saving.save_all();
                                                 
