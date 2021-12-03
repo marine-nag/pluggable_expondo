@@ -93,12 +93,16 @@ define(function (require) {
                                                 onclick="
                                                 
                                                 var e = document.getElementById('OpenOrderCloseButton'); 
-                                                var scp = e.scope();
+                                                if(e)
+                                                {
+                                                    alert('fuck.');
+                                                    var scp = e.scope();
                                                 
-                                                scp.saving.save_all();
+                                                    scp.saving.save_all();
+                                                }
                                                 
-                                                alert('thats all.');
                                                 
+                                                                                                
                                                 " >
                                 <!---->
                                 <span> <i class="fa fa-save"></i> Save ORDER</span><!---->
