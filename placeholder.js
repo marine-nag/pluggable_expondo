@@ -96,7 +96,7 @@ define(function (require) {
                                                 if(e)
                                                 {
                                                     alert('fuck.');
-                                                    var scp = e.scope();
+                                                    var scp = angular.element(e).scope();
                                                 
                                                     scp.saving.save_all();
                                                 }
