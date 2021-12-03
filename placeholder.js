@@ -95,10 +95,41 @@ define(function (require) {
                                                 var e = document.getElementById('OpenOrderCloseButton'); 
                                                 if(e)
                                                 {
-                                                    alert('fuck.');
+                                                    // Validation
+                                                    var is_saving = false;
                                                     var scp = angular.element(e).scope();
-                                                
-                                                    scp.saving.save_all();
+                                                    
+                                                    var address = scp.order.CustomerInfo.Address;
+                                                    
+                                                    var isValidEmail = address.EmailAddress.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/);
+                                                    
+                                                     var isValidAddress = address.EmailAddress.length > 1 && isValidEmail && address.Address1.length > 1 && address.Town.length > 1
+                                                                && address.PostCode.length > 1 && (address.Company.length > 1 || address.FullName.length > 1);
+                                                    
+                                                    address = scp.order.CustomerInfo.BillingAddress;
+
+                                                    isValidEmail = address.EmailAddress.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/);
+
+                                                    var isValidBilling = address.EmailAddress.length > 1 && isValidEmail && address.Address1.length > 1 && address.Town.length > 1
+                                                        && address.PostCode.length > 1 && (address.Company.length > 1 || address.FullName.length > 1);
+
+                                                    var haveItems = scp.order.Items != null && scp.order.Items.length > 0;
+
+                                                    var isGeneralInfo = scp.order.GeneralInfo.SubSource != "" && scp.order.GeneralInfo.SubSource != null;
+
+                                                    var is_saving = isValidAddress && isValidBilling && haveItems && isGeneralInfo;
+                                                    if (is_saving)
+                                                    {
+                                                        scp.saving.save_all();
+                                                    
+                                                        // Saved.
+                                                        alert('Saved');
+                                                    }
+                                                    else
+                                                    {
+                                                        alert('fuck.');
+                                                    }
+                                                   
                                                 }
                                                 
                                                 
