@@ -79,7 +79,7 @@ define(function (require) {
                         if (closeBtn)
                         {
                             console.log('fuck');
-                            closeBtn.parentNode.id = "OpenOrderCloseButton"
+                            closeBtn.parentNode.id = "OpenOrderCloseButton";
                             //angular.element(closeBtn.parentNode).attr('id', );
                         }
                         
