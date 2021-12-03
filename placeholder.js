@@ -8,8 +8,6 @@ define(function (require) {
 
     //const OrderChangeState = require('modules/orderbook/orders/classes/orderchangestate');
 
-     const wind = require('core/Window');
-     const btn = require('core/Button');
     // Set validation there
     $(document).ready(function ($scope) {
         const config = { childList: true, subtree: true };
@@ -79,17 +77,6 @@ define(function (require) {
                         var saveTxt = searchTree(node, " Save");
                         if (saveTxt) {
                             var btn = angular.element(saveTxt.parentNode);
-                            
-                            var newBtn = `<button class="primary wide" 
-                                                ng-click="alert('thats all.')">
-                                                                <span> <i class="fa fa-save"></i> Save NEW</span>
-                            </button>`;
-                            
-                           // btn.insertAfter(newBtn);                         
-                            
-                            var t = new wind();
-                            
-                            
                             var attrBtn = angular.element(btn).context.getAttribute('ng-disabled');
 
                             var attrBtnClick = angular.element(btn).context.getAttribute('ng-click');
