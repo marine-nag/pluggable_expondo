@@ -148,8 +148,20 @@ define(function (require) {
                             
                             if (ctrl.options.viewName == "ViewOrder")
                             {
-                                //console.log('Great!');
-                                btn.replaceWith(newBtn); 
+                                 var scp_new = btn.scope();
+
+                                    var is_new = scp_new.config.is_new;
+
+                                    if(is_new){
+                                              var btn_save =  angular.element(saveTxt);
+                                              btn_save.replaceWith(newBtn);   
+                                    }
+                                    else
+                                    {
+                                           
+                                btn.replaceWith(newBtn);   
+                                    }
+                               
                             }
                             
                             
