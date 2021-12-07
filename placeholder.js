@@ -84,6 +84,8 @@ define(function (require) {
                             var close_scp = angular.element(closeBtn).scope();
                             close_scp.validateEmail = () => {
                                 console.log("Good.");
+                                
+                                var t = $scope;
                             };
                             
                             //angular.element(closeBtn.parentNode).attr('id', );
