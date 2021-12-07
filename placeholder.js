@@ -139,10 +139,10 @@ define(function (require) {
                                                     else
                                                     {
                                                         var whatToFill = '';
-                                                        if(!isValidAddress) { whatToFill += ' Shipping address ';}
-                                                        if(!isValidBilling) { whatToFill += ' Billing address ';}
-                                                        if(!haveItems) { whatToFill += ' at least 1 order item ';}
-                                                        if(!isGeneralInfo) { whatToFill += ' SubSource ';}
+                                                        if(!isValidAddress) { whatToFill += ' \n Shipping address ';}
+                                                        if(!isValidBilling) { whatToFill += ' \n Billing address ';}
+                                                        if(!haveItems) { whatToFill += ' \n at least 1 order item ';}
+                                                        if(!isGeneralInfo) { whatToFill += ' \n SubSource ';}
                                                         
                                                         alert('Please, fill some fields: ' + whatToFill);
                                                     }
