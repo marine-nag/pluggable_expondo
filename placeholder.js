@@ -90,6 +90,13 @@ define(function (require) {
                                 
                             };
                             
+                            
+                            close_scp.whatToFill = (){
+                                
+                                alert("Please, fill some fileds: \n sh \n bil \n 1 item");
+                            
+                            };
+                            
                             //angular.element(closeBtn.parentNode).attr('id', );
                         }
                         
@@ -139,12 +146,13 @@ define(function (require) {
                                                     else
                                                     {
                                                         var whatToFill = '';
-                                                        if(!isValidAddress) { whatToFill += ' \n Shipping address ';}
-                                                        if(!isValidBilling) { whatToFill += ' \n Billing address ';}
-                                                        if(!haveItems) { whatToFill += ' \n at least 1 order item ';}
-                                                        if(!isGeneralInfo) { whatToFill += ' \n SubSource ';}
+                                                        if(!isValidAddress) { whatToFill += '  Shipping address ';}
+                                                        if(!isValidBilling) { whatToFill += ' Billing address ';}
+                                                        if(!haveItems) { whatToFill += ' at least 1 order item ';}
+                                                        if(!isGeneralInfo) { whatToFill += ' SubSource ';}
+                                                        scp.whatToFill();
                                                         
-                                                        alert('Please, fill some fields: ' + whatToFill);
+                                                        //alert('Please, fill some fields: ' + whatToFill);
                                                     }
                                                    
                                                 }
