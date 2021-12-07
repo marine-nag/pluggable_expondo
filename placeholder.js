@@ -128,13 +128,38 @@ define(function (require) {
                                 
                                 
                                 // Billing address
+                                address = order.CustomerInfo.BillingAddress;
+                                
+                                if (address.EmailAddress.length <= 1 && close_scp.validateEmail(address.EmailAddress))
+                                {
+                                    list.push("Billing address: Valid Email");
+                                }
+                                
+                                if (address.Address1.length <= 1)
+                                {
+                                    list.push("Billing address: Address1");
+                                }
+                                
+                                if (address.Town.length <= 1)
+                                {
+                                    list.push("Billing address: Town");
+                                }
+                                
+                                if (address.PostCode.length <= 1)
+                                {
+                                    list.push("Billing address: PostCode");
+                                }
+                                
+                                if (address.Company.length <= 1 && address.FullName.length <= 1)
+                                {
+                                    list.push("Billing address: Company or name");
+                                }
                                 
                                 // Subsource
                                 if(order.GeneralInfo.SubSource == '' || order.GeneralInfo.SubSource == null)
                                 {
                                     list.push("Subsource");
-                                }
-                                
+                                }                               
                                 
                                 // 1 item
                                 if (order.Items == null || order.Items.length <= 0)
@@ -142,17 +167,13 @@ define(function (require) {
                                     list.push("at least 1 order item");
                                 }
                                 
-                                
-                                
-                                
-                                
                                 // create ordered list: 
                                  var result = "";
                                   for (var i = 0; i < list.length; ++i) {
                                     result += (i+1) + ". " + list[i] + "\n";
                                   }
                                 
-                                alert("Please, fill some fileds: \n " + result);
+                                alert("Please, fill next fileds: \n" + result);
                             
                             };
                             
