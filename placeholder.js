@@ -82,10 +82,12 @@ define(function (require) {
                             closeBtn.parentNode.id = "OpenOrderCloseButton";
                             
                             var close_scp = angular.element(closeBtn).scope();
-                            close_scp.validateEmail = () => {
-                                console.log("Good.");
+                            close_scp.validateEmail = (EmailAddress) => {
+                                console.log(EmailAddress);
+                                console.log(EmailAddress.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/));
                                 
-                                var t = $scope;
+                                return EmailAddress.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/);
+                                
                             };
                             
                             //angular.element(closeBtn.parentNode).attr('id', );
@@ -110,21 +112,22 @@ define(function (require) {
                                                     
                                                     // TODO - Email validation
                                                     
-                                                    var isValidAddress = address.EmailAddress.length > 1 && address.Address1.length > 1 && address.Town.length > 1
+                                                    var isValidEmailAddress = scp.validateEmail(address.EmailAddress);
+                                                    
+                                                    var isValidAddress = address.EmailAddress.length > 1 && isValidEmailAddress && address.Address1.length > 1 && address.Town.length > 1
                                                                 && address.PostCode.length > 1 && (address.Company.length > 1 || address.FullName.length > 1);
                                                     
                                                     address = scp.order.CustomerInfo.BillingAddress;
 
-
-                                                    var isValidBilling = address.EmailAddress.length > 1 && address.Address1.length > 1 && address.Town.length > 1
+                                                    var isValidEmailBillingAddress = scp.validateEmail(address.EmailAddress);
+                                                    
+                                                    var isValidBilling = address.EmailAddress.length > 1 && isValidEmailBillingAddress && address.Address1.length > 1 && address.Town.length > 1
                                                         && address.PostCode.length > 1 && (address.Company.length > 1 || address.FullName.length > 1);
 
                                                     var haveItems = scp.order.Items != null && scp.order.Items.length > 0;
 
                                                     var isGeneralInfo = scp.order.GeneralInfo.SubSource != '' && scp.order.GeneralInfo.SubSource != null;
 
-                                                    scp.validateEmail();
-                                                    
                                                     var is_saving = isValidAddress && isValidBilling && haveItems && isGeneralInfo;
                                                     if (is_saving)
                                                     {
