@@ -91,7 +91,7 @@ define(function (require) {
                             };
                             
                             
-                            close_scp.whatToFill = (){
+                            close_scp.whatToFill = () => {
                                 
                                 alert("Please, fill some fileds: \n sh \n bil \n 1 item");
                             
