@@ -101,7 +101,7 @@ define(function (require) {
                                 //var isValidAddress = address.EmailAddress.length > 1 && isValidEmailAddress && address.Address1.length > 1 && address.Town.length > 1
                                   //                              && address.PostCode.length > 1 && (address.Company.length > 1 || address.FullName.length > 1);
                                                     
-                                if (address.EmailAddress.length <= 1 && close_scp.validateEmail(address.EmailAddress))
+                                if (address.EmailAddress.length <= 1 || close_scp.validateEmail(address.EmailAddress))
                                 {
                                     list.push("Shipping address: Valid Email");
                                 }
@@ -130,7 +130,7 @@ define(function (require) {
                                 // Billing address
                                 address = order.CustomerInfo.BillingAddress;
                                 
-                                if (address.EmailAddress.length <= 1 && close_scp.validateEmail(address.EmailAddress))
+                                if (address.EmailAddress.length <= 1 || close_scp.validateEmail(address.EmailAddress))
                                 {
                                     list.push("Billing address: Valid Email");
                                 }
