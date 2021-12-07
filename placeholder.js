@@ -84,9 +84,9 @@ define(function (require) {
                             var close_scp = angular.element(closeBtn).scope();
                             close_scp.validateEmail = (EmailAddress) => {
                                 console.log(EmailAddress);
-                                console.log(EmailAddress.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/));
+                                console.log(Boolean(EmailAddress.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)));
                                 
-                                return EmailAddress.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/);
+                                return Boolean(EmailAddress.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/));
                                 
                             };
                             
