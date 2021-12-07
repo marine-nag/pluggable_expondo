@@ -91,9 +91,68 @@ define(function (require) {
                             };
                             
                             
-                            close_scp.whatToFill = () => {
+                            close_scp.whatToFill = (order) => {
+                                var t = close_scp.validateEmail("asdkfjlasdjflk");
+                                var list = [];
                                 
-                                alert("Please, fill some fileds: \n sh \n bil \n 1 item");
+                                // Shipping address
+                                var address = scp.order.CustomerInfo.Address;
+                                
+                                //var isValidAddress = address.EmailAddress.length > 1 && isValidEmailAddress && address.Address1.length > 1 && address.Town.length > 1
+                                  //                              && address.PostCode.length > 1 && (address.Company.length > 1 || address.FullName.length > 1);
+                                                    
+                                if (address.EmailAddress.length <= 1 && close_scp.validateEmail(address.EmailAddress))
+                                {
+                                    list.push("Shipping address: Valid Email");
+                                }
+                                
+                                if (address.Address1.length <= 1)
+                                {
+                                    list.push("Shipping address: Address1");
+                                }
+                                
+                                if (address.Town.length <= 1)
+                                {
+                                    list.push("Shipping address: Town");
+                                }
+                                
+                                if (address.PostCode.length <= 1)
+                                {
+                                    list.push("Shipping address: PostCode");
+                                }
+                                
+                                if (address.Company.length <= 1 && address.FullName.length <= 1)
+                                {
+                                    list.push("Shipping address: Company or name");
+                                }
+                                
+                                
+                                // Billing address
+                                
+                                // Subsource
+                                if(order.GeneralInfo.SubSource == '' || order.GeneralInfo.SubSource == null)
+                                {
+                                    list.push("Subsource");
+                                }
+                                
+                                
+                                // 1 item
+                                if (order.Items == null || order.Items.length <= 0)
+                                {
+                                    list.push("at least 1 order item");
+                                }
+                                
+                                
+                                
+                                
+                                
+                                // create ordered list: 
+                                 var result = "";
+                                  for (var i = 0; i < list.length; ++i) {
+                                    result += (i+1) + ". " + list[i] + "\n";
+                                  }
+                                
+                                alert("Please, fill some fileds: \n " + result);
                             
                             };
                             
@@ -145,12 +204,13 @@ define(function (require) {
                                                     }
                                                     else
                                                     {
+                                                        /*
                                                         var whatToFill = '';
                                                         if(!isValidAddress) { whatToFill += '  Shipping address ';}
                                                         if(!isValidBilling) { whatToFill += ' Billing address ';}
                                                         if(!haveItems) { whatToFill += ' at least 1 order item ';}
-                                                        if(!isGeneralInfo) { whatToFill += ' SubSource ';}
-                                                        scp.whatToFill();
+                                                        if(!isGeneralInfo) { whatToFill += ' SubSource ';} */
+                                                        scp.whatToFill(scp.order);
                                                         
                                                         //alert('Please, fill some fields: ' + whatToFill);
                                                     }
