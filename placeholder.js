@@ -96,7 +96,7 @@ define(function (require) {
                                 var list = [];
                                 
                                 // Shipping address
-                                var address = scp.order.CustomerInfo.Address;
+                                var address = order.CustomerInfo.Address;
                                 
                                 //var isValidAddress = address.EmailAddress.length > 1 && isValidEmailAddress && address.Address1.length > 1 && address.Town.length > 1
                                   //                              && address.PostCode.length > 1 && (address.Company.length > 1 || address.FullName.length > 1);
