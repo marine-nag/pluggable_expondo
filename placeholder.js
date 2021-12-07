@@ -80,6 +80,12 @@ define(function (require) {
                         {
                             console.log('fuck');
                             closeBtn.parentNode.id = "OpenOrderCloseButton";
+                            
+                            var close_scp = angular.element(closeBtn).scope();
+                            close_scp.validateEmail = () => {
+                                console.log("Good.");
+                            };
+                            
                             //angular.element(closeBtn.parentNode).attr('id', );
                         }
                         
@@ -115,6 +121,8 @@ define(function (require) {
 
                                                     var isGeneralInfo = scp.order.GeneralInfo.SubSource != '' && scp.order.GeneralInfo.SubSource != null;
 
+                                                    scp.validateEmail();
+                                                    
                                                     var is_saving = isValidAddress && isValidBilling && haveItems && isGeneralInfo;
                                                     if (is_saving)
                                                     {
