@@ -107,7 +107,7 @@ define(function (require) {
                                     
                                     var elEmail = document.getElementById('EmailShipping');
                                     if (elEmail) {
-                                        elEmail.attr("style", "border-color: #ee5f5b !important;");
+                                        angular.element(elEmail).attr("style", "border-color: #ee5f5b !important;");
                                     }
                                     
                                     list.push("Shipping address: Valid Email");
