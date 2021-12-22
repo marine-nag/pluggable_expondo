@@ -103,8 +103,18 @@ define(function (require) {
                                                     
                                 if (address.EmailAddress.length <= 1 || !close_scp.validateEmail(address.EmailAddress))
                                 {
-                                    $scope.isValidEmail = false;
+                                    $scope.isInValidEmail = true;
+                                    
+                                    var elEmail = document.getElementById('EmailShipping');
+                                    if (elEmail) {
+                                        elEmail.attr("style", "border-color: #ee5f5b !important;");
+                                    }
+                                    
                                     list.push("Shipping address: Valid Email");
+                                }
+                                else
+                                {
+                                    $scope.isInValidEmail = false;
                                 }
                                 
                                 if (address.Address1.length <= 1)
@@ -374,10 +384,12 @@ define(function (require) {
                                 emailInput.context.setAttribute('minlength', '1');
                                 emailInput.attr("required", "required");
                                 emailInput.attr("type", "email");
-                                if(!$scope.isValidEmail)
+                                emailInput.attr("id", "EmailShipping");
+                                
+                                if ($scope.isInValidEmail)
                                 {
-                                    emailInput.attr("style", "color: #b94a48 !important; border-color: #ee5f5b !important;");
-                                }                                
+                                    emailInput.attr("style", "border-color: #ee5f5b !important;");
+                                }                                  
                             }
                         }
 
