@@ -103,6 +103,7 @@ define(function (require) {
                                                     
                                 if (address.EmailAddress.length <= 1 || !close_scp.validateEmail(address.EmailAddress))
                                 {
+                                    $scope.isValidEmail = false;
                                     list.push("Shipping address: Valid Email");
                                 }
                                 
@@ -373,7 +374,10 @@ define(function (require) {
                                 emailInput.context.setAttribute('minlength', '1');
                                 emailInput.attr("required", "required");
                                 emailInput.attr("type", "email");
-                                emailInput.attr("style", "color: #b94a48 !important; border-color: #ee5f5b !important;");
+                                if(!$scope.isValidEmail)
+                                {
+                                    emailInput.attr("style", "color: #b94a48 !important; border-color: #ee5f5b !important;");
+                                }                                
                             }
                         }
 
