@@ -373,7 +373,7 @@ define(function (require) {
                                 emailInput.context.setAttribute('minlength', '1');
                                 emailInput.attr("required", "required");
                                 emailInput.attr("type", "email");
-                                emailInput.attr("class", "fill-width disabled-transparent ng-pristine ng-valid ng-empty");
+                                emailInput.attr("style", "color: #b94a48 !important; border-color: #ee5f5b !important;");
                             }
                         }
 
